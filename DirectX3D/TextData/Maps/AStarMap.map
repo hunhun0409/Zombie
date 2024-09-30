@@ -1,0 +1,10 @@
+<Map Name="AStarMap">
+    <Materials>
+        <Material1 Material1="TextData/Materials/AStarMap_Material1.mat"/>
+    </Materials>
+    <SecondMap SecondMap="Textures/Landscape/Dirt.png"/>
+    <ThirdMap ThirdMap="Textures/Landscape/Dirt3.png"/>
+    <FourthMap FourthMap="Textures/Landscape/Dirt.png"/>
+    <HeightMap HeightMap="Textures/Heightmaps/AStarMap_HeightMap.png"/>
+    <AlphaMap AlphaMap="Textures/AlphaMaps/AStarMap_AlphaMap.png"/>
+</Map>

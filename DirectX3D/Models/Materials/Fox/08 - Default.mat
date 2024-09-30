@@ -1,0 +1,19 @@
+<Material Name="Fox">
+    <Shader>
+        <Vertex Vertex="Shaders/Model/ModelAnimation.hlsl"/>
+        <Pixel Pixel="Shaders/Model/ModelAnimation.hlsl"/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures\Model\Fox\T_Fox_BC.png"/>
+        <SpecularMap Specular="Textures\Model\Fox\T_Fox_AO.png"/>
+        <NormalMap Normal="Textures/Color/White.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="0.44313729" G="0.44313729" B="0.44313729" A="1"/>
+        <Specular R="0.89999998" G="0.89999998" B="0.89999998" A="1"/>
+        <Ambient R="0.64705884" G="0.63586408" B="0.62802768" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="9.1895857"/>
+        <HasNormalMap HasNormalMap="0"/>
+    </Property>
+</Material>

@@ -1,0 +1,19 @@
+<Material Name="Second">
+    <Shader>
+        <Vertex Vertex="Shaders/LandScape/TerrainEditor.hlsl"/>
+        <Pixel Pixel="Shaders/LandScape/TerrainEditor.hlsl"/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures/Landscape/DIrt.png"/>
+        <SpecularMap Specular="Textures/Color/White.png"/>
+        <NormalMap Normal="Textures\Landscape\WaveNormal.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="1" G="0.029411793" B="0.029411793" A="1"/>
+        <Specular R="1" G="1" B="1" A="1"/>
+        <Ambient R="1" G="1" B="1" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="24"/>
+        <HasNormalMap HasNormalMap="1"/>
+    </Property>
+</Material>

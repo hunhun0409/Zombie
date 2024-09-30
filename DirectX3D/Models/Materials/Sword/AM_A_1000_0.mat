@@ -1,0 +1,19 @@
+<Material Name="AM_A_1000_0">
+    <Shader>
+        <Vertex Vertex="Shaders/Light/Light.hlsl"/>
+        <Pixel Pixel="Shaders/Light/Light.hlsl"/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures\Model\sword\WP_A_0271.png"/>
+        <SpecularMap Specular="Textures\Model\sword\WP_A_0271_s.png"/>
+        <NormalMap Normal="Textures\Model\sword\WP_A_0271_n.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="1" G="1" B="1" A="1"/>
+        <Specular R="1" G="1" B="1" A="1"/>
+        <Ambient R="0.30392158" G="0.30392158" B="0.30392158" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="3.852"/>
+        <HasNormalMap HasNormalMap="1"/>
+    </Property>
+</Material>

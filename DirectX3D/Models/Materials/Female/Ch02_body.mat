@@ -1,0 +1,19 @@
+<Material Name="Ch02_body">
+    <Shader>
+        <Vertex Vertex=""/>
+        <Pixel Pixel=""/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures/Model/Female/Ch02_1001_Diffuse.png"/>
+        <SpecularMap Specular="Textures/Model/Female/Ch02_1001_Specular.png"/>
+        <NormalMap Normal="Textures/Model/Female/Ch02_1001_Normal.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="0.80000001" G="0.80000001" B="0.80000001" A="1"/>
+        <Specular R="0.5" G="0.5" B="0.5" A="1"/>
+        <Ambient R="0" G="0" B="0" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="20"/>
+        <HasNormalMap HasNormalMap="1"/>
+    </Property>
+</Material>

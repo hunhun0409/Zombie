@@ -1,0 +1,21 @@
+<Map Name="">
+    <Materials>
+        <Material1 Material1="TextData/Materials/_Material1.mat"/>
+    </Materials>
+    <Maps>
+        <SecondMap>
+            <DiffuseMap DiffuseMap="Textures/Terrain/ground_d.tga"/>
+            <NormalMap NormalMap="Textures/Terrain/ground_n.tga"/>
+        </SecondMap>
+        <ThirdMap>
+            <DiffuseMap DiffuseMap="Textures/Terrain/grass1_d.tga"/>
+            <NormalMap NormalMap="Textures/Terrain/grass1_n.tga"/>
+        </ThirdMap>
+        <FourthMap>
+            <DiffuseMap DiffuseMap="Textures/Terrain/grass2_d.tga"/>
+            <NormalMap NormalMap="Textures/Terrain/grass2_n.tga"/>
+        </FourthMap>
+        <HeightMap HeightMap="Textures/Heightmaps/_HeightMap.png"/>
+        <AlphaMap AlphaMap="Textures/AlphaMaps/_AlphaMap.png"/>
+    </Maps>
+</Map>

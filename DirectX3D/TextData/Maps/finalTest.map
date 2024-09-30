@@ -1,0 +1,8 @@
+<Map Name="finalTest">
+    <Materials>
+        <Material1 Material1="TextData/Materials/finalTest_Material1.mat"/>
+        <Material2 Material2="TextData/Materials/finalTest_Material2.mat"/>
+    </Materials>
+    <HeightMap HeightMap="Textures/Heightmaps/finalTest_HeightMap.png"/>
+    <AlphaMap AlphaMap="Textures/AlphaMaps/finalTest_AlphaMap.png"/>
+</Map>

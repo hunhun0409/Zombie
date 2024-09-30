@@ -1,0 +1,19 @@
+<Material Name="Beta_HighLimbsGeoSG3">
+    <Shader>
+        <Vertex Vertex=""/>
+        <Pixel Pixel=""/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures/Color/White.png"/>
+        <SpecularMap Specular="Textures/Color/White.png"/>
+        <NormalMap Normal="Textures/Color/White.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="0.66960001" G="0.24184643" B="0.21092401" A="1"/>
+        <Specular R="0.48717478" G="0.48717478" B="0.48717478" A="1"/>
+        <Ambient R="0" G="0" B="0" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="3.6752136"/>
+        <HasNormalMap HasNormalMap="0"/>
+    </Property>
+</Material>

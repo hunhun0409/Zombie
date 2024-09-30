@@ -1,0 +1,19 @@
+<Material Name="map3">
+    <Shader>
+        <Vertex Vertex=""/>
+        <Pixel Pixel=""/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures/Color/White.png"/>
+        <SpecularMap Specular="Textures/Color/White.png"/>
+        <NormalMap Normal="Textures/Color/White.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="0.58823532" G="0.58823532" B="0.58823532" A="1"/>
+        <Specular R="0.89999998" G="0.89999998" B="0.89999998" A="1"/>
+        <Ambient R="0.58823532" G="0.58823532" B="0.58823532" A="1"/>
+        <Emissive R="0" G="0" B="0" A="1"/>
+        <Shininess Shininess="1.9999999"/>
+        <HasNormalMap HasNormalMap="0"/>
+    </Property>
+</Material>

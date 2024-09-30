@@ -1,0 +1,10 @@
+<Map Name="Dessert">
+    <Materials>
+        <Material1 Material1="TextData/Materials/Dessert_Material1.mat"/>
+    </Materials>
+    <SecondMap SecondMap="Textures/Landscape/Dirt.png"/>
+    <ThirdMap ThirdMap="Textures/Landscape/Dirt3.png"/>
+    <FourthMap FourthMap="Textures/Landscape/Dirt.png"/>
+    <HeightMap HeightMap="Textures/Heightmaps/Dessert_HeightMap.png"/>
+    <AlphaMap AlphaMap="Textures/AlphaMaps/Dessert_AlphaMap.png"/>
+</Map>
