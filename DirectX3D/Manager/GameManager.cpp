@@ -34,7 +34,7 @@ GameManager::GameManager()
 {
     Create();
 
-    //Laptop
+    //Desktop
 
     //SceneManager::Get()->Create("Grid", new SkyScene());
     SceneManager::Get()->Create("Grid", new GridScene());
