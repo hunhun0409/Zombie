@@ -182,10 +182,10 @@ void InstanceZombie::Chase()
 		pathUpdateInterval += PATH_UPDATE_INTERVAL;
 	}
 
-	Vector3 dir = path.size() > 0 ? path.back() - transform->GlobalPos() : Vector3();
+	if (path.size() == 0) return;
+
+	Vector3 dir = path.back() - transform->GlobalPos();
 	dir.y = 0.0f;
-
-
 
 	if (dir.Length() < 1.0f)
 	{
@@ -224,9 +224,11 @@ void InstanceZombie::Alert()
 				pathUpdateInterval += PATH_UPDATE_INTERVAL;
 			}
 
-			Vector3 dir = path.size() > 0 ? path.back() - transform->GlobalPos() : Vector3();
-			dir.y = 0.0f;
 
+			if (path.size() == 0) return;
+
+			Vector3 dir = path.back() - transform->GlobalPos();
+			dir.y = 0.0f;
 
 			if (dir.Length() < 1.0f)
 			{
