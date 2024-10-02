@@ -5,7 +5,7 @@ class CharacterController;
 class InstanceCharacter
 {
 protected:
-	const float PATH_UPDATE_INTERVAL = 1.0f;
+	const float PATH_UPDATE_INTERVAL = 0.5f;
 public:
 	InstanceCharacter(string name, Transform* transform, ModelAnimatorInstancing* instancing, UINT index);
 	~InstanceCharacter();

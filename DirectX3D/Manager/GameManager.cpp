@@ -41,7 +41,7 @@ GameManager::GameManager()
     SceneManager::Get()->Create("Grid", new GridScene());
     //SceneManager::Get()->Create("Export", new ModelExportScene());
 
-    //SceneManager::Get()->Create("Start", new ModelRenderScene());
+    SceneManager::Get()->Create("Start", new ModelRenderScene());
     //SceneManager::Get()->Create("Start", new ModelAnimationScene());
     //SceneManager::Get()->Create("Start", new BillboardScene());
     //SceneManager::Get()->Create("Start", new ParticleScene());
@@ -60,7 +60,7 @@ GameManager::GameManager()
     //SceneManager::Get()->Create("Start", new RenderTargetScene());
     //SceneManager::Get()->Create("Start", new DeferredScene());
     //SceneManager::Get()->Create("Start", new ShadowScene());
-    SceneManager::Get()->Create("Start", new AStarScene());
+    //SceneManager::Get()->Create("Start", new AStarScene());
     
     //SceneManager::Get()->Create("Start", new TrailEffectScene());
     //SceneManager::Get()->Create("Start", new GameScene());

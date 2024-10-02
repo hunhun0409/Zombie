@@ -89,7 +89,7 @@ void CharacterMovement::Move()
 	ApplyDeceleration();
 	ApplyFriction();
 
-	Matrix rotY = XMMatrixRotationY(owner->Rot().y);
+	Matrix rotY = XMMatrixRotationY(CAM->Rot().y);
 	direction = XMVector3TransformCoord(velocity, rotY);
 	owner->Pos() += direction *  DELTA;
 }

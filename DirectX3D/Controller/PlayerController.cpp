@@ -53,8 +53,6 @@ void PlayerController::Update()
 		}
 	}
 	
-
-
 	if (KEY_DOWN('R'))
 	{
 		controlledCharacter->WeaponA();
@@ -77,19 +75,29 @@ void PlayerController::Update()
 		showCursor = !showCursor;
 		ShowCursor(showCursor);
 
-		mousePos = Vector3(CENTER_X, CENTER_Y);
-		SetCursorPos(clientCenterPos.x, clientCenterPos.y);
+		//mousePos = Vector3(CENTER_X, CENTER_Y);
+		//SetCursorPos(clientCenterPos.x, clientCenterPos.y);
 	}
 
 
-	if (!showCursor)
-	{
-		Vector3 delta = 2 * (mousePos - Vector3(CENTER_X, CENTER_Y));
-		SetCursorPos(clientCenterPos.x, clientCenterPos.y);
+	Vector2 dir;
+	dir.x = mousePos.x / WIN_WIDTH * 2 - 1;
+	dir.y = mousePos.y / WIN_HEIGHT * 2 - 1;
+	dir.Normalize();
 
-		controlledCharacter->Rot().y += delta.x * DELTA;
-		CAM->Rot().x -= delta.y * DELTA;
-		//controlledCharacter->Rot().x += delta.y * DELTA;
-	}
+	controlledCharacter->Rot().y = atan2(dir.x, dir.y) + XM_PI/2;
+
+	//transform->Rot().y = atan2(dir.x, dir.z) + XM_PI;
+	//transform->Pos() += vel * speed * DELTA;
+
+	//if (!showCursor)
+	//{
+	//	Vector3 delta = 2 * (mousePos - Vector3(CENTER_X, CENTER_Y));
+	//	SetCursorPos(clientCenterPos.x, clientCenterPos.y);
+
+	//	controlledCharacter->Rot().y += delta.x * DELTA;
+	//	//CAM->Rot().x -= delta.y * DELTA;
+	//	//controlledCharacter->Rot().x += delta.y * DELTA;
+	//}
 	
 }

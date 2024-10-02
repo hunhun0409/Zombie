@@ -3,8 +3,7 @@
 
 ZombieScene::ZombieScene()
 {
-	InstanceCharacterManager::Get()->Add("ZombieWoman", "ZombieWoman");
-	InstanceCharacterManager::Get()->Add("ZombieMutant", "ZombieMutant");
+	
 
 	Audio::Get()->Add("BG", "Sounds/BG/wind_forest.wav", true, true);
 	Audio::Get()->Add("move", "Sounds/Zombie/move.wav", false, false, true);
@@ -24,16 +23,16 @@ ZombieScene::~ZombieScene()
 
 void ZombieScene::Update()
 {
-	if (KEY_DOWN(VK_LBUTTON))
+	if (KEY_DOWN('P'))
 	{
 		InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1);
 		InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
 	}
-	player->Update();
+	aStar->Update();
 
+	player->Update();
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
-
 }
 
 void ZombieScene::PreRender()
@@ -43,6 +42,7 @@ void ZombieScene::PreRender()
 void ZombieScene::Render()
 {
 	terrain->Render();
+	aStar->Render();
 
 	InstanceCharacterManager::Get()->Render();
 	ParticleManager::Get()->Render();
@@ -63,6 +63,8 @@ void ZombieScene::GUIRender()
 void ZombieScene::Start()
 {
 	terrain = new Terrain("test");
+	aStar = new AStar(30, 30);
+	aStar->SetNode(terrain);
 
 	player = new Knight();
 	player->Pos() = { 100, 0, 100 };
@@ -70,14 +72,21 @@ void ZombieScene::Start()
 	PlayerController::Get()->Possess(player);
 
 	CAM->SetTarget(player);
-	CAM->TargetOptionLoad("PlayerCamera");
+	CAM->TargetOptionLoad("ZombieSurvivalCamera");
 	CAM->LookAtTarget();
 
 	player->SetCamera(CAM);
 
+	InstanceCharacterManager::Get()->Add("ZombieWoman", "ZombieWoman");
+	InstanceCharacterManager::Get()->Add("ZombieMutant", "ZombieMutant");
 	InstanceCharacterManager::Get()->SetTarget(player);
+	InstanceCharacterManager::Get()->SetAstar(aStar);
+	InstanceCharacterManager::Get()->SetTerrain(terrain);
+	
 }
 
 void ZombieScene::End()
 {
+	InstanceCharacterManager::Get()->Remove("ZombieWoman");
+	InstanceCharacterManager::Get()->Remove("ZombieMutant");
 }

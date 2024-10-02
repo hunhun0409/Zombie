@@ -21,7 +21,11 @@ private:
 
 	Model* house;
 	Terrain* terrain;
+	AStar* aStar;
+
 
 	LightBuffer::Light* light;
+
+
 
 };

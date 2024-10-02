@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-    model = new Model("ZombieMutant");
+    model = new Model("Rifle");
     //model->GetMesh(0)->SetMaterial(model->AddMaterial("1"));
     //model->GetMesh(1)->SetMaterial(model->AddMaterial("2"));
     //model->GetMesh(2)->SetMaterial(model->AddMaterial("3"));

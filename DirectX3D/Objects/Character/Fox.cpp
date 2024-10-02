@@ -73,6 +73,8 @@ void Fox::Move()
 	Pos() += velocity * moveSpeed * DELTA;
 
 	//characterMovement->Move();
+
+	
 }
 
 void Fox::Rotate()

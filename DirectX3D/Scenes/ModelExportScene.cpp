@@ -3,7 +3,7 @@
 
 ModelExportScene::ModelExportScene()
 {
-    string name = "ZombieMutant";
+    string name = "Sniper";
     string file = "Models/FBX/" + name + ".fbx";
     ModelExporter* exporter;
     string clipName;
@@ -13,7 +13,7 @@ ModelExportScene::ModelExportScene()
     exporter->ExportMesh();
     delete exporter;
 
-    clipName = "BiteStart";
+    /*clipName = "BiteStart";
     file = "Models/Animations/" + name + "/" + clipName + ".fbx";
     exporter = new ModelExporter(name, file);
     exporter->ExportClip(clipName);
@@ -29,7 +29,7 @@ ModelExportScene::ModelExportScene()
     file = "Models/Animations/" + name + "/" + clipName + ".fbx";
     exporter = new ModelExporter(name, file);
     exporter->ExportClip(clipName);
-    delete exporter;
+    delete exporter;*/
 }
 
 ModelExportScene::~ModelExportScene()

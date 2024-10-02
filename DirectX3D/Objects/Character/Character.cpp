@@ -40,6 +40,7 @@ void Character::Update()
 		}
 	}
 
+
 	if (controller)
 	{
 		controller->Update();

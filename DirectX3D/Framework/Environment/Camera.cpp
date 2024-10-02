@@ -131,7 +131,7 @@ void Camera::LookAtTarget()
 
     Vector3 forward = XMVector3TransformNormal(Vector3::Forward(), rotMatrix);
 
-    Pos() = target->GlobalPos() + forward * -distance;
+    Pos() = target->GlobalPos() + Vector3(1,0,0) * -distance;
     Pos().y += height;    
 
     Vector3 offset = XMVector3TransformCoord(focusOffset, rotMatrix);
@@ -171,10 +171,11 @@ void Camera::FreeMode()
 
 void Camera::FollowMode()
 {   
-    destRot = Lerp(destRot, target->Rot().y, rotDamping * DELTA);    
+    /*destRot = Lerp(destRot, target->Rot().y, rotDamping * DELTA);    
     rotMatrix = XMMatrixRotationY(destRot + rotY);
 
-    Vector3 forward = XMVector3TransformNormal(Vector3::Forward(), rotMatrix);
+    Vector3 forward = XMVector3TransformNormal(Vector3::Forward(), rotMatrix);*/
+    Vector3 forward = Vector3::Right();
 
     destPos = target->GlobalPos() + forward * -distance;
     destPos.y += height;

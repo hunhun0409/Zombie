@@ -42,6 +42,8 @@ private:
 
 	void ProcessBehavior();
 
+	void Rotate();
+
 	void Patrol();
 	void Chase();
 	void Alert();
@@ -75,6 +77,8 @@ private:
 	Vector3 patrolPoint = Vector3();
 	float idleTime = 0.0f;
 	float patrolTime = 0.0f;
+
+	float rotSpeed = 5.0f;
 	
 	// Timers
 	float stateTimer = 0.0f;

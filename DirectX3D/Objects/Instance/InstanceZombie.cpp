@@ -1,3 +1,5 @@
+
+
 #include "Framework.h"
 
 InstanceZombie::InstanceZombie(string name, Transform* transform, ModelAnimatorInstancing* instancing, UINT index)
@@ -44,7 +46,7 @@ void InstanceZombie::Update()
 	InstanceCharacter::Update();
 
 	ProcessBehavior();
-	
+
 	rightHandTransform->SetWorld(instancing->GetTransformByNode(index, rightHandIndex));
 	rightHand->UpdateWorld();
 }
@@ -76,7 +78,7 @@ void InstanceZombie::TakeDamage(float damage)
 {
 	if (curState >= HIT) return;
 	InstanceCharacter::TakeDamage(damage);
-	
+
 	curHp > 0 ? SetState(HIT) : SetState(DIE);
 }
 
@@ -112,7 +114,7 @@ void InstanceZombie::ProcessBehavior()
 	{
 		SetBehavior(NORMAL);
 	}
-	
+
 
 	if (curState >= HIT) return;
 	switch (curBehavior)
@@ -126,6 +128,21 @@ void InstanceZombie::ProcessBehavior()
 	case InstanceZombie::ALERT:
 		Alert();
 		break;
+	}
+}
+
+void InstanceZombie::Rotate()
+{
+	Vector3 forward = transform->Forward();
+	Vector3 cross = Cross(forward, velocity);
+
+	if (cross.y < 0)
+	{
+		transform->Rot().y += rotSpeed * DELTA;
+	}
+	else if (cross.y > 0)
+	{
+		transform->Rot().y -= rotSpeed * DELTA;
 	}
 }
 
@@ -193,11 +210,21 @@ void InstanceZombie::Chase()
 	}
 
 	Vector3 vel = dir.GetNormalized();
-	
+
 	speed = CHASE_SPEED;
 	SetState(WALK);
 
-	transform->Rot().y = atan2(dir.x, dir.z) + XM_PI;
+	Vector3 forward = transform->Forward();
+	Vector3 cross = Cross(forward, dir);
+
+	if (cross.y < 0)
+	{
+		transform->Rot().y += rotSpeed * DELTA;
+	}
+	else if (cross.y > 0)
+	{
+		transform->Rot().y -= rotSpeed * DELTA;
+	}
 	transform->Pos() += vel * speed * DELTA;
 }
 
@@ -240,7 +267,17 @@ void InstanceZombie::Alert()
 			speed = ALERT_SPEED;
 			SetState(RUN);
 
-			transform->Rot().y = atan2(dir.x, dir.z) + XM_PI;
+			Vector3 forward = transform->Forward();
+			Vector3 cross = Cross(forward, dir);
+
+			if (cross.y < 0.1f)
+			{
+				transform->Rot().y += rotSpeed * DELTA;
+			}
+			else if (cross.y > 0.1f)
+			{
+				transform->Rot().y -= rotSpeed * DELTA;
+			}
 			transform->Pos() += vel * speed * DELTA;
 		}
 		else
@@ -248,7 +285,7 @@ void InstanceZombie::Alert()
 			SetState(SCREAM);
 		}
 	}
-	
+
 	if (rightHand->Active())
 	{
 		if (rightHand->IsCapsuleCollision(target->GetCollider()))

@@ -186,6 +186,7 @@ using namespace GameMath;
 
 #include "Objects/Weapon/Weapon.h"
 #include "Objects/Weapon/MeleeWeapon.h"
+#include "Objects/Weapon/RangeWeapon.h"
 #include "Objects/Weapon/Crowbar.h"
 #include "Objects/Weapon/BaseballBat.h"
 #include "Objects/Weapon/Kunai.h"

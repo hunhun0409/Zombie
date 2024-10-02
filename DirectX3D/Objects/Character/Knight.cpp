@@ -64,7 +64,7 @@ void Knight::PostRender()
 
 void Knight::Move()
 {
-	if (curState >= KICK) return;
+	if (curState >= SLASH) return;
 	Character::Move();
 
 	Vector3 velocity = characterMovement->GetVelocity();
@@ -74,8 +74,8 @@ void Knight::Move()
 	}
 	else
 	{
-		Vector3 forward = Vector3::Forward();
-		Vector3 right = Vector3::Right();
+		Vector3 forward = Left();
+		Vector3 right = Forward();
 		velocity.Normalize();
 		float dotF = Dot(forward, velocity);
 		float dotR = Dot(right, velocity);
@@ -107,21 +107,13 @@ void Knight::Move()
 
 void Knight::Idle()
 {
-	isArm ? SetState(IDLE, 1.0f, 0.15f) : SetState(UNARM_IDLE, 1.0f, 0.15f);
+	SetState(IDLE, 1.0f, 0.15f);
 	isDash = false;
-	isBlock = false;
 	characterMovement->maxSpeed = 100;
-}
-
-void Knight::WeaponA()
-{
-	isArm ? SetState(SHEATH1) : SetState(DRAW1);
 }
 
 void Knight::Action()
 {
-	if (!isArm) return;
-	isBlock = false;
 	SetState(SLASH, 1.0f, 0.1f);
 }
 
@@ -140,29 +132,6 @@ void Knight::Shift()
 
 void Knight::Ctrl()
 {
-	isCrouch = !isCrouch;
-}
-
-void Knight::Draw()
-{
-	SetState(DRAW2);
-}
-
-void Knight::DrawEnd()
-{
-	isArm = true;
-	Idle();
-}
-
-void Knight::Sheath()
-{
-	SetState(SHEATH2);
-}
-
-void Knight::SheathEnd()
-{
-	isArm = false;
-	Idle();
 }
 
 void Knight::EnableAttack()
@@ -195,7 +164,6 @@ void Knight::Dead()
 
 void Knight::ReadClips()
 {
-	model->ReadClip("Unarm Idle", true);
 	model->ReadClip("Idle", true);
 	model->ReadClip("WalkF", true);
 	model->ReadClip("WalkB", true);
@@ -206,24 +174,24 @@ void Knight::ReadClips()
 	model->ReadClip("RunL", true);
 	model->ReadClip("RunR", true);
 	//root
-	model->ReadClip("Kick");
+	//model->ReadClip("Kick");
 	model->ReadClip("Slash3");
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::EnableAttack, this), 0.2f);
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::DisableAttack, this), 0.7f);
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::Idle, this), 0.8f);
-	model->ReadClip("StrongAttack", false, 0, "mixamorig:Hips");
+	/*model->ReadClip("StrongAttack", false, 0, "mixamorig:Hips");
 	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::EnableAttack, this), 0.2f);
 	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::DisableAttack, this), 0.5f);
-	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::Idle, this), 0.8f);
+	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::Idle, this), 0.8f);*/
 
-	model->ReadClip("Sheath Sword 1", false, 0, "mixamorig:Hips");
+	/*model->ReadClip("Sheath Sword 1", false, 0, "mixamorig:Hips");
 	model->GetClip(SHEATH1)->SetEvent(bind(&Knight::Sheath, this), 0.6f);
 	model->ReadClip("Sheath Sword 2", false, 0, "mixamorig:Hips");
 	model->GetClip(SHEATH2)->SetEvent(bind(&Knight::SheathEnd, this), 0.6f);
 	model->ReadClip("Draw Sword 1", false, 0, "mixamorig:Hips");
 	model->GetClip(DRAW1)->SetEvent(bind(&Knight::Draw, this), 0.6f);
 	model->ReadClip("Draw Sword 2", false, 0, "mixamorig:Hips");
-	model->GetClip(DRAW2)->SetEvent(bind(&Knight::DrawEnd, this), 0.6f);
+	model->GetClip(DRAW2)->SetEvent(bind(&Knight::DrawEnd, this), 0.6f);*/
 
 	model->ReadClip("Die");
 	model->GetClip(DIE)->SetEvent(bind(&Knight::Dead, this), 0.8f);

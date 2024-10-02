@@ -9,12 +9,10 @@ private:
 private:
 	enum State
 	{
-		UNARM_IDLE, 
 		IDLE, 
 		WALKF, WALKB, WALKL, WALKR,
 		RUNF, RUNB, RUNL, RUNR,
-		KICK, SLASH, STRONG_ATTACK,
-		SHEATH1, SHEATH2, DRAW1, DRAW2,
+		SLASH,
 		DIE
 	};
 public:
@@ -30,16 +28,11 @@ public:
 
 
 	virtual void Idle() override;
-	virtual void WeaponA() override;
 	virtual void Action() override;
 	virtual void RButton() override;
 	virtual void Shift() override;
 	virtual void Ctrl() override;
 
-	void Draw();
-	void DrawEnd();
-	void Sheath();
-	void SheathEnd();
 
 	void EnableAttack();
 	void DisableAttack();
@@ -56,10 +49,8 @@ private:
 
 	void SetAnimation();
 private:
-	bool isArm = false;
+	//bool isArm = false;
 	bool isDash = false;
-	bool isBlock = false;
-	bool isCrouch = false;
 
 	Vector3 velocity;
 
