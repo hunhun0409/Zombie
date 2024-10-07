@@ -97,8 +97,8 @@ void GameScene::GUIRender()
 	InstanceCharacterManager::Get()->GUIRender();
 	ProjectileManager::Get()->GUIRender();
 
-	ImGui::SliderFloat("Start", &fogBuffer->Get().start, 0, 1.0f);
-	ImGui::SliderFloat("Random", &fogBuffer->Get().random, 0, 1.0f);
+	//ImGui::SliderFloat("Start", &fogBuffer->Get().start, 0, 1.0f);
+	//ImGui::SliderFloat("Random", &fogBuffer->Get().random, 0, 1.0f);
 	//ImGui::ColorEdit4("Color", &fogBuffer->Get().color);
 }
 

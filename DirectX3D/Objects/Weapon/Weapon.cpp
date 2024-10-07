@@ -15,12 +15,14 @@ Weapon::~Weapon()
 
 void Weapon::Update()
 {
+	if (!mesh->Active()) return;
+
 	mesh->UpdateWorld();
 }
 
 void Weapon::Render()
 {
-	if (!mesh->Active())return;
+	if (!mesh->Active()) return;
 	mesh->Render();
 }
 

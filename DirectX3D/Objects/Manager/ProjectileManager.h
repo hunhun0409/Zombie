@@ -3,7 +3,7 @@
 class ProjectileManager : public Singleton<ProjectileManager>
 {
 private:
-	const UINT SIZE = 10;
+	const UINT SIZE = 100;
 private:
 	friend class Singleton;
 	ProjectileManager() = default;
@@ -16,7 +16,7 @@ public:
 
 	bool Shoot(string name, Vector3 startPos, Vector3 dir, float speed, float maxLifeTime = 10.0f);
 	
-	void Add(string key, string name, Vector3 scale = Vector3(1, 1, 1), Vector3 colliderScale = Vector3(1, 1, 1));
+	void Add(string key, string name);
 	void Remove(string key);
 	void Clear();
 

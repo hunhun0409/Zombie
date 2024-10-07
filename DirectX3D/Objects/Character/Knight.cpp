@@ -11,8 +11,7 @@ Knight::Knight()
 	rightHand = new Transform();
 	sword = new MeleeWeapon("sword");
 	sword->SetParent(rightHand);
-	sword->Load();
-	
+	sword->Damage() = 50;
 	Idle();
 
 	maxHP = 100.0f;

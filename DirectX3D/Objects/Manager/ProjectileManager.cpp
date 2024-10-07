@@ -32,12 +32,12 @@ void ProjectileManager::Update()
     {
         for (Projectile* projectile : projectiles.second)
         {
-            if (isChanged)
+            /*if (isChanged)
             {
                 projectile->GetCollider()->Pos() = totalColliderTransforms[projectiles.first]->Pos();
                 projectile->GetCollider()->Rot() = totalColliderTransforms[projectiles.first]->Rot();
                 projectile->GetCollider()->Scale() = totalColliderTransforms[projectiles.first]->Scale();
-            }
+            }*/
 
             if (projectile->GetTransform()->Active())
             {
@@ -46,7 +46,7 @@ void ProjectileManager::Update()
         }
     }
 
-    isChanged = false;
+    //isChanged = false;
 
     for (pair<string, ModelInstancing*> modelInstance : totalInstancies)
     {
@@ -77,58 +77,13 @@ void ProjectileManager::GUIRender()
 {
     ImGui::Text("ProjectileManager");
 
-    for (iter = totalInstancies.begin(); iter != totalInstancies.end(); iter++)
+    for (auto projectiles : totalProjectiles)
     {
-        if(ImGui::TreeNode(iter->first.c_str()))
+        for (auto projectile : projectiles.second)
         {
-            bool tempChanged = false;
-
-            string key = iter->first;
-
-            string temp = key + "_Collider";
-
-            ImGui::Text(temp.c_str());
-
-            temp = key + "_Pos";
-
-            temp = key + "_Collider_Pos";
-            tempChanged = ImGui::DragFloat3(temp.c_str(), (float*)&totalColliderTransforms[key]->Pos(), 0.01f);
-            isChanged |= tempChanged;
-
-            temp = key + "_Collider_Rot";
-            Vector3 rot;
-            rot.x = XMConvertToDegrees(totalColliderTransforms[key]->Rot().x);
-            rot.y = XMConvertToDegrees(totalColliderTransforms[key]->Rot().y);
-            rot.z = XMConvertToDegrees(totalColliderTransforms[key]->Rot().z);
-
-            tempChanged = ImGui::DragFloat3(temp.c_str(), (float*)&rot, 1.0f, -180, 180);
-            isChanged |= tempChanged;
-
-            totalColliderTransforms[key]->Rot().x = XMConvertToRadians(rot.x);
-            totalColliderTransforms[key]->Rot().y = XMConvertToRadians(rot.y);
-            totalColliderTransforms[key]->Rot().z = XMConvertToRadians(rot.z);
-
-            temp = key + "_Collider_Scale";
-            tempChanged = ImGui::DragFloat3(temp.c_str(), (float*)&totalColliderTransforms[key]->Scale(), 0.01f);
-            isChanged |= tempChanged;
-
-            if (ImGui::Button("Save"))
-            {
-                Save(key);
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button("Load"))
-            {
-                Load(key);
-            }
-
-            ImGui::TreePop();
+            projectile->GUIRender();
         }
-
     }
-
 }
 
 bool ProjectileManager::Shoot(string key, Vector3 startPos, Vector3 dir, float speed, float maxLifeTime)
@@ -144,7 +99,7 @@ bool ProjectileManager::Shoot(string key, Vector3 startPos, Vector3 dir, float s
     return false;
 }
 
-void ProjectileManager::Add(string key, string name, Vector3 scale, Vector3 colliderScale)
+void ProjectileManager::Add(string key, string name)
 {
     if (totalInstancies.count(key) != 0) return;
 
@@ -156,16 +111,13 @@ void ProjectileManager::Add(string key, string name, Vector3 scale, Vector3 coll
     for (int i = 0; i < SIZE; i++)
     {
         Transform* transform = instancing->Add();
-        transform->Scale() = scale;
         transform->SetActive(false);
         Projectile* projectile = new Projectile(name, transform);
-        projectile->GetCollider()->Scale() = colliderScale;
         projectiles.push_back(projectile);
 
         if (i == 0)
         {
             Transform* colliderTransform = new Transform();
-            colliderTransform->Scale() = colliderScale;
             totalColliderTransforms[key] = colliderTransform;
             Load(key);
         }

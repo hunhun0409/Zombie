@@ -26,4 +26,10 @@ private:
 	float curLifeTime = 0.0f;    // 발사체가 존재한 시간
 
 	Vector3 direction;
+
+	SphereCollider* start;
+	SphereCollider* end;
+	Trail* trail;
+
+	float damage = 0.0f;
 };

@@ -31,7 +31,7 @@ Trail::~Trail()
 
 void Trail::Update()
 {
-    //if (!Active()) return;
+    if (!Active()) return;
 
     vector<VertexUV>& vertices = mesh->Vertices();
 
@@ -79,6 +79,23 @@ void Trail::Render()
 
     rasterizerState[0]->SetState();
     blendState[0]->SetState();
+}
+
+void Trail::GUIRender()
+{
+    GameObject::GUIRender();
+}
+
+void Trail::Reset()
+{
+    vector<VertexUV>& vertices = mesh->Vertices();
+
+    for (UINT i = 0; i <= width; i++)
+    {
+        vertices[i * 2].pos = start->GlobalPos();
+        vertices[i * 2 + 1].pos = end->GlobalPos();
+        UpdateWorld();
+    }
 }
 
 void Trail::CreateMesh()

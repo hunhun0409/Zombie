@@ -3,17 +3,30 @@
 
 WeaponScene::WeaponScene()
 {
-	sword = new MeleeWeapon("sword");
+	//sword = new MeleeWeapon("sword");
+
+	gun = new RangeWeapon("Rifle", 0.1f);
+	gun->SetProjectile("bullet");
 }
 
 WeaponScene::~WeaponScene()
 {
-	delete sword;
+	//delete sword;
+
+	delete gun;
 }
 
 void WeaponScene::Update()
 {
-	sword->Update();
+	if (KEY_DOWN(VK_RBUTTON))
+	{
+		gun->Shoot(1000, 2);
+	}
+
+	gun->Update();
+
+	ProjectileManager::Get()->Update();
+	//sword->Update();
 }
 
 void WeaponScene::PreRender()
@@ -22,7 +35,10 @@ void WeaponScene::PreRender()
 
 void WeaponScene::Render()
 {
-	sword->Render();
+	gun->Render();
+
+	ProjectileManager::Get()->Render();
+	//sword->Render();
 }
 
 void WeaponScene::PostRender()
@@ -31,5 +47,8 @@ void WeaponScene::PostRender()
 
 void WeaponScene::GUIRender()
 {
-	sword->GUIRender();
+	gun->GUIRender();
+
+	ProjectileManager::Get()->GUIRender();
+	//sword->GUIRender();
 }

@@ -3,14 +3,13 @@
 
 ZombieScene::ZombieScene()
 {
-	
-
 	Audio::Get()->Add("BG", "Sounds/BG/wind_forest.wav", true, true);
 	Audio::Get()->Add("move", "Sounds/Zombie/move.wav", false, false, true);
 
 	Audio::Get()->Play("BG", 0.1f);
 
 	ParticleManager::Get()->Add("BloodExplode", "TextData/Particle/BloodExplode.fx", 20);
+
 }
 
 ZombieScene::~ZombieScene()
@@ -31,8 +30,11 @@ void ZombieScene::Update()
 	aStar->Update();
 
 	player->Update();
+	weapon->Update();
+	weapon->Shoot(100, 2);
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
+	ProjectileManager::Get()->Update();
 }
 
 void ZombieScene::PreRender()
@@ -46,8 +48,10 @@ void ZombieScene::Render()
 
 	InstanceCharacterManager::Get()->Render();
 	ParticleManager::Get()->Render();
+	ProjectileManager::Get()->Render();
 
 	player->Render();
+	weapon->Render();
 }
 
 void ZombieScene::PostRender()
@@ -57,7 +61,9 @@ void ZombieScene::PostRender()
 void ZombieScene::GUIRender()
 {
 	player->GUIRender();
+	weapon->GUIRender();
 	InstanceCharacterManager::Get()->GUIRender();
+	ProjectileManager::Get()->GUIRender();
 }
 
 void ZombieScene::Start()
@@ -68,6 +74,11 @@ void ZombieScene::Start()
 
 	player = new Knight();
 	player->Pos() = { 100, 0, 100 };
+
+	weapon = new RangeWeapon("Rifle", 0.125);
+	weapon->SetParent(player);
+	weapon->GetMesh()->Pos().y = 5.0f;
+	weapon->SetProjectile("bullet");
 
 	PlayerController::Get()->Possess(player);
 

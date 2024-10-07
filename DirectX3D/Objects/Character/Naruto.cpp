@@ -24,7 +24,7 @@ Naruto::Naruto()
 	crossHair->UpdateWorld();
 
 
-	ProjectileManager::Get()->Add("kunai", "kunai", Vector3(0.1f, 0.1f, 0.1f));
+	ProjectileManager::Get()->Add("kunai", "kunai");
 
 	light = Environment::Get()->GetLight(0);
 	light->range = 200.0f;
@@ -86,7 +86,7 @@ void Naruto::ThrowKunai()
 		dir.Normalize();
 	}
 
-	ProjectileManager::Get()->Shoot(kunai->GetName(), kunai->GlobalPos(), dir, 100.0f, 100);
+	ProjectileManager::Get()->Shoot(kunai->GetName(), kunai->GlobalPos(), dir, 0.0f, 100.0f);
 }
 
 void Naruto::Control()
@@ -158,7 +158,7 @@ void Naruto::Attack()
 	if (curState == THROW) return;
 
 
-	if (KEY_DOWN(VK_LBUTTON))
+	if (KEY_DOWN(VK_RBUTTON))
 	{
 		SetState(THROW);
 		isPlayingRootMotion = true;

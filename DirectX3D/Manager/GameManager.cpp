@@ -41,7 +41,7 @@ GameManager::GameManager()
     SceneManager::Get()->Create("Grid", new GridScene());
     //SceneManager::Get()->Create("Export", new ModelExportScene());
 
-    SceneManager::Get()->Create("Start", new ModelRenderScene());
+    //SceneManager::Get()->Create("Start", new ModelRenderScene());
     //SceneManager::Get()->Create("Start", new ModelAnimationScene());
     //SceneManager::Get()->Create("Start", new BillboardScene());
     //SceneManager::Get()->Create("Start", new ParticleScene());
@@ -64,7 +64,7 @@ GameManager::GameManager()
     
     //SceneManager::Get()->Create("Start", new TrailEffectScene());
     //SceneManager::Get()->Create("Start", new GameScene());
-    //SceneManager::Get()->Create("Start", new ZombieScene());
+    SceneManager::Get()->Create("Start", new ZombieScene());
     //SceneManager::Get()->Create("Start", new WeaponScene());
     //SceneManager::Get()->Create("Start", new WaterScene());
     //SceneManager::Get()->Create("Start", new QuadTreeScene());

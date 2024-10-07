@@ -190,7 +190,6 @@ using namespace GameMath;
 #include "Objects/Weapon/Crowbar.h"
 #include "Objects/Weapon/BaseballBat.h"
 #include "Objects/Weapon/Kunai.h"
-#include "Objects/Weapon/Projectile.h"
 
 #include "Objects/Character/Character.h"
 #include "Objects/Character/CharacterMovement.h"
@@ -205,9 +204,10 @@ using namespace GameMath;
 
 #include "Objects/Instance/InstanceObject.h"
 #include "Objects/Instance/InstanceBuilding.h"
-
 #include "Objects/Instance/InstanceCharacter.h"
 #include "Objects/Instance/InstanceZombie.h"
+#include "Objects/Instance/Projectile.h"
+
 
 #include "Objects/Manager/InstanceObjectManager.h"
 #include "Objects/Manager/KunaiManager.h"

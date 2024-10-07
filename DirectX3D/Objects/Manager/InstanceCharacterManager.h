@@ -26,7 +26,8 @@ public:
 	void Spawn(string key, UINT spawnAmount = 1);
 	void Spawn(string key, Vector3 pos, UINT spawnAmount = 1);
 
-	void Collision(Collider* collider);
+	void Collision(Collider* collider, float damage);
+	void Collision(Collider* collider, float damage, set<Collider*>& overlappedCollider);
 
 	void SetAstar(AStar* aStar);
 	void SetTerrain(Terrain* terrain);

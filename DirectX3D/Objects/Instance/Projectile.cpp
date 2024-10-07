@@ -4,16 +4,38 @@
 Projectile::Projectile(string name, Transform* transform)
     :name(name), transform(transform)
 {
+    transform->SetTag(name);
+    transform->Load();
+
     collider = new CapsuleCollider();
     collider->SetTag(name + "_Collider");
     collider->SetParent(transform);
     collider->Load();
+    collider->Update();
+    
+    start = new SphereCollider();
+    start->SetTag(name + "_start");
+    start->SetParent(transform);
+    start->Pos().x = collider->Radius();
+    start->UpdateWorld();
 
+    end = new SphereCollider();
+    end->SetTag(name + "_end");
+    end->SetParent(transform);
+    end->Pos().x = -collider->Radius();
+    start->UpdateWorld();
+
+    trail = new Trail(L"Textures/Effect/trail.png", start, end, 10, 50.0f);
+    
 }
 
 Projectile::~Projectile()
 {
 	delete collider;
+
+    delete start;
+    delete end;
+    delete trail;
 }
 
 void Projectile::Update()
@@ -28,28 +50,44 @@ void Projectile::Update()
     }
 
     transform->Pos() += transform->Forward() * speed * DELTA;
+    transform->UpdateWorld();
 
-    collider->UpdateWorld();
+    collider->Update();
+
+    start->UpdateWorld();
+    end->UpdateWorld();
+
+    trail->Update();
 }
 
 void Projectile::Render()
 {
     collider->Render();
+    trail->Render();
 }
 
 void Projectile::GUIRender()
 {
+    if (!transform->Active()) return;
+
+    transform->GUIRender();
     collider->GUIRender();
+    trail->GUIRender();
 }
 
 void Projectile::Shoot(Vector3 startPos, Vector3 dir, float speed, float maxLifeTime)
 {
     transform->SetActive(true);
+    
     this->maxLifeTime = maxLifeTime;
     this->speed = speed;
     
     curLifeTime = 0.0f;
     transform->Pos() = startPos;
+    transform->UpdateWorld();
+    start->UpdateWorld();
+    end->UpdateWorld();
+    trail->Reset();
 
     dir.y *= -1;
     direction = dir.GetNormalized();

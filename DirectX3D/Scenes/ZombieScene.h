@@ -26,6 +26,6 @@ private:
 
 	LightBuffer::Light* light;
 
-
+	RangeWeapon* weapon;
 
 };

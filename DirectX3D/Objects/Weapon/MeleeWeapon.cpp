@@ -5,16 +5,13 @@ MeleeWeapon::MeleeWeapon(string name)
 {
 	collider = new CapsuleCollider();
 	collider->SetTag(name + "_collider");
-	collider->Load();
 	collider->Update();
-	collider->SetActive(true);
+	collider->SetActive(false);
 
 	start = new SphereCollider();
 	start->SetTag(name + "_start");
-	start->Load();
 	end = new SphereCollider();
 	end->SetTag(name + "_end");
-	end->Load();
 
 	collider->SetParent(mesh);
 	start->SetParent(mesh);
@@ -23,6 +20,8 @@ MeleeWeapon::MeleeWeapon(string name)
 	trail = new Trail(L"textures/effect/trail.png", start, end, 20, 50.0f);
 	trail->GetMaterial()->GetData().diffuse = { 0.3f, 0.3f, 0.3f, 1.0f };
 	trail->SetActive(false);
+
+	Load();
 }
 
 MeleeWeapon::~MeleeWeapon()
@@ -44,7 +43,7 @@ void MeleeWeapon::Update()
 
 	if (collider->Active())
 	{
-		InstanceCharacterManager::Get()->Collision(collider);
+		InstanceCharacterManager::Get()->Collision(collider, damage, overlappedColliders);
 	}
 }
 
@@ -71,12 +70,14 @@ void MeleeWeapon::EnableAttack()
 {
 	collider->SetActive(true);
 	trail->SetActive(true);
+	trail->Reset();
 }
 
 void MeleeWeapon::DisableAttack()
 {
 	collider->SetActive(false);
 	trail->SetActive(false);
+	overlappedColliders.clear();
 }
 
 void MeleeWeapon::Load()

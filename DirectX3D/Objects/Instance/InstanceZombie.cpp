@@ -76,10 +76,12 @@ void InstanceZombie::Spawn(Vector3 pos)
 
 void InstanceZombie::TakeDamage(float damage)
 {
-	if (curState >= HIT) return;
 	InstanceCharacter::TakeDamage(damage);
 
-	curHp > 0 ? SetState(HIT) : SetState(DIE);
+	if (curHp <= 0)
+	{
+		SetState(DIE);
+	}
 }
 
 void InstanceZombie::ProcessBehavior()

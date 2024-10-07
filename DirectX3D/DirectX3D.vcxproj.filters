@@ -315,7 +315,7 @@
     <ClInclude Include="Objects\Weapon\BaseballBat.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Weapon\Projectile.h">
+    <ClInclude Include="Objects\Instance\Projectile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Manager\InstanceCharacterManager.h">
@@ -734,7 +734,7 @@
     <ClCompile Include="Objects\Weapon\BaseballBat.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Weapon\Projectile.cpp">
+    <ClCompile Include="Objects\Instance\Projectile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Manager\InstanceCharacterManager.cpp">
@@ -882,6 +882,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Character\Knight.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Weapon\RangeWeapon.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

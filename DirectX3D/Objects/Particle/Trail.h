@@ -8,6 +8,9 @@ public:
 
 	void Update();
 	void Render();
+	void GUIRender();
+
+	void Reset();
 
 private:
 	void CreateMesh();

@@ -21,6 +21,8 @@ public:
 private:
 	CapsuleCollider* collider;
 
+	set<Collider*> overlappedColliders;
+
 	SphereCollider* start;
 	SphereCollider* end;
 

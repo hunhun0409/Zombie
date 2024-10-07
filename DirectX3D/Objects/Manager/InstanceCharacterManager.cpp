@@ -255,7 +255,7 @@ void InstanceCharacterManager::Spawn(string key, Vector3 pos, UINT spawnAmount)
     }
 }
 
-void InstanceCharacterManager::Collision(Collider* collider)
+void InstanceCharacterManager::Collision(Collider* collider, float damage)
 {
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
     {
@@ -265,7 +265,27 @@ void InstanceCharacterManager::Collision(Collider* collider)
 
             if (collider->IsCapsuleCollision(instanceCharacter->GetCollider()))
             {
-                instanceCharacter->TakeDamage(60);
+                instanceCharacter->TakeDamage(damage);
+            }
+        }
+    }
+}
+
+void InstanceCharacterManager::Collision(Collider* collider, float damage, set<Collider*>& overlappedCollider)
+{
+    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
+    {
+        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
+        {
+            if (!instanceCharacter->GetTransform()->Active()) continue;
+
+            if (collider->IsCapsuleCollision(instanceCharacter->GetCollider()))
+            {
+                if (overlappedCollider.count(instanceCharacter->GetCollider()) == 0)
+                {
+                    instanceCharacter->TakeDamage(damage);
+                    overlappedCollider.insert(instanceCharacter->GetCollider());
+                }
             }
         }
     }
