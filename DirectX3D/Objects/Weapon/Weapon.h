@@ -16,7 +16,11 @@ public:
 	void SetOwner(class Character* owner) { this->owner = owner; }
 
 	float& Damage() { return damage; }
+
+	void SetActive(bool isActive);
+	bool Active();
 protected:
+	bool isActive = true;
 	Model* mesh;
 	class Character* owner;
 

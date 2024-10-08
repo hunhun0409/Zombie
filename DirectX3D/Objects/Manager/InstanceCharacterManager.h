@@ -3,7 +3,7 @@
 class InstanceCharacterManager : public Singleton<InstanceCharacterManager>
 {
 private:
-	const UINT SIZE = 2;
+	const UINT SIZE = 50;
 	const float SPAWN_RANGE = 100.0f;
 private:
 	friend class Singleton;

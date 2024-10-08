@@ -78,6 +78,7 @@ typedef XMFLOAT4X4 Float4x4;
 typedef function<void()> Event;
 typedef function<void(void*)> ParamEvent;
 typedef function<void(int)> IntParamEvent;
+typedef function<void(float)> FloatParamEvent;
 
 //Framework Header
 #include "Framework/Utilities/Singleton.h"
@@ -190,6 +191,11 @@ using namespace GameMath;
 #include "Objects/Weapon/Crowbar.h"
 #include "Objects/Weapon/BaseballBat.h"
 #include "Objects/Weapon/Kunai.h"
+
+#include "Objects/Skill/Skill.h"
+#include "Objects/Skill/ActiveSkill.h"
+#include "Objects/Skill/PassiveSkill.h"
+#include "Objects/Skill/OrbitalRifle.h"
 
 #include "Objects/Character/Character.h"
 #include "Objects/Character/CharacterMovement.h"

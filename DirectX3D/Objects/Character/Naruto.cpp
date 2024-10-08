@@ -24,7 +24,7 @@ Naruto::Naruto()
 	crossHair->UpdateWorld();
 
 
-	ProjectileManager::Get()->Add("kunai", "kunai");
+	ProjectileManager::Get()->Add("kunai", "kunai", 10);
 
 	light = Environment::Get()->GetLight(0);
 	light->range = 200.0f;

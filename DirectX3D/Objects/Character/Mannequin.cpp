@@ -20,7 +20,7 @@ Mannequin::Mannequin()
 	crossHair->Pos() = { CENTER_X, CENTER_Y + 20, 0 };
 	crossHair->UpdateWorld();
 
-	ProjectileManager::Get()->Add("playerArrow", "arrow");
+	ProjectileManager::Get()->Add("playerArrow", "arrow", 10);
 
 
 	

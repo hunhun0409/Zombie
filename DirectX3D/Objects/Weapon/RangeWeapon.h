@@ -10,9 +10,9 @@ public:
 	virtual void Render() override;
 	virtual void GUIRender() override;
 
-	void Shoot(float speed = 1000.0f, float lifeTime = 2.0f);
+	void Shoot(float speed = 100.0f, float lifeTime = 2.0f);
 
-	void SetProjectile(string name);
+	void SetProjectile(string name, string id, float damage);
 
 	void Load();
 private:

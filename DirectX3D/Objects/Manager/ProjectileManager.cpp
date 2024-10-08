@@ -32,21 +32,13 @@ void ProjectileManager::Update()
     {
         for (Projectile* projectile : projectiles.second)
         {
-            /*if (isChanged)
-            {
-                projectile->GetCollider()->Pos() = totalColliderTransforms[projectiles.first]->Pos();
-                projectile->GetCollider()->Rot() = totalColliderTransforms[projectiles.first]->Rot();
-                projectile->GetCollider()->Scale() = totalColliderTransforms[projectiles.first]->Scale();
-            }*/
-
+            
             if (projectile->GetTransform()->Active())
             {
                 projectile->Update();
             }
         }
     }
-
-    //isChanged = false;
 
     for (pair<string, ModelInstancing*> modelInstance : totalInstancies)
     {
@@ -99,7 +91,7 @@ bool ProjectileManager::Shoot(string key, Vector3 startPos, Vector3 dir, float s
     return false;
 }
 
-void ProjectileManager::Add(string key, string name)
+void ProjectileManager::Add(string key, string name, float damage)
 {
     if (totalInstancies.count(key) != 0) return;
 
@@ -112,7 +104,7 @@ void ProjectileManager::Add(string key, string name)
     {
         Transform* transform = instancing->Add();
         transform->SetActive(false);
-        Projectile* projectile = new Projectile(name, transform);
+        Projectile* projectile = new Projectile(name, transform, damage);
         projectiles.push_back(projectile);
 
         if (i == 0)
@@ -185,12 +177,28 @@ void ProjectileManager::SetColliderScale(string key, Vector3 scale)
     totalInstancies[key]->Update();
 }
 
-bool ProjectileManager::IsCollision(Collider* collider)
+void ProjectileManager::IsCollision()
 {
     for (pair<string, Projectiles> projectiles : totalProjectiles)
     {
         for (Projectile* projectile : projectiles.second)
         {
+            if (!projectile->GetTransform()->Active()) continue;
+
+            InstanceCharacterManager::Get()->Collision(projectile->GetCollider(), projectile->GetDamage());
+        }
+    }
+}
+
+bool ProjectileManager::IsCollision(Collider* collider)
+{
+
+    for (pair<string, Projectiles> projectiles : totalProjectiles)
+    {
+        for (Projectile* projectile : projectiles.second)
+        {
+            if (!projectile->GetTransform()->Active()) continue;
+
             if (projectile->GetCollider()->IsCollision(collider))
             {
                 projectile->GetTransform()->SetActive(false);

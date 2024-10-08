@@ -254,6 +254,10 @@
     <ClInclude Include="Objects\Particle\Spark.h" />
     <ClInclude Include="Objects\Particle\Sprite.h" />
     <ClInclude Include="Objects\Particle\Trail.h" />
+    <ClInclude Include="Objects\Skill\ActiveSkill.h" />
+    <ClInclude Include="Objects\Skill\OrbitalRifle.h" />
+    <ClInclude Include="Objects\Skill\PassiveSkill.h" />
+    <ClInclude Include="Objects\Skill\Skill.h" />
     <ClInclude Include="Objects\UI\ProgressBar.h" />
     <ClInclude Include="Objects\Weapon\BaseballBat.h" />
     <ClInclude Include="Objects\Weapon\Crowbar.h" />
@@ -402,6 +406,10 @@
     <ClCompile Include="Objects\Particle\Spark.cpp" />
     <ClCompile Include="Objects\Particle\Sprite.cpp" />
     <ClCompile Include="Objects\Particle\Trail.cpp" />
+    <ClCompile Include="Objects\Skill\ActiveSkill.cpp" />
+    <ClCompile Include="Objects\Skill\OrbitalRifle.cpp" />
+    <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />
+    <ClCompile Include="Objects\Skill\Skill.cpp" />
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
     <ClCompile Include="Objects\Weapon\BaseballBat.cpp" />
     <ClCompile Include="Objects\Weapon\Crowbar.cpp" />

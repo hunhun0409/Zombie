@@ -16,13 +16,14 @@ public:
 
 	bool Shoot(string name, Vector3 startPos, Vector3 dir, float speed, float maxLifeTime = 10.0f);
 	
-	void Add(string key, string name);
+	void Add(string key, string name, float damage);
 	void Remove(string key);
 	void Clear();
 
 	void SetScale(string key, Vector3 scale);
 	void SetColliderScale(string key, Vector3 scale);
 
+	void IsCollision();
 	bool IsCollision(Collider* collider);
 
 private:

@@ -16,6 +16,7 @@ ZombieScene::~ZombieScene()
 {
 	delete terrain;
 	delete player;
+	delete skill;
 
 	InstanceCharacterManager::Delete();
 }
@@ -28,13 +29,14 @@ void ZombieScene::Update()
 		InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
 	}
 	aStar->Update();
-
 	player->Update();
-	weapon->Update();
-	weapon->Shoot(100, 2);
+	skill->Update();
+
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
+	ProjectileManager::Get()->IsCollision();
+
 }
 
 void ZombieScene::PreRender()
@@ -45,13 +47,13 @@ void ZombieScene::Render()
 {
 	terrain->Render();
 	aStar->Render();
+	skill->Render();
 
 	InstanceCharacterManager::Get()->Render();
 	ParticleManager::Get()->Render();
 	ProjectileManager::Get()->Render();
 
 	player->Render();
-	weapon->Render();
 }
 
 void ZombieScene::PostRender()
@@ -61,7 +63,6 @@ void ZombieScene::PostRender()
 void ZombieScene::GUIRender()
 {
 	player->GUIRender();
-	weapon->GUIRender();
 	InstanceCharacterManager::Get()->GUIRender();
 	ProjectileManager::Get()->GUIRender();
 }
@@ -75,11 +76,9 @@ void ZombieScene::Start()
 	player = new Knight();
 	player->Pos() = { 100, 0, 100 };
 
-	weapon = new RangeWeapon("Rifle", 0.125);
-	weapon->SetParent(player);
-	weapon->GetMesh()->Pos().y = 5.0f;
-	weapon->SetProjectile("bullet");
-
+	skill = new ObitalRifle();
+	skill->SetOwner(player);
+	
 	PlayerController::Get()->Possess(player);
 
 	CAM->SetTarget(player);

@@ -17,6 +17,8 @@ InstanceCharacter::InstanceCharacter(string name, Transform* transform, ModelAni
 	motion = instancing->GetMotion(index);
 
 	curState = 0;
+
+	Observer::Get()->AddFloatParamEvent("ZombieTakeDamage", bind(&InstanceCharacter::TakeDamage, this, placeholders::_1));
 }
 
 InstanceCharacter::~InstanceCharacter()

@@ -30,3 +30,16 @@ void Weapon::GUIRender()
 {
 	mesh->GUIRender();
 }
+
+void Weapon::SetActive(bool isActive)
+{
+	this->isActive = isActive;
+	mesh->SetActive(isActive);
+}
+
+bool Weapon::Active()
+{
+	bool active = owner->Active();
+	active &= isActive;
+	return active;
+}

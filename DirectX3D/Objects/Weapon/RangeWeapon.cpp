@@ -59,10 +59,10 @@ void RangeWeapon::Shoot(float speed, float lifeTime)
 	ProjectileManager::Get()->Shoot(projectileName, start->GlobalPos(), (end->GlobalPos() - start->GlobalPos()).GetNormalized(), speed, lifeTime);
 }
 
-void RangeWeapon::SetProjectile(string name)
+void RangeWeapon::SetProjectile(string name, string id, float damage)
 {
-	projectileName = mesh->GetName() + "_" + name;
-	ProjectileManager::Get()->Add(projectileName, name);
+	projectileName = mesh->GetName() + "_" + name + "_" + id;
+	ProjectileManager::Get()->Add(projectileName, name, damage);
 }
 
 void RangeWeapon::Load()

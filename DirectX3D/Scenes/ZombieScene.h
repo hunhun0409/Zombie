@@ -23,9 +23,8 @@ private:
 	Terrain* terrain;
 	AStar* aStar;
 
+	ActiveSkill* skill;
 
 	LightBuffer::Light* light;
-
-	RangeWeapon* weapon;
 
 };

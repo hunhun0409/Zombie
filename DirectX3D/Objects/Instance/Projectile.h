@@ -3,7 +3,7 @@
 class Projectile
 {
 public:
-	Projectile(string name, Transform* transform);
+	Projectile(string name, Transform* transform, float damage);
 	~Projectile();
 
 	void Update();
@@ -14,6 +14,8 @@ public:
 
 	CapsuleCollider* GetCollider() { return collider; }
 	Transform* GetTransform() { return transform; }
+
+	float GetDamage() { return damage; }
 
 private:
 	string name;

@@ -1,8 +1,8 @@
 #include "Framework.h"
 
 
-Projectile::Projectile(string name, Transform* transform)
-    :name(name), transform(transform)
+Projectile::Projectile(string name, Transform* transform, float damage)
+    :name(name), transform(transform), damage(damage)
 {
     transform->SetTag(name);
     transform->Load();

@@ -15,6 +15,11 @@ void Observer::AddIntParamEvent(string key, IntParamEvent paramEvent)
     totalIntParamEvent[key].push_back(paramEvent);
 }
 
+void Observer::AddFloatParamEvent(string key, FloatParamEvent paramEvent)
+{
+    totalFloatParamEvent[key].push_back(paramEvent);
+}
+
 void Observer::ExcuteEvent(string key)
 {
     for (Event event : totalEvent[key])
@@ -34,6 +39,14 @@ void Observer::ExcuteParamEvent(string key, void* object)
 void Observer::ExcuteIntParamEvent(string key, int value)
 {
     for (IntParamEvent paramEvent : totalIntParamEvent[key])
+    {
+        paramEvent(value);
+    }
+}
+
+void Observer::ExcuteFloatParamEvent(string key, int value)
+{
+    for (FloatParamEvent paramEvent : totalFloatParamEvent[key])
     {
         paramEvent(value);
     }
