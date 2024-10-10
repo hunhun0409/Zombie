@@ -208,6 +208,7 @@
     <ClInclude Include="Objects\Algorithm\AStar.h" />
     <ClInclude Include="Objects\Algorithm\Heap.h" />
     <ClInclude Include="Objects\Algorithm\Node.h" />
+    <ClInclude Include="Objects\Algorithm\QuadTree.h" />
     <ClInclude Include="Objects\Basic\Cube.h" />
     <ClInclude Include="Objects\Basic\Cylinder.h" />
     <ClInclude Include="Objects\Basic\GameObject.h" />
@@ -361,6 +362,7 @@
     <ClCompile Include="Objects\Algorithm\AStar.cpp" />
     <ClCompile Include="Objects\Algorithm\Heap.cpp" />
     <ClCompile Include="Objects\Algorithm\Node.cpp" />
+    <ClCompile Include="Objects\Algorithm\QuadTree.cpp" />
     <ClCompile Include="Objects\Basic\Cube.cpp" />
     <ClCompile Include="Objects\Basic\Cylinder.cpp" />
     <ClCompile Include="Objects\Basic\GameObject.cpp" />

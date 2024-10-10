@@ -161,6 +161,7 @@ using namespace GameMath;
 #include "Objects/Algorithm/Node.h"
 #include "Objects/Algorithm/Heap.h"
 #include "Objects/Algorithm/AStar.h"
+#include "Objects/Algorithm/QuadTree.h"
 
 #include "Objects/UI/ProgressBar.h"
 

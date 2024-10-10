@@ -25,8 +25,11 @@ void ZombieScene::Update()
 {
 	if (KEY_DOWN('P'))
 	{
-		InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1);
-		InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
+		for (int i = 0; i < 50; i++)
+		{
+			InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1);
+			InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
+		}
 	}
 	aStar->Update();
 	player->Update();
@@ -35,7 +38,7 @@ void ZombieScene::Update()
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
-	ProjectileManager::Get()->IsCollision();
+	//ProjectileManager::Get()->IsCollision();
 
 }
 
