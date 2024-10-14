@@ -258,6 +258,26 @@ void CapsuleCollider::Load()
     delete reader;
 }
 
+AABB CapsuleCollider::GetAABB()
+{
+    Vector3 center = GlobalPos();
+    float scaledRadius = Radius();  // This already considers global scale
+    float scaledHeight = Height();  // This already considers global scale
+    float halfHeight = scaledHeight * 0.5f;
+
+    // Calculate the extent of the capsule
+    Vector3 extent(scaledRadius, halfHeight + scaledRadius, scaledRadius);
+
+    // Get the capsule's up vector (assuming Y is up)
+    Vector3 up = Up() * halfHeight;
+
+    // Calculate min and max points
+    Vector3 minPoint = Vector3::Min(center - up - extent, center + up - extent);
+    Vector3 maxPoint = Vector3::Max(center - up + extent, center + up + extent);
+
+    return AABB(minPoint, maxPoint);
+}
+
 void CapsuleCollider::MakeMesh()
 {
     vector<Vertex>& vertices = mesh->Vertices();

@@ -133,6 +133,34 @@ void BoxCollider::GetObb(ObbDesc& obbDesc)
     obbDesc.halfSize = size * 0.5f * GlobalScale();
 }
 
+AABB BoxCollider::GetAABB()
+{
+    Vector3 center = GlobalPos();
+    Vector3 halfSize = size * 0.5f * GlobalScale();
+
+    Vector3 right = Right() * halfSize.x;
+    Vector3 up = Up() * halfSize.y;
+    Vector3 forward = Forward() * halfSize.z;
+
+    Vector3 minPoint(FLT_MAX, FLT_MAX, FLT_MAX);
+    Vector3 maxPoint(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+
+    // 8개의 모서리 점을 계산하고 min/max 업데이트
+    for (int i = 0; i < 8; ++i)
+    {
+        Vector3 corner = center;
+        corner = (i & 1) ? corner + right : corner - right;
+        corner = (i & 2) ? corner + up : corner - up;
+        corner = (i & 4) ? corner + forward : corner - forward;
+
+        minPoint = Vector3::Min(minPoint, corner);
+        maxPoint = Vector3::Max(maxPoint, corner);
+    }
+
+    return AABB(minPoint, maxPoint);
+}
+
+
 bool BoxCollider::IsSeperateAxis(Vector3 D, Vector3 axis, ObbDesc box1, ObbDesc box2)
 {
     float distance = abs(Dot(D, axis));

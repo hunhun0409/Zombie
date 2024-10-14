@@ -56,6 +56,17 @@ bool SphereCollider::IsCapsuleCollision(CapsuleCollider* collider)
     return collider->IsSphereCollision(this);
 }
 
+AABB SphereCollider::GetAABB()
+{
+    Vector3 center = GlobalPos();
+    float radius = Radius();
+
+    return AABB(
+        Vector3(center.x - radius, center.y - radius, center.z - radius),
+        Vector3(center.x + radius, center.y + radius, center.z + radius)
+    );
+}
+
 void SphereCollider::MakeMesh()
 {
     float thetaStep = XM_2PI / sliceCount;

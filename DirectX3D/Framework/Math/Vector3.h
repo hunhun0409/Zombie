@@ -107,6 +107,17 @@ public:
     static Vector3 Down() { return Vector3(0, -1, 0); }
     static Vector3 Forward() { return Vector3(0, 0, 1); }
     static Vector3 Back() { return Vector3(0, 0, -1); }
+
+    static Vector3 Min(const Vector3& v1, const Vector3& v2)
+    {
+        return XMVectorMin(v1.value, v2.value);
+    }
+
+    static Vector3 Max(const Vector3& v1, const Vector3& v2)
+    {
+        return XMVectorMax(v1.value, v2.value);
+    }
+
 private:
     Vector4 value;
 };

@@ -14,6 +14,8 @@ public:
 
     float Radius() { return radius * max(GlobalScale().x, max(GlobalScale().y, GlobalScale().z)); }
 
+    virtual AABB GetAABB() override;
+
 private:
     virtual void MakeMesh() override;
 

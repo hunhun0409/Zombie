@@ -1,6 +1,15 @@
 #pragma once
 #include "Objects/Basic/GameObject.h"
 
+struct AABB
+{
+    Vector3 minPos;
+    Vector3 maxPos;
+
+    AABB() : minPos(Vector3()), maxPos(Vector3()) {}
+    AABB(const Vector3& min, const Vector3& max) : minPos(min), maxPos(max) {}
+};
+
 struct Ray
 {
     Vector3 pos;
@@ -56,6 +65,8 @@ public:
     }
 
     static void RenderOnOff() { isRender = !isRender; }
+
+    virtual AABB GetAABB() = 0;
 
 private:
     virtual void MakeMesh() = 0;

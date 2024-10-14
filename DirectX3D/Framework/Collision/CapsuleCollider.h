@@ -18,6 +18,9 @@ public:
 
 	void Save();
 	void Load();
+
+	virtual AABB GetAABB() override;
+
 private:
 	void MakeMesh() override;
 

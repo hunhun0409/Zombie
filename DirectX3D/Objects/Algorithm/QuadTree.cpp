@@ -4,9 +4,11 @@ QuadTree::QuadTree(Terrain* terrain)
 {
     root = new Node();
 
-    root->size = terrain->GetSize().x * terrain->Scale().x;
-    root->x = root->size/2;
-    root->z = root->size/2;
+    root->bounds.minPos = Vector3(0, 0, 0);
+    root->bounds.maxPos = Vector3(terrain->GetSize().x, MAX_HEIGHT, terrain->GetSize().y);
+    //root->size = terrain->GetSize().x * terrain->Scale().x;
+    //root->x = root->size/2;
+    //root->z = root->size/2;
     root->level = 0;
 }
 
@@ -69,44 +71,51 @@ void QuadTree::Remove(Collider* collider)
 
 void QuadTree::Split(Node* node)
 {
-    //LT
+    float midX = (node->bounds.minPos.x + node->bounds.maxPos.x) * 0.5f;
+    float midZ = (node->bounds.minPos.z + node->bounds.maxPos.z) * 0.5f;
+
+    // LT (Left Top)
     node->children[0] = new Node();
-    node->children[0]->size = node->size / 2;
-    node->children[0]->x = node->x - node->size/4;
-    node->children[0]->z = node->z + node->size/4;
-    node->children[0]->level = node->level + 1;
-    node->children[0]->parent = node;
+    node->children[0]->bounds = {
+        {node->bounds.minPos.x, 0.0f, midZ},
+        {midX, MAX_HEIGHT, node->bounds.maxPos.z}
+    };
 
-    //RT
+    // RT (Right Top)
     node->children[1] = new Node();
-    node->children[1]->size = node->size / 2;
-    node->children[1]->x = node->x + node->size / 4;
-    node->children[1]->z = node->z + node->size / 4;
-    node->children[1]->level = node->level + 1;
-    node->children[1]->parent = node;
+    node->children[1]->bounds = {
+        {midX, 0.0f, midZ},
+        {node->bounds.maxPos.x, MAX_HEIGHT, node->bounds.maxPos.z}
+    };
 
-    //LB
+    // LB (Left Bottom)
     node->children[2] = new Node();
-    node->children[2]->size = node->size / 2;
-    node->children[2]->x = node->x - node->size / 4;
-    node->children[2]->z = node->z - node->size / 4;
-    node->children[2]->level = node->level + 1;
-    node->children[2]->parent = node;
+    node->children[2]->bounds = {
+        {node->bounds.minPos.x, 0.0f, node->bounds.minPos.z},
+        {midX, MAX_HEIGHT, midZ}
+    };
 
-    //RB
+    // RB (Right Bottom)
     node->children[3] = new Node();
-    node->children[3]->size = node->size / 2;
-    node->children[3]->x = node->x + node->size / 4;
-    node->children[3]->z = node->z - node->size / 4;
-    node->children[3]->level = node->level + 1;
-    node->children[3]->parent = node;
+    node->children[3]->bounds = {
+        {midX, 0.0f, node->bounds.minPos.z},
+        {node->bounds.maxPos.x, MAX_HEIGHT, midZ}
+    };
 
-    //추가 : 분열되면 가지고 있는 collider 다 자식에게 넘김
+    // Common properties for all children
+    for (int i = 0; i < 4; ++i)
+    {
+        node->children[i]->level = node->level + 1;
+        node->children[i]->parent = node;
+    }
+
+    // Redistribute colliders to children
     for (Collider* collider : node->colliders)
     {
         int index = GetQuadrant(node, collider);
         InsertRecursive(node->children[index], collider, node->level + 1);
     }
+    node->colliders.clear();  // Clear parent's colliders after redistribution
 }
 
 void QuadTree::Merge(Node* node)
@@ -221,25 +230,32 @@ bool QuadTree::RemoveRecursive(Node* node, Collider* collider)
 int QuadTree::GetQuadrant(Node* node, Collider* collider)
 {
     Vector3 center = collider->GlobalPos();
+    Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
    
-    if (center.x < node->x)
+    if (center.x < nodeCenter.x)
     {
-        if (center.z < node->z) return 0; // 좌상단
+        if (center.z < nodeCenter.z) return 0; // 좌상단
         else return 2; // 좌하단
     }
     else
     {
-        if (center.z < node->z) return 1; // 우상단
+        if (center.z < nodeCenter.z) return 1; // 우상단
         else return 3; // 우하단
     }
 }
 
 bool QuadTree::IsColliderInNode(Node* node, Collider* collider)
 {
-    if (collider->GlobalPos().x > node->x + node->size * 0.5f || collider->GlobalPos().x < node->x - node->size * 0.5f
-        || collider->GlobalPos().z > node->z + node->size * 0.5f || collider->GlobalPos().z < node->z - node->size * 0.5f)
-    {
-        return false;
-    }
-    return true;
+    AABB colliderAABB = collider->GetAABB();
+
+    // 노드의 AABB와 충돌체의 AABB 간의 겹침 검사
+    return AABBOverlap(node->bounds, colliderAABB);
 }
+
+bool QuadTree::AABBOverlap(const AABB& a, const AABB& b)
+{
+    return (a.minPos.x <= b.maxPos.x && a.maxPos.x >= b.minPos.x) &&
+        (a.minPos.z <= b.maxPos.z && a.maxPos.z >= b.minPos.z);
+}
+
+

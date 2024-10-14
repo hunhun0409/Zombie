@@ -3,22 +3,18 @@
 class QuadTree
 {
 private:
-    const float MAX_LEVEL = 5;
-    const float MAX_OBJECT = 10;
+    const int MAX_LEVEL = 5;
+    const int MAX_OBJECT = 10;
+    const float MAX_HEIGHT = 10.0f;
 
     struct Node
     {
-        float x, z, size;
+        AABB bounds;
+        //float x, z, size;
         int level;
         vector<Collider*> colliders;
         Node* children[4] = {};
         Node* parent = nullptr;
-    };
-
-    struct AABB
-    {
-        Vector3 minPos;
-        Vector3 maxPos;
     };
 
 public:
@@ -45,6 +41,8 @@ private:
     int GetQuadrant(Node* node, Collider* collider);
 
     bool IsColliderInNode(Node* node, Collider* collider);
+
+    bool AABBOverlap(const AABB& a, const AABB& b);
 private:
     Node* root;
 };
