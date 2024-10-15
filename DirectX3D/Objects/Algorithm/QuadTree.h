@@ -38,6 +38,11 @@ public:
 
 
 private:
+    //·»´õ
+    void MakeMesh();
+
+
+    //quadTree ±â´É
     void Split(QNode* node);
     void Merge(QNode* node);
 
@@ -55,7 +60,14 @@ private:
 
     bool AABBOverlap(const AABB& a, const AABB& b);
 private:
+    Material* material;
+    Mesh<VertexColor>* mesh;
+
+    UINT curWidth, curHeight;
+    UINT fixWidth, fixHeight;
+
+    MatrixBuffer* worldBuffer;
+
     QNode* root;
     unordered_map<Collider*, QNode*> colliderNodeMap;
-
 };

@@ -8,6 +8,13 @@ QuadTree::QuadTree(Vector3 min, Vector3 max)
     root->bounds.maxPos = max;
 
     root->level = 0;
+
+    material = new Material(L"Basic/Grid.hlsl");
+
+    mesh = new Mesh<VertexColor>();
+    
+
+    worldBuffer = new MatrixBuffer();
 }
 
 QuadTree::QuadTree(Terrain* terrain)
@@ -112,6 +119,10 @@ void QuadTree::Clear()
 {
     DeleteNode(root);
     colliderNodeMap.clear();
+}
+
+void QuadTree::MakeMesh()
+{
 }
 
 void QuadTree::Split(QNode* node)
