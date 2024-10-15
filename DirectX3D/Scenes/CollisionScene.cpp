@@ -13,17 +13,23 @@ CollisionScene::CollisionScene()
     //colliders.push_back(new SphereCollider());
     //colliders.back()->SetTag("Sphere2");
 
+    qt = new QuadTree(Vector3(-50, 0, -50), Vector3(50, 50, 50));
+    ColliderManager::Get()->SetQuadTree(qt);
+
     colliders.push_back(new CapsuleCollider());
     colliders.back()->SetTag("Capsule1");
 
     colliders.push_back(new CapsuleCollider());
     colliders.back()->SetTag("Box1");
+
+    
 }
 
 CollisionScene::~CollisionScene()
 {
     for (Collider* collider : colliders)
         delete collider;
+    delete qt;
 }
 
 void CollisionScene::Update()
@@ -40,6 +46,8 @@ void CollisionScene::Update()
     //{
     //    colliders[0]->SetColor(0, 1, 0);
     //}
+
+    ColliderManager::Get()->Update();
 
     if (colliders[0]->IsCollision(colliders[1]))
     {

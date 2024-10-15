@@ -20,6 +20,7 @@ private:
     
 
 public:
+	QuadTree(Vector3 min, Vector3 max);
 	QuadTree(class Terrain* terrain);
 	~QuadTree();
 
@@ -28,6 +29,8 @@ public:
 
     void Insert(Collider* collider);
     void Remove(Collider* collider);
+
+    void Clear();
 
     vector<Collider*> GetPotentialColliders(Collider* collider);
     void QueryAreaRecursive(QNode* node, const AABB& area, vector<Collider*>& result);

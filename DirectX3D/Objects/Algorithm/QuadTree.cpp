@@ -1,5 +1,15 @@
 #include "Framework.h"
 
+QuadTree::QuadTree(Vector3 min, Vector3 max)
+{
+    root = new QNode();
+
+    root->bounds.minPos = min;
+    root->bounds.maxPos = max;
+
+    root->level = 0;
+}
+
 QuadTree::QuadTree(Terrain* terrain)
 {
     root = new QNode();
@@ -15,6 +25,7 @@ QuadTree::QuadTree(Terrain* terrain)
 QuadTree::~QuadTree()
 {
     DeleteNode(root);
+    colliderNodeMap.clear();
     delete root;
 }
 
@@ -90,11 +101,17 @@ void QuadTree::Remove(Collider* collider)
     if (it != colliderNodeMap.end())
     {
         QNode* node = it->second;
-        node->colliders.erase(std::remove(node->colliders.begin(), node->colliders.end(), collider), node->colliders.end());
+        node->colliders.erase(remove(node->colliders.begin(), node->colliders.end(), collider), node->colliders.end());
         colliderNodeMap.erase(it);
     }
 
     //RemoveRecursive(root, collider);
+}
+
+void QuadTree::Clear()
+{
+    DeleteNode(root);
+    colliderNodeMap.clear();
 }
 
 void QuadTree::Split(QNode* node)
@@ -138,16 +155,17 @@ void QuadTree::Split(QNode* node)
     }
     
     // Redistribute colliders to children
-    for (Collider* collider : node->colliders)
+    vector<Collider*> tempColliders = node->colliders; // 임시 벡터에 복사
+    node->colliders.clear(); // 부모 노드의 colliders를 미리 비움
+
+    for (Collider* collider : tempColliders)
     {
-        Remove(collider);
         int index = GetQuadrant(node, collider);
+        
         QNode* result = FindInsertNode(node->children[index], collider);
-        node->colliders.push_back(collider);
+        result->colliders.push_back(collider);
         colliderNodeMap[collider] = result;
-        //InsertRecursive(node->children[index], collider, node->level + 1);
     }
-    node->colliders.clear();  // Clear parent's colliders after redistribution
 }
 
 void QuadTree::Merge(QNode* node)
@@ -340,17 +358,42 @@ QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
 
 int QuadTree::GetQuadrant(QNode* node, Collider* collider)
 {
+    //Vector3 center = collider->GlobalPos();
+    //Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
+   
+    //if (center.x < nodeCenter.x)
+    //{
+    //    if (center.z > nodeCenter.z) return 0; // 좌상단
+    //    else return 2; // 좌하단
+    //}
+    //else
+    //{
+    //    if (center.z > nodeCenter.z) return 1; // 우상단
+    //    else return 3; // 우하단
+    //}
+    AABB colliderAABB = collider->GetAABB();
+
+    for (int i = 0; i < 4; ++i)
+    {
+        if (AABBOverlap(node->children[i]->bounds, colliderAABB))
+        {
+            return i;
+        }
+    }
+
+    // If no overlap is found, return the quadrant of the collider's center
+    // This is a fallback for edge cases
     Vector3 center = collider->GlobalPos();
     Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
-   
+
     if (center.x < nodeCenter.x)
     {
-        if (center.z < nodeCenter.z) return 0; // 좌상단
+        if (center.z > nodeCenter.z) return 0; // 좌상단
         else return 2; // 좌하단
     }
     else
     {
-        if (center.z < nodeCenter.z) return 1; // 우상단
+        if (center.z > nodeCenter.z) return 1; // 우상단
         else return 3; // 우하단
     }
 }

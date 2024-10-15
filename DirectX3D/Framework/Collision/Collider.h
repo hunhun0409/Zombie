@@ -70,6 +70,9 @@ public:
 
     virtual void OnCollision(Collider* other) {}
 
+    bool& BlockActive() { return blockActive; }
+    bool& OverrideActive() { return overrideActive; }
+
 private:
     virtual void MakeMesh() = 0;
 

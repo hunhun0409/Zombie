@@ -74,6 +74,9 @@ void ZombieScene::GUIRender()
 void ZombieScene::Start()
 {
 	terrain = new Terrain("test");
+	qt = new QuadTree(terrain);
+	ColliderManager::Get()->SetQuadTree(qt);
+
 	aStar = new AStar(30, 30);
 	aStar->SetNode(terrain);
 
@@ -103,4 +106,6 @@ void ZombieScene::End()
 {
 	InstanceCharacterManager::Get()->Remove("ZombieWoman");
 	InstanceCharacterManager::Get()->Remove("ZombieMutant");
+
+	ColliderManager::Get()->Clear();
 }

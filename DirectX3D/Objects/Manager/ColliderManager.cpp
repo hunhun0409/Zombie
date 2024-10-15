@@ -1,9 +1,9 @@
 #include "Framework.h"
 
-ColliderManager::ColliderManager(QuadTree* quadTree)
-	:quadTree(quadTree)
-{
-}
+//ColliderManager::ColliderManager(QuadTree* quadTree)
+//	:quadTree(quadTree)
+//{
+//}
 
 void ColliderManager::Update()
 {
@@ -19,6 +19,12 @@ void ColliderManager::Add(Collider* collider)
 void ColliderManager::Remove(Collider* collider)
 {
 	quadTree->Remove(collider);
+}
+
+void ColliderManager::Clear()
+{
+	quadTree->Clear();
+	totalColliders.clear();
 }
 
 void ColliderManager::CheckCollisions()

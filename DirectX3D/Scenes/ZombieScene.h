@@ -27,4 +27,5 @@ private:
 
 	LightBuffer::Light* light;
 
+	QuadTree* qt;
 };

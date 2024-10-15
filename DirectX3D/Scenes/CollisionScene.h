@@ -13,5 +13,6 @@ public:
     virtual void GUIRender() override;
 
 private:
+    QuadTree* qt;
     vector<Collider*> colliders;
 };
