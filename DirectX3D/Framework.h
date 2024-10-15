@@ -223,6 +223,7 @@ using namespace GameMath;
 #include "Objects/Manager/ZombieManager.h"
 #include "Objects/Manager/ProjectileManager.h"
 #include "Objects/Manager/ParticleManager.h"
+#include "Objects/Manager/ColliderManager.h"
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"

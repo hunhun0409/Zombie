@@ -236,6 +236,7 @@
     <ClInclude Include="Objects\Landscape\TerrainEditor.h" />
     <ClInclude Include="Objects\Landscape\TerrainLOD.h" />
     <ClInclude Include="Objects\Landscape\Water.h" />
+    <ClInclude Include="Objects\Manager\ColliderManager.h" />
     <ClInclude Include="Objects\Manager\InstanceCharacterManager.h" />
     <ClInclude Include="Objects\Manager\InstanceObjectManager.h" />
     <ClInclude Include="Objects\Manager\KunaiManager.h" />
@@ -389,6 +390,7 @@
     <ClCompile Include="Objects\Landscape\TerrainEditor.cpp" />
     <ClCompile Include="Objects\Landscape\TerrainLOD.cpp" />
     <ClCompile Include="Objects\Landscape\Water.cpp" />
+    <ClCompile Include="Objects\Manager\ColliderManager.cpp" />
     <ClCompile Include="Objects\Manager\InstanceCharacterManager.cpp" />
     <ClCompile Include="Objects\Manager\InstanceObjectManager.cpp" />
     <ClCompile Include="Objects\Manager\KunaiManager.cpp" />

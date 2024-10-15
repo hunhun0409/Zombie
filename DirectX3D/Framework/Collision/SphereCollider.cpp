@@ -7,6 +7,9 @@ SphereCollider::SphereCollider(float radius, UINT stackCount, UINT sliceCount)
 
     MakeMesh();
     mesh->CreateMesh();
+
+    ColliderManager::Get()->Add(this);
+
 }
 
 bool SphereCollider::IsRayCollision(IN Ray ray, OUT Contact* contact)

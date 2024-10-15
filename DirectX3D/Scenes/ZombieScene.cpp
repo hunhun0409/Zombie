@@ -38,6 +38,7 @@ void ZombieScene::Update()
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
+	ColliderManager::Get()->Update();
 	//ProjectileManager::Get()->IsCollision();
 
 }

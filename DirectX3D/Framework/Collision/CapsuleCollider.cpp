@@ -8,6 +8,8 @@ CapsuleCollider::CapsuleCollider(float radius, float height, int stackCount, int
 
     MakeMesh();
     
+    ColliderManager::Get()->Add(this);
+
 }
 
 bool CapsuleCollider::IsRayCollision(IN Ray ray, OUT Contact* contact)

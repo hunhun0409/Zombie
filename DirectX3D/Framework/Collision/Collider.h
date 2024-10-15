@@ -68,6 +68,8 @@ public:
 
     virtual AABB GetAABB() = 0;
 
+    virtual void OnCollision(Collider* other) {}
+
 private:
     virtual void MakeMesh() = 0;
 
@@ -75,6 +77,9 @@ protected:
     Type type;    
 
     Mesh<Vertex>* mesh;
+
+    bool blockActive = false;
+    bool overrideActive = false;
 
 private:
     static bool isRender;
