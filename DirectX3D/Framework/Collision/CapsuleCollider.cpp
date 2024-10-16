@@ -8,7 +8,7 @@ CapsuleCollider::CapsuleCollider(float radius, float height, int stackCount, int
 
     MakeMesh();
     
-    ColliderManager::Get()->Add(this);
+    //ColliderManager::Get()->Add(this);
 
 }
 

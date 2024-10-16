@@ -49,6 +49,9 @@ private:
     void UpdateCollider(Collider* collider); // collider를 업데이트
     void UpdateTree(QNode* node); // node의 Merge여부를 확인
 
+    void RenderNode(QNode* node);
+    void DrawAABB(const AABB& aabb, const Float4& color);
+
     void DeleteNode(QNode* node);
 
     QNode* FindInsertNode(QNode* node, Collider* collider);

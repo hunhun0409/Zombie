@@ -15,4 +15,6 @@ public:
 private:
     QuadTree* qt;
     vector<Collider*> colliders;
+    int index = 0;
+    bool b = true;
 };

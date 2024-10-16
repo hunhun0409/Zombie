@@ -10,11 +10,14 @@ private:
 
 public:
 	void Update();
+	void Render();
 	void Add(Collider* collider);
 	void Remove(Collider* collider);
 	void Clear();
 
 	void SetQuadTree(QuadTree* quadTree) { this->quadTree = quadTree; }
+
+	void SetQuadTreeMode(bool value) { quadtreeCheck = value; }
 
 private:
 	void CheckCollisions();
@@ -24,4 +27,5 @@ private:
 	QuadTree* quadTree;
 	vector<Collider*> totalColliders;
 
+	bool quadtreeCheck = true;
 };

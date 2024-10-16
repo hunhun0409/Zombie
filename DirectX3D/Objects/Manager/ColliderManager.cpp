@@ -11,8 +11,14 @@ void ColliderManager::Update()
 	CheckCollisions();
 }
 
+void ColliderManager::Render()
+{
+	quadTree->Render();
+}
+
 void ColliderManager::Add(Collider* collider)
 {
+	totalColliders.push_back(collider);
 	quadTree->Insert(collider);
 }
 
@@ -29,19 +35,39 @@ void ColliderManager::Clear()
 
 void ColliderManager::CheckCollisions()
 {
-	for (Collider* collider : totalColliders)
+	if (quadtreeCheck)
 	{
-		if (!collider->Active()) continue;
-
-		vector<Collider*> potentialColliders = quadTree->GetPotentialColliders(collider);
-
-		for (Collider* other : potentialColliders)
+		for (Collider* collider : totalColliders)
 		{
-			if (!other->Active() || other == collider) continue;
+			if (!collider->Active()) continue;
 
-			if (collider->IsCollision(other))
+			vector<Collider*> potentialColliders = quadTree->GetPotentialColliders(collider);
+
+			for (Collider* other : potentialColliders)
 			{
-				HandleCollision(collider, other);
+				if (!other->Active() || other == collider) continue;
+
+				if (collider->IsCollision(other))
+				{
+					HandleCollision(collider, other);
+				}
+			}
+		}
+	}
+	else
+	{
+		for (Collider* collider1 : totalColliders)
+		{
+			if (!collider1->Active()) continue;
+
+			for (Collider* collider2 : totalColliders)
+			{
+				if (!collider2->Active()) continue;
+
+				if (collider1->IsCollision(collider2))
+				{
+					HandleCollision(collider1, collider2);
+				}
 			}
 		}
 	}

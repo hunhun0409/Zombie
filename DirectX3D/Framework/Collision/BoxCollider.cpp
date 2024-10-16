@@ -7,7 +7,7 @@ BoxCollider::BoxCollider(Vector3 size) : size(size)
     MakeMesh();
     mesh->CreateMesh();
 
-    ColliderManager::Get()->Add(this);
+    //ColliderManager::Get()->Add(this);
 
 }
 

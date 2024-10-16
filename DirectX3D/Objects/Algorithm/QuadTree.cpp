@@ -10,9 +10,7 @@ QuadTree::QuadTree(Vector3 min, Vector3 max)
     root->level = 0;
 
     material = new Material(L"Basic/Grid.hlsl");
-
     mesh = new Mesh<VertexColor>();
-    
 
     worldBuffer = new MatrixBuffer();
 }
@@ -23,9 +21,6 @@ QuadTree::QuadTree(Terrain* terrain)
 
     root->bounds.minPos = Vector3(0, 0, 0);
     root->bounds.maxPos = Vector3(terrain->GetSize().x, MAX_HEIGHT, terrain->GetSize().y);
-    //root->size = terrain->GetSize().x * terrain->Scale().x;
-    //root->x = root->size/2;
-    //root->z = root->size/2;
     root->level = 0;
 }
 
@@ -38,13 +33,31 @@ QuadTree::~QuadTree()
 
 void QuadTree::Update()
 {
-    //UpdateTree(root);
-    for (auto& pair : colliderNodeMap)
+    
+    for (pair<Collider*, QNode*> pair : colliderNodeMap)
     {
         UpdateCollider(pair.first);
     }
     UpdateTree(root);
 }
+
+void QuadTree::Render()
+{
+    for (auto collider : colliderNodeMap)
+    {
+        collider.first->Render();
+    }
+
+    worldBuffer->SetVS(0);
+    material->Set();
+
+    mesh->Vertices().clear();
+    RenderNode(root);
+    mesh->CreateMesh();
+
+    mesh->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+}
+
 
 void QuadTree::UpdateCollider(Collider* collider)
 {
@@ -90,16 +103,59 @@ void QuadTree::UpdateTree(QNode* node)
     }
 }
 
-void QuadTree::Render()
+void QuadTree::RenderNode(QNode* node)
 {
+    if (!node) return;
+
+    if (node->children[0] == nullptr)
+    {
+        DrawAABB(node->bounds, Float4(0, 1, 0, 1));
+    }
+    else
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            RenderNode(node->children[i]);
+        }
+    }
 }
+
+void QuadTree::DrawAABB(const AABB& aabb, const Float4& color)
+{
+    vector<VertexColor>& vertices = mesh->Vertices();
+
+    vertices.emplace_back(aabb.minPos.x, 2, aabb.minPos.z, 1, 0, 0);
+    vertices.emplace_back(aabb.maxPos.x, 2, aabb.minPos.z, 1, 0, 0);
+
+    vertices.emplace_back(aabb.maxPos.x, 2, aabb.minPos.z, 1, 0, 0);
+    vertices.emplace_back(aabb.maxPos.x, 2, aabb.maxPos.z, 1, 0, 0);
+
+    vertices.emplace_back(aabb.maxPos.x, 2, aabb.maxPos.z, 1, 0, 0);
+    vertices.emplace_back(aabb.minPos.x, 2, aabb.maxPos.z, 1, 0, 0);
+
+    vertices.emplace_back(aabb.minPos.x, 2, aabb.maxPos.z, 1, 0, 0);
+    vertices.emplace_back(aabb.minPos.x, 2, aabb.minPos.z, 1, 0, 0);
+}
+
 
 void QuadTree::Insert(Collider* collider)
 {
+    //QNode* node = FindInsertNode(root, collider);
+    //node->colliders.push_back(collider);
+    //colliderNodeMap[collider] = node;
+    ////InsertRecursive(root, collider, 0);
+
     QNode* node = FindInsertNode(root, collider);
-    node->colliders.push_back(collider);
-    colliderNodeMap[collider] = node;
-    //InsertRecursive(root, collider, 0);
+    if (node)
+    {
+        node->colliders.push_back(collider);
+        colliderNodeMap[collider] = node;
+
+        if (node->colliders.size() > MAX_OBJECT && node->level < MAX_LEVEL - 1)
+        {
+            Split(node);
+        }
+    }
 }
 
 void QuadTree::Remove(Collider* collider)
@@ -109,7 +165,7 @@ void QuadTree::Remove(Collider* collider)
     {
         QNode* node = it->second;
         node->colliders.erase(remove(node->colliders.begin(), node->colliders.end(), collider), node->colliders.end());
-        colliderNodeMap.erase(it);
+        //colliderNodeMap.erase(it);
     }
 
     //RemoveRecursive(root, collider);
@@ -127,55 +183,92 @@ void QuadTree::MakeMesh()
 
 void QuadTree::Split(QNode* node)
 {
+    //float midX = (node->bounds.minPos.x + node->bounds.maxPos.x) * 0.5f;
+    //float midZ = (node->bounds.minPos.z + node->bounds.maxPos.z) * 0.5f;
+
+    //// LT (Left Top)
+    //node->children[0] = new QNode();
+    //node->children[0]->bounds = {
+    //    {node->bounds.minPos.x, 0.0f, midZ},
+    //    {midX, MAX_HEIGHT, node->bounds.maxPos.z}
+    //};
+
+    //// RT (Right Top)
+    //node->children[1] = new QNode();
+    //node->children[1]->bounds = {
+    //    {midX, 0.0f, midZ},
+    //    {node->bounds.maxPos.x, MAX_HEIGHT, node->bounds.maxPos.z}
+    //};
+
+    //// LB (Left Bottom)
+    //node->children[2] = new QNode();
+    //node->children[2]->bounds = {
+    //    {node->bounds.minPos.x, 0.0f, node->bounds.minPos.z},
+    //    {midX, MAX_HEIGHT, midZ}
+    //};
+
+    //// RB (Right Bottom)
+    //node->children[3] = new QNode();
+    //node->children[3]->bounds = {
+    //    {midX, 0.0f, node->bounds.minPos.z},
+    //    {node->bounds.maxPos.x, MAX_HEIGHT, midZ}
+    //};
+
+    //// Common properties for all children
+    //for (int i = 0; i < 4; ++i)
+    //{
+    //    node->children[i]->level = node->level + 1;
+    //    node->children[i]->parent = node;
+    //}
+    //
+    //// Redistribute colliders to children
+    //vector<Collider*> tempColliders = node->colliders; // 임시 벡터에 복사
+    //node->colliders.clear(); // 부모 노드의 colliders를 미리 비움
+
+    //for (Collider* collider : tempColliders)
+    //{
+    //    int index = GetQuadrant(node, collider);
+    //    
+    //    QNode* result = FindInsertNode(node->children[index], collider);
+    //    result->colliders.push_back(collider);
+    //    colliderNodeMap[collider] = result;
+    //}
+
+    if (node->level >= MAX_LEVEL - 1) return; // 최대 레벨에 도달하면 분할 중지
+
     float midX = (node->bounds.minPos.x + node->bounds.maxPos.x) * 0.5f;
     float midZ = (node->bounds.minPos.z + node->bounds.maxPos.z) * 0.5f;
 
-    // LT (Left Top)
-    node->children[0] = new QNode();
-    node->children[0]->bounds = {
-        {node->bounds.minPos.x, 0.0f, midZ},
-        {midX, MAX_HEIGHT, node->bounds.maxPos.z}
-    };
-
-    // RT (Right Top)
-    node->children[1] = new QNode();
-    node->children[1]->bounds = {
-        {midX, 0.0f, midZ},
-        {node->bounds.maxPos.x, MAX_HEIGHT, node->bounds.maxPos.z}
-    };
-
-    // LB (Left Bottom)
-    node->children[2] = new QNode();
-    node->children[2]->bounds = {
-        {node->bounds.minPos.x, 0.0f, node->bounds.minPos.z},
-        {midX, MAX_HEIGHT, midZ}
-    };
-
-    // RB (Right Bottom)
-    node->children[3] = new QNode();
-    node->children[3]->bounds = {
-        {midX, 0.0f, node->bounds.minPos.z},
-        {node->bounds.maxPos.x, MAX_HEIGHT, midZ}
-    };
-
-    // Common properties for all children
+    // 자식 노드 생성
     for (int i = 0; i < 4; ++i)
     {
+        node->children[i] = new QNode();
         node->children[i]->level = node->level + 1;
         node->children[i]->parent = node;
     }
-    
-    // Redistribute colliders to children
-    vector<Collider*> tempColliders = node->colliders; // 임시 벡터에 복사
-    node->colliders.clear(); // 부모 노드의 colliders를 미리 비움
 
+    // 자식 노드의 경계 설정
+    node->children[0]->bounds = AABB{ {node->bounds.minPos.x, 0.0f, midZ}, {midX, MAX_HEIGHT, node->bounds.maxPos.z} }; // LT
+    node->children[1]->bounds = AABB{ {midX, 0.0f, midZ}, {node->bounds.maxPos.x, MAX_HEIGHT, node->bounds.maxPos.z} }; // RT
+    node->children[2]->bounds = AABB{ {node->bounds.minPos.x, 0.0f, node->bounds.minPos.z}, {midX, MAX_HEIGHT, midZ} }; // LB
+    node->children[3]->bounds = AABB{ {midX, 0.0f, node->bounds.minPos.z}, {node->bounds.maxPos.x, MAX_HEIGHT, midZ} }; // RB
+
+    // Collider 재분배
+    vector<Collider*> tempColliders = std::move(node->colliders);
     for (Collider* collider : tempColliders)
     {
         int index = GetQuadrant(node, collider);
-        
-        QNode* result = FindInsertNode(node->children[index], collider);
-        result->colliders.push_back(collider);
-        colliderNodeMap[collider] = result;
+        if (index >= 0 && index < 4)
+        {
+            node->children[index]->colliders.push_back(collider);
+            colliderNodeMap[collider] = node->children[index];
+        }
+        else
+        {
+            // 어떤 자식 노드에도 속하지 않는 경우, 현재 노드에 유지
+            node->colliders.push_back(collider);
+            colliderNodeMap[collider] = node;
+        }
     }
 }
 
@@ -271,40 +364,65 @@ int QuadTree::GetTotalColliders(QNode* node)
 
 void QuadTree::DeleteNode(QNode* node)
 {
-    FOR(4)
+   /* FOR(4)
     {
         if (node->children[i])
         {
             DeleteNode(node->children[i]);
             delete node->children[i];
         }
+    }*/
+
+    if (!node) return;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        if (node->children[i])
+        {
+            DeleteNode(node->children[i]);
+            delete node->children[i];
+            node->children[i] = nullptr;
+        }
     }
+
+    node->colliders.clear();
 }
 
 QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
 {
-    if (!IsColliderInNode(node, collider))
+    //if (!IsColliderInNode(node, collider))
+    //{
+    //    return nullptr; // Collider가 현재 노드의 범위를 벗어남
+    //}
+
+    //if (node->children[0] == nullptr)
+    //{
+    //    // 리프 노드인 경우
+    //    if (node->colliders.size() < MAX_OBJECT || node->level >= MAX_LEVEL)
+    //    {
+    //        return node; // 이 노드에 삽입
+    //    }
+    //    else
+    //    {
+    //        Split(node); // 노드 분할
+    //    }
+    //}
+
+    //// 적절한 자식 노드 찾기
+    //int quadrant = GetQuadrant(node, collider);
+    //QNode* childNode = FindInsertNode(node->children[quadrant], collider);
+
+    //return childNode ? childNode : node;
+
+    if (!node || !IsColliderInNode(node, collider)) return nullptr;
+
+    if (node->children[0] == nullptr || node->level >= MAX_LEVEL - 1)
     {
-        return nullptr; // Collider가 현재 노드의 범위를 벗어남
+        return node;
     }
 
-    if (node->children[0] == nullptr)
-    {
-        // 리프 노드인 경우
-        if (node->colliders.size() < MAX_OBJECT || node->level >= MAX_LEVEL)
-        {
-            return node; // 이 노드에 삽입
-        }
-        else
-        {
-            Split(node); // 노드 분할
-        }
-    }
-
-    // 적절한 자식 노드 찾기
     int quadrant = GetQuadrant(node, collider);
     QNode* childNode = FindInsertNode(node->children[quadrant], collider);
-
     return childNode ? childNode : node;
 }
 

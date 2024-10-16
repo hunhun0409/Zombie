@@ -8,7 +8,7 @@ SphereCollider::SphereCollider(float radius, UINT stackCount, UINT sliceCount)
     MakeMesh();
     mesh->CreateMesh();
 
-    ColliderManager::Get()->Add(this);
+    //ColliderManager::Get()->Add(this);
 
 }
 
