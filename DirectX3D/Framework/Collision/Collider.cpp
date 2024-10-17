@@ -52,3 +52,9 @@ bool Collider::PushCollision(Collider* collider)
 
     return true;
 }
+
+void Collider::SetActive(bool active)
+{
+    Transform::SetActive(active);
+    ColliderManager::Get()->UpdateColliderState(this);
+}

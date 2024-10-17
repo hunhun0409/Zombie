@@ -355,3 +355,8 @@ void CapsuleCollider::MakeMesh()
 
     mesh->CreateMesh();
 }
+
+void CapsuleCollider::OnCollision(Collider* other)
+{
+
+}

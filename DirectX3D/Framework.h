@@ -31,6 +31,7 @@
 
 #include <windows.h>
 #include <string>
+#include <queue>
 #include <vector>
 #include <map>
 #include <unordered_map>
@@ -133,6 +134,7 @@ using namespace Utility;
 #include "Framework/Collision/BoxCollider.h"
 #include "Framework/Collision/SphereCollider.h"
 #include "Framework/Collision/CapsuleCollider.h"
+#include "Framework/Collision/ICollidable.h"
 
 #include "Framework/Model/ModelData.h"
 #include "Framework/Model/ModelExporter.h"

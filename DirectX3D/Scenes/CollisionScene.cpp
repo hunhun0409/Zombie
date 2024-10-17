@@ -16,7 +16,7 @@ CollisionScene::CollisionScene()
     qt = new QuadTree(Vector3(-50, 0, -50), Vector3(50, 50, 50));
     ColliderManager::Get()->SetQuadTree(qt);
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 500; i++)
     {
         colliders.push_back(new CapsuleCollider());
         colliders.back()->SetTag("Capsule" + to_string(i));
@@ -53,7 +53,7 @@ void CollisionScene::Update()
     //    colliders[0]->SetColor(0, 1, 0);
     //}
 
-    if (KEY_DOWN(VK_F10))
+    if (KEY_DOWN(VK_TAB))
     {
         b = !b;
         ColliderManager::Get()->SetQuadTreeMode(b);
@@ -61,13 +61,25 @@ void CollisionScene::Update()
 
     if (KEY_DOWN('P'))
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 500; i++)
         {
             ColliderManager::Get()->Add(colliders[i]);
         }
     }
-    
-
+    if (KEY_DOWN('K'))
+    {
+        for (int i = 0; i < 500; i++)
+        {
+            colliders[i]->SetActive(false);
+        }
+    }
+    if (KEY_DOWN('L'))
+    {
+        for (int i = 0; i < 500; i++)
+        {
+            colliders[i]->SetActive(true);
+        }
+    }
 
     ColliderManager::Get()->Update();
 
@@ -109,6 +121,8 @@ void CollisionScene::PostRender()
 
 void CollisionScene::GUIRender()
 {
-    for (Collider* collider : colliders)
-        collider->GUIRender();
+    /*for (Collider* collider : colliders)
+        collider->GUIRender();*/
+
+    ColliderManager::Get()->GUIRender();
 }

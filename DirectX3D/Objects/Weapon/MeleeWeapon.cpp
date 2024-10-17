@@ -22,6 +22,8 @@ MeleeWeapon::MeleeWeapon(string name)
 	trail->SetActive(false);
 
 	Load();
+
+	ColliderManager::Get()->Add(collider);
 }
 
 MeleeWeapon::~MeleeWeapon()

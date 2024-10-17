@@ -157,6 +157,7 @@
     <ClInclude Include="Framework\Collision\BoxCollider.h" />
     <ClInclude Include="Framework\Collision\CapsuleCollider.h" />
     <ClInclude Include="Framework\Collision\Collider.h" />
+    <ClInclude Include="Framework\Collision\ICollidable.h" />
     <ClInclude Include="Framework\Collision\SphereCollider.h" />
     <ClInclude Include="Framework\Environment\Camera.h" />
     <ClInclude Include="Framework\Environment\Environment.h" />

@@ -13,8 +13,8 @@ struct QNode
 class QuadTree
 {
 private:
-    const int MAX_LEVEL = 5;
-    const int MAX_OBJECT = 10;
+    const int MAX_LEVEL = 8;
+    const int MAX_OBJECT = 8;
     const float MAX_HEIGHT = 10.0f;
 
     
@@ -26,9 +26,11 @@ public:
 
     void Update();
     void Render();
+    void GUIRender();
 
     void Insert(Collider* collider);
-    void Remove(Collider* collider);
+    void Remove(Collider* collider);//collider와 연결된 node만 제거
+    void Delete(Collider* collider);//collider자체를 제거
 
     void Clear();
 
@@ -73,4 +75,5 @@ private:
 
     QNode* root;
     unordered_map<Collider*, QNode*> colliderNodeMap;
+    queue<Collider*> deleteColliders;
 };

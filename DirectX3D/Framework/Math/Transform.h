@@ -29,7 +29,7 @@ public:
     bool Active();
     bool ActiveSelf() { return isActive; }
 
-    void SetActive(bool isActive) { this->isActive = isActive; }
+    virtual void SetActive(bool isActive) { this->isActive = isActive; }
 
     void SetTag(string tag) { this->tag = tag; }
 

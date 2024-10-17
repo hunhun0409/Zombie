@@ -57,6 +57,8 @@ void ZombieScene::Render()
 	ParticleManager::Get()->Render();
 	ProjectileManager::Get()->Render();
 
+	ColliderManager::Get()->Render();
+
 	player->Render();
 }
 
@@ -66,15 +68,17 @@ void ZombieScene::PostRender()
 
 void ZombieScene::GUIRender()
 {
-	player->GUIRender();
-	InstanceCharacterManager::Get()->GUIRender();
-	ProjectileManager::Get()->GUIRender();
+	ColliderManager::Get()->GUIRender();
+
+	//player->GUIRender();
+	//InstanceCharacterManager::Get()->GUIRender();
+	//ProjectileManager::Get()->GUIRender();
 }
 
 void ZombieScene::Start()
 {
 	terrain = new Terrain("test");
-	qt = new QuadTree(terrain);
+	qt = new QuadTree(Vector3(-100, 0, -100),(100, 50, 100));
 	ColliderManager::Get()->SetQuadTree(qt);
 
 	aStar = new AStar(30, 30);
@@ -82,15 +86,16 @@ void ZombieScene::Start()
 
 	player = new Knight();
 	player->Pos() = { 100, 0, 100 };
+	player->GetCollider();
 
 	skill = new ObitalRifle();
 	skill->SetOwner(player);
 	
 	PlayerController::Get()->Possess(player);
 
-	CAM->SetTarget(player);
-	CAM->TargetOptionLoad("ZombieSurvivalCamera");
-	CAM->LookAtTarget();
+	//CAM->SetTarget(player);
+	//CAM->TargetOptionLoad("ZombieSurvivalCamera");
+	//CAM->LookAtTarget();
 
 	player->SetCamera(CAM);
 

@@ -16,6 +16,8 @@ Character::Character(string name)
 
 	characterMovement = new CharacterMovement();
 	characterMovement->SetOwner(this);
+
+	ColliderManager::Get()->Add(collider);
 }
 
 Character::~Character()

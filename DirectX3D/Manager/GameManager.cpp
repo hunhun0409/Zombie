@@ -52,7 +52,7 @@ GameManager::GameManager()
     
     //SceneManager::Get()->Create("Start", new TerrainScene());
     //SceneManager::Get()->Create("Start", new LightScene());
-    SceneManager::Get()->Create("Start", new CollisionScene());
+    //SceneManager::Get()->Create("Start", new CollisionScene());
     //SceneManager::Get()->Create("Start", new MineCraftScene());
 
     //SceneManager::Get()->Create("Start", new ActionScene());
@@ -64,7 +64,7 @@ GameManager::GameManager()
     
     //SceneManager::Get()->Create("Start", new TrailEffectScene());
     //SceneManager::Get()->Create("Start", new GameScene());
-    //SceneManager::Get()->Create("Start", new ZombieScene());
+    SceneManager::Get()->Create("Start", new ZombieScene());
     //SceneManager::Get()->Create("Start", new WeaponScene());
     //SceneManager::Get()->Create("Start", new WaterScene());
     //SceneManager::Get()->Create("Start", new QuadTreeScene());

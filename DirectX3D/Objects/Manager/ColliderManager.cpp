@@ -1,14 +1,16 @@
 #include "Framework.h"
 
-//ColliderManager::ColliderManager(QuadTree* quadTree)
-//	:quadTree(quadTree)
-//{
-//}
-
 void ColliderManager::Update()
 {
-	quadTree->Update();
-	CheckCollisions();
+	checkInterval += DELTA;
+	if (checkInterval >= CHECK_INTERVAL)
+	{
+		quadTree->Update();
+		CheckCollisions();
+
+		checkInterval -= CHECK_INTERVAL;
+	}
+	
 }
 
 void ColliderManager::Render()
@@ -16,15 +18,44 @@ void ColliderManager::Render()
 	quadTree->Render();
 }
 
+void ColliderManager::GUIRender()
+{
+	int count = totalColliders.size();
+
+	ImGui::Text("ColliderManager ColliderCount : %d", count);
+	quadTree->GUIRender();
+}
+
 void ColliderManager::Add(Collider* collider)
 {
-	totalColliders.push_back(collider);
-	quadTree->Insert(collider);
+	if (totalColliders.count(collider) != 0) return;
+	totalColliders[collider] = collider->Active();
+	if (collider->Active())
+	{
+		quadTree->Insert(collider);
+	}
 }
 
 void ColliderManager::Remove(Collider* collider)
 {
+	if (quadTree == nullptr) return;
 	quadTree->Remove(collider);
+	totalColliders.erase(collider);
+}
+
+void ColliderManager::UpdateColliderState(Collider* collider)
+{
+	if (totalColliders.count(collider) == 0) return;
+	totalColliders[collider] = collider->Active();
+
+	if (collider->Active())
+	{
+		quadTree->Insert(collider);
+	}
+	else
+	{
+		quadTree->Delete(collider);
+	}
 }
 
 void ColliderManager::Clear()
@@ -37,15 +68,16 @@ void ColliderManager::CheckCollisions()
 {
 	if (quadtreeCheck)
 	{
-		for (Collider* collider : totalColliders)
+		for (pair<Collider*, bool> pair : totalColliders)
 		{
-			if (!collider->Active()) continue;
-
+			if (pair.second = false) continue;
+			
+			Collider* collider = pair.first;
 			vector<Collider*> potentialColliders = quadTree->GetPotentialColliders(collider);
-
+			
 			for (Collider* other : potentialColliders)
 			{
-				if (!other->Active() || other == collider) continue;
+				if (!other->Active() || other == collider)continue;
 
 				if (collider->IsCollision(other))
 				{
@@ -56,13 +88,15 @@ void ColliderManager::CheckCollisions()
 	}
 	else
 	{
-		for (Collider* collider1 : totalColliders)
+		for (pair<Collider*, bool> pair1 : totalColliders)
 		{
-			if (!collider1->Active()) continue;
+			if (pair1.second = false) continue;
+			Collider* collider1 = pair1.first;
 
-			for (Collider* collider2 : totalColliders)
+			for (pair<Collider*, bool> pair2 : totalColliders)
 			{
-				if (!collider2->Active()) continue;
+				if (pair2.second = false) continue;
+				Collider* collider2 = pair2.first;
 
 				if (collider1->IsCollision(collider2))
 				{
@@ -76,6 +110,7 @@ void ColliderManager::CheckCollisions()
 void ColliderManager::HandleCollision(Collider* a, Collider* b)
 {
 	// Collision response logic
+
 	a->OnCollision(b);
 	b->OnCollision(a);
 

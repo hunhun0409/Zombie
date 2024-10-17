@@ -19,6 +19,8 @@ InstanceCharacter::InstanceCharacter(string name, Transform* transform, ModelAni
 	curState = 0;
 
 	Observer::Get()->AddFloatParamEvent("ZombieTakeDamage", bind(&InstanceCharacter::TakeDamage, this, placeholders::_1));
+
+	ColliderManager::Get()->Add(collider);
 }
 
 InstanceCharacter::~InstanceCharacter()

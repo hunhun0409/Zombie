@@ -16,6 +16,8 @@ Knight::Knight()
 
 	maxHP = 100.0f;
 	curHP = maxHP;
+
+	
 }
 
 Knight::~Knight()

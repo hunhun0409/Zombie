@@ -73,10 +73,16 @@ public:
     bool& BlockActive() { return blockActive; }
     bool& OverrideActive() { return overrideActive; }
 
+    virtual void SetActive(bool active);
+
+    void* Owner() { return owner; }
+
 private:
     virtual void MakeMesh() = 0;
 
 protected:
+    void* owner;
+
     Type type;    
 
     Mesh<Vertex>* mesh;

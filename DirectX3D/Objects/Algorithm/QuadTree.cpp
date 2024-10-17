@@ -33,10 +33,10 @@ QuadTree::~QuadTree()
 
 void QuadTree::Update()
 {
-    
     for (pair<Collider*, QNode*> pair : colliderNodeMap)
     {
-        UpdateCollider(pair.first);
+        Collider* collider = pair.first;
+        UpdateCollider(collider);
     }
     UpdateTree(root);
 }
@@ -58,12 +58,21 @@ void QuadTree::Render()
     mesh->Draw(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 }
 
+void QuadTree::GUIRender()
+{
+    int count = colliderNodeMap.size();
+
+    ImGui::Text("QuadTree ColliderCount : %d", count);
+    
+}
+
 
 void QuadTree::UpdateCollider(Collider* collider)
 {
     auto it = colliderNodeMap.find(collider);
     if (it == colliderNodeMap.end()) return;
 
+    
     QNode* currentNode = it->second;
     if (!IsColliderInNode(currentNode, collider))
     {
@@ -76,19 +85,6 @@ void QuadTree::UpdateTree(QNode* node)
 {
     if (!node) return;
 
-    /*for (auto it = node->colliders.begin(); it != node->colliders.end();)
-    {
-        Collider* collider = *it;
-        if (!IsColliderInNode(node, collider))
-        {
-            it = node->colliders.erase(it);
-            Insert(collider);
-        }
-        else
-        {
-            it++;
-        }
-    }*/
     FOR(4)
     {
         if (node->children[i])
@@ -140,11 +136,6 @@ void QuadTree::DrawAABB(const AABB& aabb, const Float4& color)
 
 void QuadTree::Insert(Collider* collider)
 {
-    //QNode* node = FindInsertNode(root, collider);
-    //node->colliders.push_back(collider);
-    //colliderNodeMap[collider] = node;
-    ////InsertRecursive(root, collider, 0);
-
     QNode* node = FindInsertNode(root, collider);
     if (node)
     {
@@ -165,10 +156,18 @@ void QuadTree::Remove(Collider* collider)
     {
         QNode* node = it->second;
         node->colliders.erase(remove(node->colliders.begin(), node->colliders.end(), collider), node->colliders.end());
-        //colliderNodeMap.erase(it);
     }
+}
 
-    //RemoveRecursive(root, collider);
+void QuadTree::Delete(Collider* collider)
+{
+    auto it = colliderNodeMap.find(collider);
+    if (it != colliderNodeMap.end())
+    {
+        QNode* node = it->second;
+        node->colliders.erase(remove(node->colliders.begin(), node->colliders.end(), collider), node->colliders.end());
+        colliderNodeMap.erase(collider);
+    }
 }
 
 void QuadTree::Clear()
@@ -183,56 +182,6 @@ void QuadTree::MakeMesh()
 
 void QuadTree::Split(QNode* node)
 {
-    //float midX = (node->bounds.minPos.x + node->bounds.maxPos.x) * 0.5f;
-    //float midZ = (node->bounds.minPos.z + node->bounds.maxPos.z) * 0.5f;
-
-    //// LT (Left Top)
-    //node->children[0] = new QNode();
-    //node->children[0]->bounds = {
-    //    {node->bounds.minPos.x, 0.0f, midZ},
-    //    {midX, MAX_HEIGHT, node->bounds.maxPos.z}
-    //};
-
-    //// RT (Right Top)
-    //node->children[1] = new QNode();
-    //node->children[1]->bounds = {
-    //    {midX, 0.0f, midZ},
-    //    {node->bounds.maxPos.x, MAX_HEIGHT, node->bounds.maxPos.z}
-    //};
-
-    //// LB (Left Bottom)
-    //node->children[2] = new QNode();
-    //node->children[2]->bounds = {
-    //    {node->bounds.minPos.x, 0.0f, node->bounds.minPos.z},
-    //    {midX, MAX_HEIGHT, midZ}
-    //};
-
-    //// RB (Right Bottom)
-    //node->children[3] = new QNode();
-    //node->children[3]->bounds = {
-    //    {midX, 0.0f, node->bounds.minPos.z},
-    //    {node->bounds.maxPos.x, MAX_HEIGHT, midZ}
-    //};
-
-    //// Common properties for all children
-    //for (int i = 0; i < 4; ++i)
-    //{
-    //    node->children[i]->level = node->level + 1;
-    //    node->children[i]->parent = node;
-    //}
-    //
-    //// Redistribute colliders to children
-    //vector<Collider*> tempColliders = node->colliders; // 임시 벡터에 복사
-    //node->colliders.clear(); // 부모 노드의 colliders를 미리 비움
-
-    //for (Collider* collider : tempColliders)
-    //{
-    //    int index = GetQuadrant(node, collider);
-    //    
-    //    QNode* result = FindInsertNode(node->children[index], collider);
-    //    result->colliders.push_back(collider);
-    //    colliderNodeMap[collider] = result;
-    //}
 
     if (node->level >= MAX_LEVEL - 1) return; // 최대 레벨에 도달하면 분할 중지
 
@@ -274,37 +223,24 @@ void QuadTree::Split(QNode* node)
 
 void QuadTree::Merge(QNode* node)
 {
-    if (node->level >= MAX_LEVEL)
+    if (!node || node->children[0] == nullptr) return;
+
+    // 모든 자식 노드의 콜라이더를 현재 노드로 이동
+    for (int i = 0; i < 4; ++i)
     {
-        for (Collider* collider : node->colliders)
+        for (Collider* collider : node->children[i]->colliders)
         {
-            Remove(collider);
-            QNode* result = FindInsertNode(node->parent, collider);
             node->colliders.push_back(collider);
-            colliderNodeMap[collider] = result;
-            //InsertRecursive(node->parent, collider, node->level - 1);
+            colliderNodeMap[collider] = node;
         }
-        return;
-    }
-    if (node->children[0] == nullptr)
-    {
-        for (Collider* collider : node->colliders)
-        {
-            Remove(collider);
-            QNode* result = FindInsertNode(node->parent, collider);
-            node->colliders.push_back(collider);
-            colliderNodeMap[collider] = result;
-            //InsertRecursive(node->parent, collider, node->level - 1);
-        }
-        return;
     }
 
-    FOR(4)
+    // 자식 노드들을 삭제하고 메모리 해제
+    for (int i = 0; i < 4; ++i)
     {
-        if (node->children[i])
-        {
-            Merge(node->children[i]);
-        }
+        DeleteNode(node->children[i]);
+        delete node->children[i];
+        node->children[i] = nullptr;
     }
 }
 
@@ -353,7 +289,13 @@ void QuadTree::QueryAreaRecursive(QNode* node, const AABB& area, vector<Collider
 
 int QuadTree::GetTotalColliders(QNode* node)
 {
-    int total = node->colliders.size();
+    int total = 0;
+
+    for (Collider* collider : node->colliders)
+    {
+        ++total;
+    }
+
     for (int i = 0; i < 4; ++i) {
         if (node->children[i]) {
             total += GetTotalColliders(node->children[i]);
@@ -364,15 +306,6 @@ int QuadTree::GetTotalColliders(QNode* node)
 
 void QuadTree::DeleteNode(QNode* node)
 {
-   /* FOR(4)
-    {
-        if (node->children[i])
-        {
-            DeleteNode(node->children[i]);
-            delete node->children[i];
-        }
-    }*/
-
     if (!node) return;
 
     for (int i = 0; i < 4; ++i)
@@ -390,30 +323,6 @@ void QuadTree::DeleteNode(QNode* node)
 
 QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
 {
-    //if (!IsColliderInNode(node, collider))
-    //{
-    //    return nullptr; // Collider가 현재 노드의 범위를 벗어남
-    //}
-
-    //if (node->children[0] == nullptr)
-    //{
-    //    // 리프 노드인 경우
-    //    if (node->colliders.size() < MAX_OBJECT || node->level >= MAX_LEVEL)
-    //    {
-    //        return node; // 이 노드에 삽입
-    //    }
-    //    else
-    //    {
-    //        Split(node); // 노드 분할
-    //    }
-    //}
-
-    //// 적절한 자식 노드 찾기
-    //int quadrant = GetQuadrant(node, collider);
-    //QNode* childNode = FindInsertNode(node->children[quadrant], collider);
-
-    //return childNode ? childNode : node;
-
     if (!node || !IsColliderInNode(node, collider)) return nullptr;
 
     if (node->children[0] == nullptr || node->level >= MAX_LEVEL - 1)
@@ -426,80 +335,8 @@ QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
     return childNode ? childNode : node;
 }
 
-//void QuadTree::InsertRecursive(QNode* node, Collider* collider, int level)
-//{
-//    if (level >= MAX_LEVEL)
-//    {
-//        node->colliders.push_back(collider);
-//        colliderNodeMap[collider] = node;
-//        return;
-//    }
-//
-//    //분열전 && 수량 초과
-//    if (node->children[0] == nullptr && node->colliders.size() >= MAX_OBJECT)
-//    {
-//        Split(node);
-//    }
-//
-//    //분열됨
-//    if (node->children[0] != nullptr)
-//    {
-//        int index = GetQuadrant(node, collider);
-//        if (index != -1)
-//        {
-//            InsertRecursive(node->children[index], collider, level + 1);
-//            return;
-//        }
-//    }
-//    else
-//    {
-//        node->colliders.push_back(collider);
-//        colliderNodeMap[collider] = node;
-//    }
-//}
-
-//bool QuadTree::RemoveRecursive(Node* node, Collider* collider)
-//{
-//    if (!node)return false;
-//
-//    //이 노드에서 찾아본다
-//    for (auto it = node->colliders.begin(); it != node->colliders.end(); it++)
-//    {
-//        if (*it == collider)
-//        {
-//            node->colliders.erase(it);
-//            return true;
-//        }
-//    }
-//
-//    //이 노드에 없네? 자식 노드에 가서 찾는다
-//    if (node->children[0])
-//    {
-//        int index = GetQuadrant(node, collider);
-//        if (RemoveRecursive(node->children[index], collider))
-//        {
-//            return true;
-//        }
-//    }
-//
-//    return false;
-//}
-
 int QuadTree::GetQuadrant(QNode* node, Collider* collider)
 {
-    //Vector3 center = collider->GlobalPos();
-    //Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
-   
-    //if (center.x < nodeCenter.x)
-    //{
-    //    if (center.z > nodeCenter.z) return 0; // 좌상단
-    //    else return 2; // 좌하단
-    //}
-    //else
-    //{
-    //    if (center.z > nodeCenter.z) return 1; // 우상단
-    //    else return 3; // 우하단
-    //}
     AABB colliderAABB = collider->GetAABB();
 
     for (int i = 0; i < 4; ++i)
