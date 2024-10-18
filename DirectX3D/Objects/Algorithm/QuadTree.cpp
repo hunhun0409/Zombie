@@ -33,10 +33,19 @@ QuadTree::~QuadTree()
 
 void QuadTree::Update()
 {
-    for (pair<Collider*, QNode*> pair : colliderNodeMap)
+    for (auto it = colliderNodeMap.begin(); it != colliderNodeMap.end();)
     {
-        Collider* collider = pair.first;
-        UpdateCollider(collider);
+        Collider* collider = it->first;
+        if (!IsColliderInTree(collider))
+        {
+            Remove(collider);
+            it = colliderNodeMap.erase(it);
+        }
+        else
+        {
+            UpdateCollider(collider);
+            ++it;
+        }
     }
     UpdateTree(root);
 }
@@ -325,6 +334,8 @@ QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
 {
     if (!node || !IsColliderInNode(node, collider)) return nullptr;
 
+    
+
     if (node->children[0] == nullptr || node->level >= MAX_LEVEL - 1)
     {
         return node;
@@ -347,21 +358,22 @@ int QuadTree::GetQuadrant(QNode* node, Collider* collider)
         }
     }
 
+    return -1;
     // If no overlap is found, return the quadrant of the collider's center
     // This is a fallback for edge cases
-    Vector3 center = collider->GlobalPos();
-    Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
+    //Vector3 center = collider->GlobalPos();
+    //Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
 
-    if (center.x < nodeCenter.x)
-    {
-        if (center.z > nodeCenter.z) return 0; // 좌상단
-        else return 2; // 좌하단
-    }
-    else
-    {
-        if (center.z > nodeCenter.z) return 1; // 우상단
-        else return 3; // 우하단
-    }
+    //if (center.x < nodeCenter.x)
+    //{
+    //    if (center.z > nodeCenter.z) return 0; // 좌상단
+    //    else return 2; // 좌하단
+    //}
+    //else
+    //{
+    //    if (center.z > nodeCenter.z) return 1; // 우상단
+    //    else return 3; // 우하단
+    //}
 }
 
 bool QuadTree::IsColliderInNode(QNode* node, Collider* collider)
@@ -370,6 +382,12 @@ bool QuadTree::IsColliderInNode(QNode* node, Collider* collider)
 
     // 노드의 AABB와 충돌체의 AABB 간의 겹침 검사
     return AABBOverlap(node->bounds, colliderAABB);
+}
+
+bool QuadTree::IsColliderInTree(Collider* collider)
+{
+    AABB colliderAABB = collider->GetAABB();
+    return AABBOverlap(root->bounds, colliderAABB);
 }
 
 bool QuadTree::AABBOverlap(const AABB& a, const AABB& b)

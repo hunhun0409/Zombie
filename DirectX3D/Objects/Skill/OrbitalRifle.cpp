@@ -14,7 +14,6 @@ ObitalRifle::ObitalRifle()
 		rifle->GetMesh()->Pos().z = distance * sin(i * XM_2PI / 5);
 		rifle->GetMesh()->Pos().y = distance * 0.5f;
 		rifle->SetProjectile("bullet", to_string(i), damage);
-
 		rifles.push_back(rifle);
 	}
 }
@@ -35,11 +34,10 @@ void ObitalRifle::Update()
 	pivot->Rot().y += DELTA;
 	pivot->UpdateWorld();
 
-	for (RangeWeapon* rifle : rifles)
+	for (int i = 0; i < level; i++)
 	{
-		if (!rifle->Active()) continue;
-		rifle->Update();
-		rifle->Shoot();
+		rifles[i]->Update();
+		rifles[i]->Shoot();
 	}
 }
 
@@ -47,10 +45,9 @@ void ObitalRifle::Render()
 {
 	if (!owner->Active()) return;
 
-	for (RangeWeapon* rifle : rifles)
+	for (int i = 0; i < level; i++)
 	{
-		if (!rifle->Active()) continue;
-		rifle->Render();
+		rifles[i]->Render();
 	}
 }
 

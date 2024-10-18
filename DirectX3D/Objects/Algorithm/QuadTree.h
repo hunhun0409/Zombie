@@ -57,11 +57,10 @@ private:
     void DeleteNode(QNode* node);
 
     QNode* FindInsertNode(QNode* node, Collider* collider);
-    //void InsertRecursive(QNode* node, Collider* collider, int level);
-    //bool RemoveRecursive(Node* node, Collider* collider);
     int GetQuadrant(QNode* node, Collider* collider);
 
     bool IsColliderInNode(QNode* node, Collider* collider);
+    bool IsColliderInTree(Collider* collider);
 
     bool AABBOverlap(const AABB& a, const AABB& b);
 private:

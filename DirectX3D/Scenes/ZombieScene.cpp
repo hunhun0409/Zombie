@@ -25,7 +25,7 @@ void ZombieScene::Update()
 {
 	if (KEY_DOWN('P'))
 	{
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1);
 			InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
@@ -77,19 +77,16 @@ void ZombieScene::GUIRender()
 
 void ZombieScene::Start()
 {
-	terrain = new Terrain("test");
-	terrain->Scale().x = 10.0f;
-	terrain->Scale().z = 10.0f;
-	terrain->UpdateWorld();
+	terrain = new Terrain();
 	
-	qt = new QuadTree(Vector3(0, 0, 0), Vector3(1000, 50, 1000));
+	qt = new QuadTree(Vector3(0, 0, 0), Vector3(512, 50, 512));
 	ColliderManager::Get()->SetQuadTree(qt);
 
 	aStar = new AStar(50, 50);
 	aStar->SetNode(terrain);
 
 	player = new Knight();
-	player->Pos() = { 500, 0, 500 };
+	player->Pos() = { 256, 0, 256 };
 	player->GetCollider();
 
 	skill = new ObitalRifle();
@@ -98,7 +95,7 @@ void ZombieScene::Start()
 	PlayerController::Get()->Possess(player);
 
 	CAM->SetTarget(player);
-	CAM->TargetOptionLoad("ZombieSurvivalCamera");
+	CAM->TargetOptionLoad("PlayerCamera");
 	CAM->LookAtTarget();
 
 	player->SetCamera(CAM);

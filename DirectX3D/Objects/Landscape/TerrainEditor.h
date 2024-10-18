@@ -21,7 +21,7 @@ private:
     const float MAX_HEIGHT = 50;
     const float MIN_HEIGHT = 0;
 
-    const UINT MAX_SIZE = 128;
+    const UINT MAX_SIZE = 512;
 
     class BrushBuffer : public ConstBuffer
     {
@@ -123,7 +123,7 @@ private:
     string editName;
     string file;
 
-    UINT uvScale = 10;
+    UINT uvScale = 1;
 
     string projectPath;
 

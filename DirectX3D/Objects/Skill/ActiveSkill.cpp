@@ -31,6 +31,7 @@ void ActiveSkill::Deactivate()
 
 void ActiveSkill::LevelUp()
 {
+    Skill::LevelUp();
 }
 
 string ActiveSkill::GetDescription() const

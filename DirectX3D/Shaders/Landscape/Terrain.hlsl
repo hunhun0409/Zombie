@@ -34,9 +34,11 @@ float4 PS(LightPixelInput input) : SV_TARGET
     float4 third = thirdMap.Sample(samp, input.uv);
     float4 fourth = fourthMap.Sample(samp, input.uv);
     
-    albedo = lerp(albedo, second, alpha.r);
-    albedo = lerp(albedo, third, alpha.g);
-    albedo = lerp(albedo, fourth, alpha.b);
+    float totalAlpha = alpha.r + alpha.g + alpha.b + alpha.a;
+    albedo = (albedo * alpha.r + second * alpha.g + third * alpha.b + fourth * alpha.a) / totalAlpha;
+    //albedo = lerp(albedo, second, alpha.r);
+    //albedo = lerp(albedo, third, alpha.g);
+    //albedo = lerp(albedo, fourth, alpha.b);
     
     Material material;
     material.normal = NormalMapping(input.tangent,

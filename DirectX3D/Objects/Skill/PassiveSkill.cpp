@@ -11,6 +11,7 @@ void PassiveSkill::Deactivate()
 
 void PassiveSkill::LevelUp()
 {
+    Skill::LevelUp();
 }
 
 string PassiveSkill::GetDescription() const

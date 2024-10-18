@@ -60,8 +60,8 @@ protected:
 	float curHp = 100.0f;
 
 	//collision
-	float separationRadius = 3.0f;
-	float separationStrength = 5.0f;
+	float separationRadius = 5.0f;
+	float separationStrength = 10.0f;
 
 	Vector3 destPos;
 	vector<Vector3> path;

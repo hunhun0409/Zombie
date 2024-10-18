@@ -114,13 +114,6 @@ void ColliderManager::CheckCollisions()
 
 void ColliderManager::HandleCollision(Collider* a, Collider* b)
 {
-	// Collision response logic
-
 	a->OnCollision(b);
 	b->OnCollision(a);
-
-	// You might want to notify game objects or trigger events here
-	// For example:
-	// a->GetGameObject()->OnCollision(b->GetGameObject());
-	// b->GetGameObject()->OnCollision(a->GetGameObject());
 }

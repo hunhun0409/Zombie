@@ -7,11 +7,11 @@ Terrain::Terrain() : GameObject(L"Landscape/terrain.hlsl"), width(256), height(2
     //material->Load("TextData/MAterials/First.mat");
     //material->SetShader(L"Landscape/Terrain1.hlsl");
 
-    material->SetDiffuseMap(L"Textures/Landscape/Dirt2.png");
+    material->SetDiffuseMap(L"Textures/Terrain/ground_concrete.png");
     //material->SetSpecularMap(L"Textures/Landscape/Fieldstone_SM.tga");
     //material->SetNormalMap(L"Textures/Landscape/Fieldstone_NM.tga");
 
-    heightMap = Texture::Add(L"Textures/HeightMaps/AStarMap.png");
+    heightMap = Texture::Add(L"Textures/HeightMaps/ZombieHeightMap.png");
     //alphaMap = Texture::Add(L"Textures/AlphaMaps/TestAlphaMap.png");
     //secondMap = Texture::Add(L"Textures/Landscape/Dirt.png");
     //thirdMap = Texture::Add(L"Textures/Landscape/Dirt3.png");
