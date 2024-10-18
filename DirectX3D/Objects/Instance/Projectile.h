@@ -1,6 +1,6 @@
 #pragma once
 
-class Projectile
+class Projectile : public BasicObject
 {
 public:
 	Projectile(string name, Transform* transform, float damage);

@@ -53,6 +53,21 @@ bool Collider::PushCollision(Collider* collider)
     return true;
 }
 
+void Collider::OnCollision(Collider* other)
+{
+    if (owner == nullptr) return;
+
+    if (tag.find("sword") != string::npos)
+    {
+        MeleeWeapon* sword = dynamic_cast<MeleeWeapon*>(owner);
+
+        if (sword != nullptr)
+        {
+            sword->OnCollision(other);
+        }
+    }
+}
+
 void Collider::SetActive(bool active)
 {
     Transform::SetActive(active);

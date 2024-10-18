@@ -36,10 +36,8 @@ public:
 	virtual void Spawn(Vector3 pos) override;
 
 	void SetRightHandIndex(UINT index) { rightHandIndex = index; }
-
-private:
 	virtual void TakeDamage(float damage) override;
-
+private:
 	void ProcessBehavior();
 
 	void Rotate();
@@ -87,4 +85,6 @@ private:
 	bool hasScreamed = false;
 
 	float damage = 10.0f;
+
+	
 };

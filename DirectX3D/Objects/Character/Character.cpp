@@ -7,6 +7,7 @@ Character::Character(string name)
 	collider = new CapsuleCollider(0.4f, 1.0f);
 	collider->SetTag(name + "_Collider");
 	collider->Load();
+	collider->SetOwner(this);
 	collider->SetParent(this);
 
 	model = new ModelAnimator(name);
@@ -97,4 +98,3 @@ void Character::SetState(int state, float playRate, float takeTime)
 	curState = state;
 	model->PlayClip(curState, playRate, takeTime);
 }
-

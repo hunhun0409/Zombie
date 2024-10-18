@@ -348,3 +348,4 @@ void InstanceZombie::SetBehavior(Behavior behavior)
 
 	curBehavior = behavior;
 }
+

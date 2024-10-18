@@ -1,6 +1,7 @@
 #include "Framework.h"
 
 Weapon::Weapon(string name)
+	:name(name)
 {
 	assert(name.length() != 0);
 	

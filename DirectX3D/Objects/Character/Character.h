@@ -47,6 +47,7 @@ public:
 
 	bool IsDead() { return isDead; }
 
+
 protected:
 	CharacterController* controller = nullptr;
 	CapsuleCollider* collider;

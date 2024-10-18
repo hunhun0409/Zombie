@@ -68,20 +68,20 @@ public:
 
     virtual AABB GetAABB() = 0;
 
-    virtual void OnCollision(Collider* other) {}
+    void OnCollision(Collider* other);
 
     bool& BlockActive() { return blockActive; }
     bool& OverrideActive() { return overrideActive; }
 
     virtual void SetActive(bool active);
 
-    void* Owner() { return owner; }
-
+    void SetOwner(BasicObject* owner) { this->owner = owner; }
+    BasicObject* Owner() { return owner; }
 private:
     virtual void MakeMesh() = 0;
 
 protected:
-    void* owner;
+    BasicObject* owner;
 
     Type type;    
 

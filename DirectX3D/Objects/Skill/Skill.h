@@ -1,6 +1,6 @@
 #pragma once
 
-class Skill
+class Skill : public BasicObject
 {
 public:
 	Skill(string id, string name);

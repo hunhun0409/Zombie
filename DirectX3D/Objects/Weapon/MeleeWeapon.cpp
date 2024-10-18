@@ -7,6 +7,7 @@ MeleeWeapon::MeleeWeapon(string name)
 	collider->SetTag(name + "_collider");
 	collider->Update();
 	collider->SetActive(false);
+	collider->SetOwner(this);
 
 	start = new SphereCollider();
 	start->SetTag(name + "_start");
@@ -43,10 +44,10 @@ void MeleeWeapon::Update()
 	end->UpdateWorld();
 	trail->Update();
 
-	if (collider->Active())
+	/*if (collider->Active())
 	{
 		InstanceCharacterManager::Get()->Collision(collider, damage, overlappedColliders);
-	}
+	}*/
 }
 
 void MeleeWeapon::Render()
@@ -90,3 +91,16 @@ void MeleeWeapon::Load()
 	end->Load();
 }
 
+void MeleeWeapon::OnCollision(Collider* other)
+{
+	string collideName = other->GetTag();
+
+	if (collideName.find("Zombie") != string::npos)
+	{
+		InstanceZombie* zombie = dynamic_cast<InstanceZombie*>(other->Owner());
+		if (zombie == nullptr) return;
+
+		zombie->TakeDamage(50);
+		overlappedColliders.insert(other);
+	}
+}

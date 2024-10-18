@@ -175,4 +175,3 @@ void InstanceCharacter::TakeDamage(float damage)
 	ParticleManager::Get()->Play("BloodExplode", transform->Pos() + Vector3(0, 6, 0));
 }
 
-

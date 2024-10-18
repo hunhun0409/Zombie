@@ -6,13 +6,17 @@ Projectile::Projectile(string name, Transform* transform, float damage)
 {
     transform->SetTag(name);
     transform->Load();
+    transform->Pos() = Vector3(0, 10, 0);
 
     collider = new CapsuleCollider();
     collider->SetTag(name + "_Collider");
     collider->SetParent(transform);
+    collider->SetOwner(this);
     collider->Load();
     collider->Update();
     
+    ColliderManager::Get()->Add(collider);
+
     start = new SphereCollider();
     start->SetTag(name + "_start");
     start->SetParent(transform);
@@ -26,6 +30,8 @@ Projectile::Projectile(string name, Transform* transform, float damage)
     start->UpdateWorld();
 
     trail = new Trail(L"Textures/Effect/trail.png", start, end, 10, 50.0f);
+
+    
     
 }
 
@@ -47,6 +53,7 @@ void Projectile::Update()
     if (curLifeTime >= maxLifeTime)
     {
         transform->SetActive(false);
+        collider->SetActive(false);
     }
 
     transform->Pos() += transform->Forward() * speed * DELTA;
@@ -78,6 +85,7 @@ void Projectile::GUIRender()
 void Projectile::Shoot(Vector3 startPos, Vector3 dir, float speed, float maxLifeTime)
 {
     transform->SetActive(true);
+    collider->SetActive(true);
     
     this->maxLifeTime = maxLifeTime;
     this->speed = speed;

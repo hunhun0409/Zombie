@@ -78,14 +78,14 @@ void ZombieScene::GUIRender()
 void ZombieScene::Start()
 {
 	terrain = new Terrain("test");
-	qt = new QuadTree(Vector3(-100, 0, -100),(100, 50, 100));
+	qt = new QuadTree(Vector3(-500, 0, -500), Vector3(500, 50, 500));
 	ColliderManager::Get()->SetQuadTree(qt);
 
 	aStar = new AStar(30, 30);
 	aStar->SetNode(terrain);
 
 	player = new Knight();
-	player->Pos() = { 100, 0, 100 };
+	player->Pos() = { 0, 0, 0 };
 	player->GetCollider();
 
 	skill = new ObitalRifle();
@@ -93,9 +93,9 @@ void ZombieScene::Start()
 	
 	PlayerController::Get()->Possess(player);
 
-	//CAM->SetTarget(player);
-	//CAM->TargetOptionLoad("ZombieSurvivalCamera");
-	//CAM->LookAtTarget();
+	CAM->SetTarget(player);
+	CAM->TargetOptionLoad("ZombieSurvivalCamera");
+	CAM->LookAtTarget();
 
 	player->SetCamera(CAM);
 

@@ -24,8 +24,6 @@ public:
 private:
 	void MakeMesh() override;
 
-	virtual void OnCollision(Collider* other) override;
-
 protected:
 	float height;
 	float radius;

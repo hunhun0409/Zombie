@@ -118,6 +118,7 @@ using namespace Utility;
 #include "Framework/State/BlendState.h"
 #include "Framework/State/DepthStencilState.h"
 
+#include "Objects/Basic/BasicObject.h"
 #include "Framework/Math/Vector2.h"
 #include "Framework/Math/Vector3.h"
 #include "Framework/Math/Transform.h"

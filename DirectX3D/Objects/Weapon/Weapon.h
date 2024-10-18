@@ -1,6 +1,6 @@
 #pragma once
 
-class Weapon
+class Weapon : public BasicObject
 {
 public:
 	Weapon(string name);
@@ -20,6 +20,7 @@ public:
 	void SetActive(bool isActive);
 	bool Active();
 protected:
+	string name;
 	bool isActive = true;
 	Model* mesh;
 	class Character* owner;

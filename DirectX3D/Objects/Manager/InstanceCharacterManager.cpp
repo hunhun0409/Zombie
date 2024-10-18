@@ -219,7 +219,9 @@ void InstanceCharacterManager::Spawn(string key, UINT spawnAmount)
     dir.x = Random(-1.0f, 1.0f);
     dir.z = Random(-1.0f, 1.0f);
 
-    Vector3 randomPos = target->Pos() + dir.GetNormalized() * SPAWN_RANGE;
+    float distance = Random(10.0f, SPAWN_RANGE);
+
+    Vector3 randomPos = target->Pos() + dir.GetNormalized() * distance;
     randomPos.y = 0.0f;
 
     for (InstanceCharacter* instanceCharacter : totalCharacters[key])
@@ -271,25 +273,25 @@ void InstanceCharacterManager::Collision(Collider* collider, float damage)
     }
 }
 
-void InstanceCharacterManager::Collision(Collider* collider, float damage, set<Collider*>& overlappedCollider)
-{
-    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
-    {
-        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
-        {
-            if (!instanceCharacter->GetTransform()->Active()) continue;
-
-            if (collider->IsCapsuleCollision(instanceCharacter->GetCollider()))
-            {
-                if (overlappedCollider.count(instanceCharacter->GetCollider()) == 0)
-                {
-                    instanceCharacter->TakeDamage(damage);
-                    overlappedCollider.insert(instanceCharacter->GetCollider());
-                }
-            }
-        }
-    }
-}
+//void InstanceCharacterManager::Collision(Collider* collider, float damage, set<Collider*>& overlappedCollider)
+//{
+//    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
+//    {
+//        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
+//        {
+//            if (!instanceCharacter->GetTransform()->Active()) continue;
+//
+//            if (collider->IsCapsuleCollision(instanceCharacter->GetCollider()))
+//            {
+//                if (overlappedCollider.count(instanceCharacter->GetCollider()) == 0)
+//                {
+//                    instanceCharacter->TakeDamage(damage);
+//                    overlappedCollider.insert(instanceCharacter->GetCollider());
+//                }
+//            }
+//        }
+//    }
+//}
 
 void InstanceCharacterManager::SetAstar(AStar* aStar)
 {

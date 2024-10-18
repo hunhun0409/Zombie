@@ -2,7 +2,7 @@
 
 class CharacterController;
 
-class InstanceCharacter
+class InstanceCharacter : public BasicObject
 {
 protected:
 	const float PATH_UPDATE_INTERVAL = 0.5f;
@@ -70,5 +70,6 @@ protected:
 	AStar* aStar;
 
 	float pathUpdateInterval = 0;
+
 };
 

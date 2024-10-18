@@ -2,6 +2,11 @@
 
 void ColliderManager::Update()
 {
+	if (KEY_DOWN(VK_TAB))
+	{
+		quadtreeCheck = !quadtreeCheck;
+	}
+
 	checkInterval += DELTA;
 	if (checkInterval >= CHECK_INTERVAL)
 	{

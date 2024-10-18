@@ -18,6 +18,8 @@ public:
 
 	void Load();
 
+	void OnCollision(Collider* other);
+
 private:
 	CapsuleCollider* collider;
 
@@ -27,4 +29,9 @@ private:
 	SphereCollider* end;
 
 	Trail* trail;
+
+	
+
+	// ICollidable을(를) 통해 상속됨
+
 };

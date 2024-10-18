@@ -1,6 +1,6 @@
 #pragma once
 
-class Transform
+class Transform : public BasicObject
 {
 public:
     Transform();
@@ -31,6 +31,7 @@ public:
 
     virtual void SetActive(bool isActive) { this->isActive = isActive; }
 
+    string GetTag() { return tag; }
     void SetTag(string tag) { this->tag = tag; }
 
     Vector3& Pos() { return localPosition; }
