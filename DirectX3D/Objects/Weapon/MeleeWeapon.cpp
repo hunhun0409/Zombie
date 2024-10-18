@@ -97,10 +97,14 @@ void MeleeWeapon::OnCollision(Collider* other)
 
 	if (collideName.find("Zombie") != string::npos)
 	{
-		InstanceZombie* zombie = dynamic_cast<InstanceZombie*>(other->Owner());
+		BasicObject* own = other->Owner();
+		InstanceZombie* zombie = dynamic_cast<InstanceZombie*>(own);
 		if (zombie == nullptr) return;
 
-		zombie->TakeDamage(50);
-		overlappedColliders.insert(other);
+		if (overlappedColliders.count(other) == 0)
+		{
+			zombie->TakeDamage(50);
+			overlappedColliders.insert(other);
+		}
 	}
 }

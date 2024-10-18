@@ -10,6 +10,7 @@ InstanceCharacter::InstanceCharacter(string name, Transform* transform, ModelAni
 	collider->SetTag(name + "_Collider");
 	collider->Load();
 	collider->SetParent(transform);
+	collider->SetOwner(this);
 	collider->Update();
 
 	name += "_" + to_string(index);
