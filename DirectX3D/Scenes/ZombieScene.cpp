@@ -78,14 +78,18 @@ void ZombieScene::GUIRender()
 void ZombieScene::Start()
 {
 	terrain = new Terrain("test");
-	qt = new QuadTree(Vector3(-500, 0, -500), Vector3(500, 50, 500));
+	terrain->Scale().x = 10.0f;
+	terrain->Scale().z = 10.0f;
+	terrain->UpdateWorld();
+	
+	qt = new QuadTree(Vector3(0, 0, 0), Vector3(1000, 50, 1000));
 	ColliderManager::Get()->SetQuadTree(qt);
 
-	aStar = new AStar(30, 30);
+	aStar = new AStar(50, 50);
 	aStar->SetNode(terrain);
 
 	player = new Knight();
-	player->Pos() = { 0, 0, 0 };
+	player->Pos() = { 500, 0, 500 };
 	player->GetCollider();
 
 	skill = new ObitalRifle();

@@ -17,6 +17,8 @@ public:
 
 	float GetDamage() { return damage; }
 
+	void OnCollision(Collider* other);
+
 private:
 	string name;
 

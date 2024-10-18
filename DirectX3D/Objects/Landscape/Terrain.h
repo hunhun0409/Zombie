@@ -15,7 +15,7 @@ public:
 
 public:
     float GetHeight(const Vector3& pos, Vector3* normal = nullptr);
-    Vector2 GetSize() { return Vector2( width, height); }
+    Vector2 GetSize() { return Vector2( width * Scale().x, height * Scale().z); }
     Vector3 GetNormal(Vector2 pos);
 
     Vector3 Picking();

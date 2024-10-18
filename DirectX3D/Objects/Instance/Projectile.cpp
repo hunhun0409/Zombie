@@ -30,9 +30,6 @@ Projectile::Projectile(string name, Transform* transform, float damage)
     start->UpdateWorld();
 
     trail = new Trail(L"Textures/Effect/trail.png", start, end, 10, 50.0f);
-
-    
-    
 }
 
 Projectile::~Projectile()
@@ -106,4 +103,21 @@ void Projectile::Shoot(Vector3 startPos, Vector3 dir, float speed, float maxLife
     // localRotation에 각도를 라디안으로 설정
     transform->Rot().x = Xangle;  // Pitch (상하 회전)
     transform->Rot().y = Yangle;  // Yaw (좌우 회전)
+}
+
+void Projectile::OnCollision(Collider* other)
+{
+    string collideName = other->GetTag();
+
+    if (collideName.find("Zombie") != string::npos)
+    {
+        BasicObject* own = other->Owner();
+        InstanceZombie* zombie = dynamic_cast<InstanceZombie*>(own);
+        if (zombie == nullptr) return;
+
+        zombie->TakeDamage(500);
+
+        transform->SetActive(false);
+        collider->SetActive(false);
+    }
 }

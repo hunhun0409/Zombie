@@ -57,14 +57,18 @@ void Collider::OnCollision(Collider* other)
 {
     if (owner == nullptr) return;
 
-    if (tag.find("sword") != string::npos)
+    Projectile* projectile = dynamic_cast<Projectile*>(owner);
+    if (projectile != nullptr)
     {
-        MeleeWeapon* sword = dynamic_cast<MeleeWeapon*>(owner);
+        projectile->OnCollision(other);
+        return;
+    }
 
-        if (sword != nullptr)
-        {
-            sword->OnCollision(other);
-        }
+    MeleeWeapon* sword = dynamic_cast<MeleeWeapon*>(owner);
+    if (sword != nullptr)
+    {
+        sword->OnCollision(other);
+        return;
     }
 }
 

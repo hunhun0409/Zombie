@@ -30,8 +30,4 @@ private:
 
 	Trail* trail;
 
-	
-
-	// ICollidable을(를) 통해 상속됨
-
 };
