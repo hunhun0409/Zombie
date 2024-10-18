@@ -64,6 +64,7 @@ void ZombieScene::Render()
 
 void ZombieScene::PostRender()
 {
+	player->PostRender();
 }
 
 void ZombieScene::GUIRender()

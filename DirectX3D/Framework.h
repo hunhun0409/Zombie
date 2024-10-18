@@ -189,6 +189,8 @@ using namespace GameMath;
 #include "Objects/MineCraft/MineUI.h"
 #include "Objects/MineCraft/Steve.h"
 
+#include "Objects/ZombieGame/PlayerHUD.h"
+
 #include "Objects/Weapon/Weapon.h"
 #include "Objects/Weapon/MeleeWeapon.h"
 #include "Objects/Weapon/RangeWeapon.h"

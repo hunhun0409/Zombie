@@ -64,4 +64,6 @@ private:
 	POINT clientCenterPos = { WIN_WIDTH >> 1, WIN_HEIGHT >> 1 };
 
 	Quad* crossHair;
+
+	PlayerHUD* playerHud;
 };

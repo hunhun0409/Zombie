@@ -270,6 +270,7 @@
     <ClInclude Include="Objects\Instance\Projectile.h" />
     <ClInclude Include="Objects\Weapon\RangeWeapon.h" />
     <ClInclude Include="Objects\Weapon\Weapon.h" />
+    <ClInclude Include="Objects\ZombieGame\PlayerHUD.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\ActionScene.h" />
     <ClInclude Include="Scenes\AStarScene.h" />
@@ -424,6 +425,7 @@
     <ClCompile Include="Objects\Instance\Projectile.cpp" />
     <ClCompile Include="Objects\Weapon\RangeWeapon.cpp" />
     <ClCompile Include="Objects\Weapon\Weapon.cpp" />
+    <ClCompile Include="Objects\ZombieGame\PlayerHUD.cpp" />
     <ClCompile Include="Scenes\ActionScene.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\BillboardScene.cpp" />

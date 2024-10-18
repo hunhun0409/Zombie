@@ -47,6 +47,8 @@ public:
 
 	bool IsDead() { return isDead; }
 
+	void GetExp(float amount);
+	void LevelUp();
 
 protected:
 	CharacterController* controller = nullptr;
@@ -62,6 +64,9 @@ protected:
 
 	float maxHP = 100.0f;
 	float curHP = 100.0f;
+
+	float maxExp = 100.0f;
+	float curExp = 0.0f;
 
 public:
 	bool isPlayingRootMotion = false;

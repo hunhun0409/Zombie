@@ -29,7 +29,12 @@ Texture2D backImage : register(t10);
 float4 PS(PixelInput input) : SV_TARGET
 {	
 	if (input.uv.x < fillAmount)
-		return diffuseMap.Sample(samp, input.uv);
+    {
+        float4 albedo = diffuseMap.Sample(samp, input.uv);
+        albedo += backImage.Sample(samp, input.uv);
+        return albedo;
+    }
+		
 
 	return backImage.Sample(samp, input.uv);
 }

@@ -98,3 +98,19 @@ void Character::SetState(int state, float playRate, float takeTime)
 	curState = state;
 	model->PlayClip(curState, playRate, takeTime);
 }
+
+void Character::GetExp(float amount)
+{
+	curExp += amount;
+	if (curExp >= maxExp)
+	{
+		LevelUp();
+
+		curExp -= maxExp;
+	}
+}
+
+void Character::LevelUp()
+{
+
+}

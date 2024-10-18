@@ -17,7 +17,7 @@ Knight::Knight()
 	maxHP = 100.0f;
 	curHP = maxHP;
 
-	
+	playerHud = new PlayerHUD(this);
 }
 
 Knight::~Knight()
@@ -25,6 +25,7 @@ Knight::~Knight()
 	delete leftHand;
 	delete rightHand;
 	delete sword;
+	delete playerHud;
 }
 
 void Knight::Update()
@@ -61,6 +62,7 @@ void Knight::GUIRender()
 
 void Knight::PostRender()
 {
+	playerHud->PostRender();
 }
 
 void Knight::Move()
