@@ -23,9 +23,6 @@ public:
 	void SetScale(string key, Vector3 scale);
 	void SetColliderScale(string key, Vector3 scale);
 
-	void IsCollision();
-	bool IsCollision(Collider* collider);
-
 private:
 	void Save(string key);
 	void Load(string key);

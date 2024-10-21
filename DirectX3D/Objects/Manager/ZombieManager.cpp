@@ -34,7 +34,6 @@ ZombieManager::~ZombieManager()
 
 void ZombieManager::Update()
 {
-	Collision();
 
 	time += DELTA;
 
@@ -81,41 +80,6 @@ void ZombieManager::SetTarget(Transform* target)
 	}
 }
 
-bool ZombieManager::IsCollision(Ray ray, Vector3& hitPoint)
-{
-	Contact contact;
-	float minDistance = FLT_MAX;
-
-
-	for (Zombie* zombie : zombies)
-	{
-		if (zombie->GetCollider()->IsRayCollision(ray, &contact))
-		{
-			if (!zombie->GetTransform()->Active()) continue;
-
-			if (contact.distance < minDistance)
-			{
-				minDistance = contact.distance;
-				hitPoint = contact.hitPoint;
-			}
-		}
-	}
-
-	return minDistance == FLT_MAX ? false : true;
-	
-}
-
-void ZombieManager::Collision()
-{
-	for (Zombie* zombie : zombies)
-	{
-		if (ProjectileManager::Get()->IsCollision(zombie->GetCollider()))
-		{
-			zombie->Hit();
-			return;
-		}
-	}
-}
 
 void ZombieManager::Spawn()
 {

@@ -31,7 +31,6 @@ void InstanceCharacterManager::Update()
 
     ApplySeperation();
 
-    isChanged = false;
 
     for (pair<string, ModelAnimatorInstancing*> modelInstance : totalInstancies)
     {
@@ -252,22 +251,6 @@ void InstanceCharacterManager::Spawn(string key, Vector3 pos, UINT spawnAmount)
             if (spawnAmount <= 0)
             {
                 break;
-            }
-        }
-    }
-}
-
-void InstanceCharacterManager::Collision(Collider* collider, float damage)
-{
-    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
-    {
-        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
-        {
-            if (!instanceCharacter->GetTransform()->Active()) continue;
-
-            if (collider->IsCapsuleCollision(instanceCharacter->GetCollider()))
-            {
-                instanceCharacter->TakeDamage(damage);
             }
         }
     }

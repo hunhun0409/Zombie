@@ -1,0 +1,19 @@
+<Material Name="exp">
+    <Shader>
+        <Vertex Vertex="Shaders/Light/Light.hlsl"/>
+        <Pixel Pixel="Shaders/Light/Light.hlsl"/>
+    </Shader>
+    <Texture>
+        <DiffuseMap Diffuse="Textures/Color/White.png"/>
+        <SpecularMap Specular="Textures/Color/White.png"/>
+        <NormalMap Normal="Textures/Color/White.png"/>
+    </Texture>
+    <Property>
+        <Diffuse R="1" G="0.05392158" B="0.05392158" A="1"/>
+        <Specular R="0.15196079" G="0.35149944" B="1" A="1"/>
+        <Ambient R="0.16150039" G="0.19323455" B="0.70098042" A="1"/>
+        <Emissive R="0.010380632" G="0.19173622" B="0.35294116" A="1"/>
+        <Shininess Shininess="8.5380001"/>
+        <HasNormalMap HasNormalMap="0"/>
+    </Property>
+</Material>

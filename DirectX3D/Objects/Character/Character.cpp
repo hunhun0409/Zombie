@@ -43,7 +43,6 @@ void Character::Update()
 		}
 	}
 
-
 	if (controller)
 	{
 		controller->Update();
@@ -108,6 +107,9 @@ void Character::GetExp(float amount)
 
 		curExp -= maxExp;
 	}
+
+	float ratio = curExp / maxExp;
+	Observer::Get()->ExcuteFloatParamEvent("UpdateExp", ratio);
 }
 
 void Character::LevelUp()

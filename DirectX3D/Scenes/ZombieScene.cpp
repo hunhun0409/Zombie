@@ -9,7 +9,7 @@ ZombieScene::ZombieScene()
 	Audio::Get()->Play("BG", 0.1f);
 
 	ParticleManager::Get()->Add("BloodExplode", "TextData/Particle/BloodExplode.fx", 20);
-
+	
 }
 
 ZombieScene::~ZombieScene()
@@ -18,14 +18,17 @@ ZombieScene::~ZombieScene()
 	delete player;
 	delete skill;
 
+	ParticleManager::Delete();
 	InstanceCharacterManager::Delete();
+	InstanceObjectManager::Delete();
+	
 }
 
 void ZombieScene::Update()
 {
 	if (KEY_DOWN('P'))
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1);
 			InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1);
@@ -35,6 +38,7 @@ void ZombieScene::Update()
 	player->Update();
 	skill->Update();
 
+	InstanceObjectManager::Get()->Update();
 	InstanceCharacterManager::Get()->Update();
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
@@ -53,6 +57,7 @@ void ZombieScene::Render()
 	//aStar->Render();
 	skill->Render();
 
+	InstanceObjectManager::Get()->Render();
 	InstanceCharacterManager::Get()->Render();
 	ParticleManager::Get()->Render();
 	ProjectileManager::Get()->Render();
@@ -69,9 +74,9 @@ void ZombieScene::PostRender()
 
 void ZombieScene::GUIRender()
 {
-	ColliderManager::Get()->GUIRender();
-
+	//ColliderManager::Get()->GUIRender();
 	//player->GUIRender();
+	InstanceObjectManager::Get()->GUIRender();
 	//InstanceCharacterManager::Get()->GUIRender();
 	//ProjectileManager::Get()->GUIRender();
 }
@@ -101,18 +106,23 @@ void ZombieScene::Start()
 
 	player->SetCamera(CAM);
 
+	InstanceObjectManager::Get()->Add("exp", "sphere");
+
 	InstanceCharacterManager::Get()->Add("ZombieWoman", "ZombieWoman");
 	InstanceCharacterManager::Get()->Add("ZombieMutant", "ZombieMutant");
 	InstanceCharacterManager::Get()->SetTarget(player);
 	InstanceCharacterManager::Get()->SetAstar(aStar);
 	InstanceCharacterManager::Get()->SetTerrain(terrain);
 	
+	Observer::Get()->ExcuteParamEvent("ExpSetTarget", player);
 }
 
 void ZombieScene::End()
 {
 	InstanceCharacterManager::Get()->Remove("ZombieWoman");
 	InstanceCharacterManager::Get()->Remove("ZombieMutant");
+
+	InstanceObjectManager::Get()->Remove("exp");
 
 	ColliderManager::Get()->Clear();
 }

@@ -166,6 +166,7 @@ using namespace GameMath;
 #include "Objects/Algorithm/AStar.h"
 #include "Objects/Algorithm/QuadTree.h"
 
+#include "Objects/UI/UI.h"
 #include "Objects/UI/ProgressBar.h"
 
 #include "Objects/Particle/Particle.h"
@@ -220,6 +221,7 @@ using namespace GameMath;
 #include "Objects/Instance/InstanceZombie.h"
 #include "Objects/Instance/Projectile.h"
 
+#include "Objects/ZombieGame/ExpBall.h"
 
 #include "Objects/Manager/InstanceObjectManager.h"
 #include "Objects/Manager/KunaiManager.h"

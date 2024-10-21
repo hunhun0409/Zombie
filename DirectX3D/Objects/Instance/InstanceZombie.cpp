@@ -33,6 +33,7 @@ InstanceZombie::InstanceZombie(string name, Transform* transform, ModelAnimatorI
 	rightHand->SetActive(false);
 
 	attackRange *= collider->Height() / collider->GlobalScale().y;
+	
 }
 
 InstanceZombie::~InstanceZombie()
@@ -307,6 +308,9 @@ void InstanceZombie::Idle()
 void InstanceZombie::Dead()
 {
 	transform->SetActive(false);
+	Vector3 pos = transform->GlobalPos();
+	pos.y = 2.0f;
+	InstanceObjectManager::Get()->Spawn("exp", pos);
 }
 
 void InstanceZombie::ScreamEnd()

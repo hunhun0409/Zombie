@@ -245,6 +245,7 @@
     <ClInclude Include="Objects\Manager\ParticleManager.h" />
     <ClInclude Include="Objects\Manager\ProjectileManager.h" />
     <ClInclude Include="Objects\Manager\RobotManager.h" />
+    <ClInclude Include="Objects\Manager\UIManager.h" />
     <ClInclude Include="Objects\Manager\ZombieManager.h" />
     <ClInclude Include="Objects\MineCraft\BlockManager.h" />
     <ClInclude Include="Objects\MineCraft\MineUI.h" />
@@ -270,7 +271,9 @@
     <ClInclude Include="Objects\Instance\Projectile.h" />
     <ClInclude Include="Objects\Weapon\RangeWeapon.h" />
     <ClInclude Include="Objects\Weapon\Weapon.h" />
+    <ClInclude Include="Objects\ZombieGame\ExpBall.h" />
     <ClInclude Include="Objects\ZombieGame\PlayerHUD.h" />
+    <ClInclude Include="Objects\UI\UI.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\ActionScene.h" />
     <ClInclude Include="Scenes\AStarScene.h" />
@@ -418,6 +421,7 @@
     <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />
     <ClCompile Include="Objects\Skill\Skill.cpp" />
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
+    <ClCompile Include="Objects\UI\UI.cpp" />
     <ClCompile Include="Objects\Weapon\BaseballBat.cpp" />
     <ClCompile Include="Objects\Weapon\Crowbar.cpp" />
     <ClCompile Include="Objects\Weapon\Kunai.cpp" />
@@ -425,6 +429,7 @@
     <ClCompile Include="Objects\Instance\Projectile.cpp" />
     <ClCompile Include="Objects\Weapon\RangeWeapon.cpp" />
     <ClCompile Include="Objects\Weapon\Weapon.cpp" />
+    <ClCompile Include="Objects\ZombieGame\ExpBall.cpp" />
     <ClCompile Include="Objects\ZombieGame\PlayerHUD.cpp" />
     <ClCompile Include="Scenes\ActionScene.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />

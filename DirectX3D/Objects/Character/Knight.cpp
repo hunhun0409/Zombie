@@ -33,7 +33,7 @@ void Knight::Update()
 	if (!Active()) return;
 
 	Character::Update();
-
+	playerHud->Update();
 	sword->Update();
 
 	leftHand->SetWorld(model->GetTransformByNode(13));
@@ -56,6 +56,7 @@ void Knight::GUIRender()
 {
 	if (!Active()) return;
 
+	Transform::GUIRender();
 	Character::GUIRender();
 	sword->GUIRender();
 }
@@ -151,11 +152,12 @@ void Knight::TakeDamage(float damage)
 {
 	Character::TakeDamage(damage);
 
+	float ratio = curHP / maxHP;
+	Observer::Get()->ExcuteFloatParamEvent("UpdateHp", ratio);
 	if (curHP <= 0)
 	{
 		SetState(DIE);
 	}
-	
 }
 
 void Knight::Dead()

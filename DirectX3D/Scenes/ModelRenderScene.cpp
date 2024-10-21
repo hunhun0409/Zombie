@@ -3,8 +3,8 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-    model = new Model("bullet");
-    //model->GetMesh(0)->SetMaterial(model->AddMaterial("1"));
+    model = new Model("sphere");
+    //model->GetMesh(0)->SetMaterial(model->AddMaterial("exp"));
     //model->GetMesh(1)->SetMaterial(model->AddMaterial("2"));
     //model->GetMesh(2)->SetMaterial(model->AddMaterial("3"));
     model->Load();

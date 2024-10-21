@@ -17,7 +17,7 @@ public:
     void ExcuteEvent(string key);
     void ExcuteParamEvent(string key, void* object);
     void ExcuteIntParamEvent(string key, int value);
-    void ExcuteFloatParamEvent(string key, int value);
+    void ExcuteFloatParamEvent(string key, float value);
 
 private:
     unordered_map<string, vector<Event>> totalEvent;

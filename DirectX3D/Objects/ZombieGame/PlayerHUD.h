@@ -12,10 +12,13 @@ public:
 
 	void SetOwner(class Character* owner) { this->owner = owner; }
 
+	void UpdateExp(float ratio);
+	void UpdateHp(float ratio);
+
 private:
 	Character* owner = nullptr;
 
 	vector<Quad*> skillIcon;
-	ProgressBar* ExpBar;
-	float amount;
+	ProgressBar* expBar;
+	ProgressBar* hpBar;
 };

@@ -177,38 +177,6 @@ void ProjectileManager::SetColliderScale(string key, Vector3 scale)
     totalInstancies[key]->Update();
 }
 
-void ProjectileManager::IsCollision()
-{
-    for (pair<string, Projectiles> projectiles : totalProjectiles)
-    {
-        for (Projectile* projectile : projectiles.second)
-        {
-            if (!projectile->GetTransform()->Active()) continue;
-
-            InstanceCharacterManager::Get()->Collision(projectile->GetCollider(), projectile->GetDamage());
-        }
-    }
-}
-
-bool ProjectileManager::IsCollision(Collider* collider)
-{
-
-    for (pair<string, Projectiles> projectiles : totalProjectiles)
-    {
-        for (Projectile* projectile : projectiles.second)
-        {
-            if (!projectile->GetTransform()->Active()) continue;
-
-            if (projectile->GetCollider()->IsCollision(collider))
-            {
-                projectile->GetTransform()->SetActive(false);
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 
 void ProjectileManager::Save(string key)
 {

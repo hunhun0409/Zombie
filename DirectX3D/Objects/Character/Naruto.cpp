@@ -164,7 +164,7 @@ void Naruto::Attack()
 		isPlayingRootMotion = true;
 
 		Ray ray = CAM->ScreenPointToRay(mousePos);
-		isTarget = ZombieManager::Get()->IsCollision(ray, targetPos);
+		//isTarget = ZombieManager::Get()->IsCollision(ray, targetPos);
 
 		targetPos;
 	}

@@ -3,7 +3,7 @@
 class InstanceCharacterManager : public Singleton<InstanceCharacterManager>
 {
 private:
-	const UINT SIZE = 20;
+	const UINT SIZE = 24;
 	const float SPAWN_RANGE = 100.0f;
 private:
 	friend class Singleton;
@@ -26,9 +26,6 @@ public:
 	void Spawn(string key, UINT spawnAmount = 1);
 	void Spawn(string key, Vector3 pos, UINT spawnAmount = 1);
 
-	void Collision(Collider* collider, float damage);
-	//void Collision(Collider* collider, float damage, set<Collider*>& overlappedCollider);
-
 	void SetAstar(AStar* aStar);
 	void SetTerrain(Terrain* terrain);
 
@@ -47,7 +44,6 @@ private:
 
 	float time = 0.0f;
 
-	bool isChanged = false;
 
 	AStar* aStar;
 	Terrain* terrain;

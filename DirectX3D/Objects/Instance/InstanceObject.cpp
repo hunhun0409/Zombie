@@ -1,14 +1,28 @@
 #include "Framework.h"
 
-InstanceObject::InstanceObject(string name, Transform* transform)
+
+InstanceObject::InstanceObject(string name, Transform* transform, ColliderType type)
 	:name(name), transform(transform)
 {
-	collider = new BoxCollider();
+	switch (type)
+	{
+	case InstanceObject::SPHERE:
+		collider = new SphereCollider();
+		break;
+	case InstanceObject::BOX:
+		collider = new BoxCollider();
+		break;
+	case InstanceObject::CAPSULE:
+		collider = new CapsuleCollider();
+		break;
+	default:
+		break;
+	}
+	
 	collider->SetTag(name + "_Collider");
 	collider->SetParent(transform);
 	collider->SetActive(false);
 	collider->Load();
-
 }
 
 InstanceObject::~InstanceObject()
@@ -27,6 +41,12 @@ void InstanceObject::Update()
 void InstanceObject::Render()
 {
 	collider->Render();
+}
+
+void InstanceObject::GUIRender()
+{
+	transform->GUIRender();
+	collider->GUIRender();
 }
 
 void InstanceObject::Spawn(Vector3 pos, Vector3 rot, Vector3 scale)

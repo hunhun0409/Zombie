@@ -28,3 +28,4 @@ void ProgressBar::SetAmount(float value)
 {
     valueBuffer->Get()[0] = value;
 }
+

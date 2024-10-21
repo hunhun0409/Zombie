@@ -85,6 +85,4 @@ private:
 	bool hasScreamed = false;
 
 	float damage = 10.0f;
-
-	
 };

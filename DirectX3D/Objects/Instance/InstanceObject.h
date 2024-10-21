@@ -3,12 +3,17 @@
 class InstanceObject
 {
 public:
-	InstanceObject(string name, Transform* transform);
+	enum ColliderType
+	{
+		SPHERE, BOX, CAPSULE
+	};
+public:
+	InstanceObject(string name, Transform* transform, ColliderType type = SPHERE);
 	~InstanceObject();
 
-	void Update();
+	virtual void Update();
 	void Render();
-
+	void GUIRender();
 	Collider* GetCollider() { return collider; }
 	Transform* GetTransform() { return transform; }
 

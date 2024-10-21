@@ -44,7 +44,7 @@ void Observer::ExcuteIntParamEvent(string key, int value)
     }
 }
 
-void Observer::ExcuteFloatParamEvent(string key, int value)
+void Observer::ExcuteFloatParamEvent(string key, float value)
 {
     for (FloatParamEvent paramEvent : totalFloatParamEvent[key])
     {
