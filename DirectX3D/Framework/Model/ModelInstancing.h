@@ -9,14 +9,10 @@ public:
     void Update();
     void Render();
     void GUIRender();
-
     Transform* Add();
-
 private:
     vector<Transform*> transforms;
     InstanceData instanceDatas[MAX_INSTANCE];
-
     VertexBuffer* instanceBuffer;
-
     UINT drawCount = 0;
 };

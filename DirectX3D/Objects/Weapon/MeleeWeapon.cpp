@@ -108,3 +108,13 @@ void MeleeWeapon::OnCollision(Collider* other)
 		}
 	}
 }
+
+void MeleeWeapon::SetShader(wstring file)
+{
+	vector<Material*> materials = mesh->GetMaterials();
+
+	for (Material* material : materials)
+	{
+		material->SetShader(file);
+	}
+}

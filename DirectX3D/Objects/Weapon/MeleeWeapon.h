@@ -20,6 +20,8 @@ public:
 
 	void OnCollision(Collider* other);
 
+	void SetShader(wstring file);
+
 private:
 	CapsuleCollider* collider;
 

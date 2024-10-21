@@ -149,7 +149,6 @@ matrix SkinWorld(float4 indices, float4 weights)
 		next = matrix(n0, n1, n2, n3);
 		
 		curAnim = lerp(cur, next, motion.cur.time);
-
 		clip = motion.next.clip;
 		curFrame = motion.next.curFrame;		
 		
@@ -168,9 +167,7 @@ matrix SkinWorld(float4 indices, float4 weights)
 			n3 = transformMap.Load(int4(indices[i] * 4 + 3, curFrame + 1, clip, 0));
 		
 			next = matrix(n0, n1, n2, n3);
-			
-			nextAnim = lerp(cur, next, motion.next.time);
-
+            nextAnim = lerp(cur, next, motion.next.time);
 			curAnim = lerp(curAnim, nextAnim, motion.tweenTime);
 		}
 		

@@ -34,11 +34,12 @@ GameManager::GameManager()
 {
     Create();
 
+    //Change
     //Laptop, DESKTOP
     //FINAL
 
     //SceneManager::Get()->Create("Grid", new SkyScene());
-    //SceneManager::Get()->Create("Grid", new GridScene());
+    SceneManager::Get()->Create("Grid", new GridScene());
     //SceneManager::Get()->Create("Export", new ModelExportScene());
 
     //SceneManager::Get()->Create("Start", new ModelRenderScene());

@@ -37,4 +37,6 @@ private:
 	bool quadtreeCheck = true;
 
 	float checkInterval = 0.0f;
+
+	int collisionCheckCount = 0;
 };
