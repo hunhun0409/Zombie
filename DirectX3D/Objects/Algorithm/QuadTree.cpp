@@ -6,12 +6,10 @@ QuadTree::QuadTree(Vector3 min, Vector3 max)
 
     root->bounds.minPos = min;
     root->bounds.maxPos = max;
-
     root->level = 0;
 
     material = new Material(L"Basic/Grid.hlsl");
     mesh = new Mesh<VertexColor>();
-
     worldBuffer = new MatrixBuffer();
 }
 
@@ -81,7 +79,6 @@ void QuadTree::UpdateCollider(Collider* collider)
     auto it = colliderNodeMap.find(collider);
     if (it == colliderNodeMap.end()) return;
 
-    
     QNode* currentNode = it->second;
     if (!IsColliderInNode(currentNode, collider))
     {
@@ -270,7 +267,6 @@ vector<Collider*> QuadTree::GetPotentialColliders(Collider* collider)
         remove(potentialColliders.begin(), potentialColliders.end(), collider),
         potentialColliders.end()
     );
-
     return potentialColliders;
 }
 

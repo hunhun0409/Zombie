@@ -22,6 +22,7 @@ CollisionScene::CollisionScene()
         colliders.back()->SetTag("Capsule" + to_string(i));
         colliders.back()->Pos().x = Random(-50.0f, 50.0f);
         colliders.back()->Pos().z = Random(-50.0f, 50.0f);
+        colliders.back()->UpdateWorld();
     }
     
 
@@ -61,7 +62,7 @@ void CollisionScene::Update()
 
     if (KEY_DOWN('P'))
     {
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 500; i++)
         {
             ColliderManager::Get()->Add(colliders[i]);
         }
@@ -94,14 +95,14 @@ void CollisionScene::Update()
         colliders[1]->SetColor(0, 1, 0);
     }*/
 
-    for (Collider* collider : colliders)
+    /*for (Collider* collider : colliders)
     {
         if (collider->Pos().x <= 50)
         {
             collider->Pos().x += 2 * DELTA;
         }
         collider->Update();
-    }
+    }*/
 }
 
 void CollisionScene::PreRender()

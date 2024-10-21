@@ -39,7 +39,6 @@ KeyFrame* ModelClip::GetKeyFrame(string boneName)
 void ModelClip::SetEvent(Event event, float ratio)
 {
     if (events.count(ratio) > 0) return;
-
     events[ratio] = event;
 }
 

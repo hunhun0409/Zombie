@@ -3,7 +3,6 @@
 struct QNode
 {
     AABB bounds;
-    //float x, z, size;
     int level;
     vector<Collider*> colliders;
     QNode* children[4] = {};

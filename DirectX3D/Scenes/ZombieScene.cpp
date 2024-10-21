@@ -50,14 +50,14 @@ void ZombieScene::PreRender()
 void ZombieScene::Render()
 {
 	terrain->Render();
-	aStar->Render();
+	//aStar->Render();
 	skill->Render();
 
 	InstanceCharacterManager::Get()->Render();
 	ParticleManager::Get()->Render();
 	ProjectileManager::Get()->Render();
 
-	ColliderManager::Get()->Render();
+	//ColliderManager::Get()->Render();
 
 	player->Render();
 }

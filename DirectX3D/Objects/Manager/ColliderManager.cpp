@@ -27,7 +27,8 @@ void ColliderManager::GUIRender()
 {
 	int count = totalColliders.size();
 
-	ImGui::Text("ColliderManager ColliderCount : %d", count);
+	//ImGui::Text("ColliderManager ColliderCount : %d", count);
+	ImGui::Text("Collision Check Count : %d", collisionCheckCount);
 	quadTree->GUIRender();
 }
 
@@ -71,6 +72,7 @@ void ColliderManager::Clear()
 
 void ColliderManager::CheckCollisions()
 {
+	collisionCheckCount = 0;
 	if (quadtreeCheck)
 	{
 		for (pair<Collider*, bool> pair : totalColliders)
@@ -83,6 +85,8 @@ void ColliderManager::CheckCollisions()
 			for (Collider* other : potentialColliders)
 			{
 				if (!other->Active() || other == collider)continue;
+
+				collisionCheckCount++;
 
 				if (collider->IsCollision(other))
 				{
@@ -102,6 +106,8 @@ void ColliderManager::CheckCollisions()
 			{
 				if (pair2.second = false) continue;
 				Collider* collider2 = pair2.first;
+
+				collisionCheckCount++;
 
 				if (collider1->IsCollision(collider2))
 				{
