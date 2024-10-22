@@ -114,5 +114,7 @@ void Character::GetExp(float amount)
 
 void Character::LevelUp()
 {
+	Timer::Get()->SetDeltaScale(0.0f);
+
 
 }

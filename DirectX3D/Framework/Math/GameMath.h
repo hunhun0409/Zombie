@@ -25,6 +25,7 @@ namespace GameMath
     //float Cross(const Vector2& vec1, const Vector2& vec2);
     //float Dot(const Vector2& vec1, const Vector2& vec2);
 
+    float Cross(Vector2 vec1, Vector2 vec2);
     Vector3 Cross(Vector3& vec1, Vector3& vec2);
     float Dot(Vector3& vec1, Vector3& vec2);
 

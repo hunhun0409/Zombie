@@ -154,10 +154,17 @@
     <ClInclude Include="Framework\Buffer\StructuredBuffer.h" />
     <ClInclude Include="Framework\Buffer\VertexBuffer.h" />
     <ClInclude Include="Framework\Buffer\VertexLayouts.h" />
+    <ClInclude Include="Framework\Collision\CircleCollider.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Framework\Collision\Collider2D.h" />
     <ClInclude Include="Framework\Collision\BoxCollider.h" />
     <ClInclude Include="Framework\Collision\CapsuleCollider.h" />
     <ClInclude Include="Framework\Collision\Collider.h" />
     <ClInclude Include="Framework\Collision\ICollidable.h" />
+    <ClInclude Include="Framework\Collision\RectCollider.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Framework\Collision\SphereCollider.h" />
     <ClInclude Include="Framework\Environment\Camera.h" />
     <ClInclude Include="Framework\Environment\Environment.h" />
@@ -263,6 +270,15 @@
     <ClInclude Include="Objects\Skill\OrbitalRifle.h" />
     <ClInclude Include="Objects\Skill\PassiveSkill.h" />
     <ClInclude Include="Objects\Skill\Skill.h" />
+    <ClInclude Include="Objects\UI\Button.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Objects\UI\ImageFont.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Objects\UI\Panel.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Objects\UI\ProgressBar.h" />
     <ClInclude Include="Objects\Weapon\BaseballBat.h" />
     <ClInclude Include="Objects\Weapon\Crowbar.h" />
@@ -279,6 +295,7 @@
     <ClInclude Include="Scenes\AStarScene.h" />
     <ClInclude Include="Scenes\BillboardScene.h" />
     <ClInclude Include="Scenes\BuildingEditorScene.h" />
+    <ClInclude Include="Scenes\Collision2DScene.h" />
     <ClInclude Include="Scenes\CollisionScene.h" />
     <ClInclude Include="Scenes\DeferredScene.h" />
     <ClInclude Include="Scenes\GameScene.h" />
@@ -322,7 +339,14 @@
     <ClCompile Include="Framework\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Framework\Collision\BoxCollider.cpp" />
     <ClCompile Include="Framework\Collision\CapsuleCollider.cpp" />
+    <ClCompile Include="Framework\Collision\CircleCollider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Framework\Collision\Collider.cpp" />
+    <ClCompile Include="Framework\Collision\Collider2D.cpp" />
+    <ClCompile Include="Framework\Collision\RectCollider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Framework\Collision\SphereCollider.cpp" />
     <ClCompile Include="Framework\Environment\Camera.cpp" />
     <ClCompile Include="Framework\Environment\Environment.cpp" />
@@ -420,6 +444,15 @@
     <ClCompile Include="Objects\Skill\OrbitalRifle.cpp" />
     <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />
     <ClCompile Include="Objects\Skill\Skill.cpp" />
+    <ClCompile Include="Objects\UI\Button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Objects\UI\ImageFont.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Objects\UI\Panel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Objects\UI\ProgressBar.cpp" />
     <ClCompile Include="Objects\UI\UI.cpp" />
     <ClCompile Include="Objects\Weapon\BaseballBat.cpp" />
@@ -435,6 +468,7 @@
     <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\BillboardScene.cpp" />
     <ClCompile Include="Scenes\BuildingEditorScene.cpp" />
+    <ClCompile Include="Scenes\Collision2DScene.cpp" />
     <ClCompile Include="Scenes\CollisionScene.cpp" />
     <ClCompile Include="Scenes\DeferredScene.cpp" />
     <ClCompile Include="Scenes\GameScene.cpp" />

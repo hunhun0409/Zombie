@@ -29,6 +29,7 @@
 #include "Scenes/TessellationScene.h"
 #include "Scenes/TerrainLODScene.h"
 #include "Scenes/ScatteringScene.h"
+#include "Scenes/Collision2DScene.h"
 
 GameManager::GameManager()
 {
@@ -54,6 +55,7 @@ GameManager::GameManager()
     //SceneManager::Get()->Create("Start", new TerrainScene());
     //SceneManager::Get()->Create("Start", new LightScene());
     //SceneManager::Get()->Create("Start", new CollisionScene());
+    SceneManager::Get()->Create("Start", new Collision2DScene());
     //SceneManager::Get()->Create("Start", new MineCraftScene());
 
     //SceneManager::Get()->Create("Start", new ActionScene());
@@ -65,7 +67,7 @@ GameManager::GameManager()
     
     //SceneManager::Get()->Create("Start", new TrailEffectScene());
     //SceneManager::Get()->Create("Start", new GameScene());
-    SceneManager::Get()->Create("Start", new ZombieScene());
+    //SceneManager::Get()->Create("Start", new ZombieScene());
     //SceneManager::Get()->Create("Start", new WeaponScene());
     //SceneManager::Get()->Create("Start", new WaterScene());
     //SceneManager::Get()->Create("Start", new QuadTreeScene());

@@ -51,6 +51,7 @@ public:
     Vector3 operator*(const float& s) const { return value * s; }
     Vector3 operator/(const float& s) const { return value / s; }
 
+
     void operator+=(const Vector3& v) { value += v.value; }
     void operator-=(const Vector3& v) { value -= v.value; }    
 

@@ -55,13 +55,13 @@ void Button::Update()
     switch (state)
     {
     case Button::NONE:
-        colorBuffer->Get() = NONE_COLOR;
+        GetMaterial()->GetData().diffuse = NONE_COLOR;
         break;
     case Button::DOWN:
-        colorBuffer->Get() = DOWN_COLOR;
+        GetMaterial()->GetData().diffuse = DOWN_COLOR;
         break;
     case Button::OVER:
-        colorBuffer->Get() = OVER_COLOR;
+        GetMaterial()->GetData().diffuse = OVER_COLOR;
         break;    
     }
 

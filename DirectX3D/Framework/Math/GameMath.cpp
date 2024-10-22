@@ -86,6 +86,11 @@ Vector3 GameMath::SLerp(const Vector3& start, const Vector3& end, float t)
 //    return vec1.x * vec2.x + vec1.y * vec2.y;
 //}
 
+float GameMath::Cross(Vector2 vec1, Vector2 vec2)
+{
+    return vec1.x * vec2.y - vec2.x * vec1.y;
+}
+
 Vector3 GameMath::Cross(Vector3& vec1, Vector3& vec2)
 {
     return XMVector3Cross(vec1, vec2);

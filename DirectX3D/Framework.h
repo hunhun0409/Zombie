@@ -131,6 +131,10 @@ using namespace Utility;
 #include "Framework/Render/RenderTarget.h"
 #include "Framework/Render/GBuffer.h"
 
+#include "Framework/Collision/Collider2D.h"
+#include "Framework/Collision/RectCollider.h"
+#include "Framework/Collision/CircleCollider.h"
+
 #include "Framework/Collision/Collider.h"
 #include "Framework/Collision/BoxCollider.h"
 #include "Framework/Collision/SphereCollider.h"
@@ -167,6 +171,9 @@ using namespace GameMath;
 #include "Objects/Algorithm/QuadTree.h"
 
 #include "Objects/UI/UI.h"
+#include "Objects/UI/ImageFont.h"
+#include "Objects/UI/Button.h"
+#include "Objects/UI/Panel.h"
 #include "Objects/UI/ProgressBar.h"
 
 #include "Objects/Particle/Particle.h"
