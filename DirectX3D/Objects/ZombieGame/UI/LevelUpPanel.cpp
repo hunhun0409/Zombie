@@ -3,29 +3,40 @@
 LevelUpPanel::LevelUpPanel()
 	: Panel(L"Textures/UI/SkillPanel.png")
 {
-
+	tag = "LevelUpPanel";
+	Load();
 	for (int i = 0; i < 3; i++)
 	{
-		Button* button = new Button(L"Textures/UI/SkillSelection.png");
-		button->SetTag("SkillButton_" + to_string(i));
-		button->Load();
-	}
-}
+		LevelUpButton* button = new LevelUpButton();
+		button->SetTag("LevelUpButton_" + to_string(i));
 
-LevelUpPanel::~LevelUpPanel()
-{
-	for (pair<string, Button*> btn : buttons)
+		LevelUpButton::UpgradeData data;
+		data.iconTextureFile = L"Textures/UI/LevelUpArmor.png";
+		data.description = "description" + to_string(i);
+		data.title = "title" + to_string(i);
+
+		button->SetData(data);
+		AddButton("LevelUpButton" + to_string(i), button, Vector3());
+	}
+
+	for (auto btn : buttons)
 	{
-		delete btn.second;
+		btn.second->Load();
 	}
 }
 
 void LevelUpPanel::Update()
 {
+	if (!Active()) return;
+
+	Panel::Update();
 }
 
 void LevelUpPanel::Render()
 {
+	if (!Active()) return;
+
+	Panel::Render();
 }
 
 void LevelUpPanel::Show(Vector3 pos)
@@ -34,6 +45,11 @@ void LevelUpPanel::Show(Vector3 pos)
 
 	for (auto btn : buttons)
 	{
-
+		//Todo : 랜덤한 선택지 가져와서 띄운다
 	}
+}
+
+void LevelUpPanel::Hide()
+{
+	Panel::Hide();
 }

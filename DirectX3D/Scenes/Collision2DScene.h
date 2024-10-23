@@ -16,8 +16,6 @@ private:
 	Collider2D* rect;
 	Collider2D* circle;
 
-	Button* btn;
-
-	Panel* panel;
+	LevelUpPanel* panel;
 };
 

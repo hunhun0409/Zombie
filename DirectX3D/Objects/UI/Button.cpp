@@ -76,3 +76,13 @@ void Button::Render()
     Quad::Render();
     collider->Render();
 }
+
+void Button::GUIRender()
+{
+    Transform::GUIRender();
+}
+
+void Button::Load()
+{
+    Transform::Load();
+}

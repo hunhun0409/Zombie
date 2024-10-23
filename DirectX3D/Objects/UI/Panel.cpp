@@ -8,6 +8,10 @@ Panel::Panel(wstring textureFile)
 
 Panel::~Panel()
 {
+    for (pair<string, Button*> button : buttons)
+    {
+        delete button.second;
+    }
 }
 
 void Panel::Update()
@@ -34,6 +38,15 @@ void Panel::Render()
     }
 }
 
+void Panel::GUIRender()
+{
+    Quad::GUIRender();
+    for (pair<string, Button*> button : buttons)
+    {
+        button.second->GUIRender();
+    }
+}
+
 void Panel::AddButton(string key, Button* button, Vector3 pos)
 {
     buttons[key] = button;
@@ -46,4 +59,17 @@ void Panel::Show(Vector3 pos)
 {
     Pos() = pos;
     isActive = true;
+    for (pair<string, Button*> button : buttons)
+    {
+        button.second->SetActive(true);
+    }
+}
+
+void Panel::Hide()
+{
+    isActive = false;
+    for (pair<string, Button*> button : buttons)
+    {
+        button.second->SetActive(false);
+    }
 }

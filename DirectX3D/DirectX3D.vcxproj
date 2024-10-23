@@ -429,6 +429,7 @@
     <ClCompile Include="Objects\Manager\ParticleManager.cpp" />
     <ClCompile Include="Objects\Manager\ProjectileManager.cpp" />
     <ClCompile Include="Objects\Manager\RobotManager.cpp" />
+    <ClCompile Include="Objects\Manager\UIManager.cpp" />
     <ClCompile Include="Objects\Manager\ZombieManager.cpp" />
     <ClCompile Include="Objects\MineCraft\BlockManager.cpp" />
     <ClCompile Include="Objects\MineCraft\MineUI.cpp" />
@@ -466,6 +467,7 @@
     <ClCompile Include="Objects\Weapon\Weapon.cpp" />
     <ClCompile Include="Objects\ZombieGame\ExpBall.cpp" />
     <ClCompile Include="Objects\ZombieGame\PlayerHUD.cpp" />
+    <ClCompile Include="Objects\ZombieGame\UI\LevelUpButton.cpp" />
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpPanel.cpp" />
     <ClCompile Include="Scenes\ActionScene.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />

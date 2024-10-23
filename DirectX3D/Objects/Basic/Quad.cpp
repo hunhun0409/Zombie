@@ -50,6 +50,7 @@ void Quad::MakeMesh()
     float bottom = -size.y * 0.5f;
 
     vector<VertexType>& vertices = mesh->Vertices();
+    vertices.clear();
 
     vertices.emplace_back(left, top, 0, 0, 0);
     vertices.emplace_back(right, top, 0, 1, 0);

@@ -16,8 +16,9 @@ public:
 private:
     void MakeMesh();
 
-protected:
+public:
     Vector2 size;
 
+protected:
     Mesh<VertexType>* mesh;    
 };

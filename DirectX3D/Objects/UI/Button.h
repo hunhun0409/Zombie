@@ -17,14 +17,17 @@ public:
     Button(Vector2 size);
     ~Button();
 
-    void Update();
-    void Render();
+    virtual void Update();
+    virtual void Render();
+    virtual void GUIRender();
 
     void SetEvent(Event event) { this->event = event; }
     void SetParamEvent(ParamEvent event) { paramEvent = event; }
     void SetObject(void* object) { this->object = object; }
 
     RectCollider* GetCollider() { return collider; }
+
+    virtual void Load();
 
 protected:
     RectCollider* collider;

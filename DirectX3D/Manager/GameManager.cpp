@@ -115,6 +115,8 @@ void GameManager::Render()
     ImGui::NewFrame();
 
     string fps = "FPS : " + to_string(Timer::Get()->GetFPS());
+    
+    Font::Get()->SetStyle("Default");
     Font::Get()->RenderText(fps, { 60, WIN_HEIGHT - 50}, {100, 50});
 
     static bool IsActive = true;
@@ -149,6 +151,9 @@ void GameManager::Create()
     ColliderManager::Get();
 
     Font::Get()->AddColor("White", 1, 1, 1);
+    Font::Get()->AddColor("Red", 1, 0, 0);
+    Font::Get()->AddColor("Green", 0, 1, 0);
+    Font::Get()->AddColor("Blue", 0, 0, 1);
     Font::Get()->AddStyle("Default", L"배달의민족 주아");
 
     Font::Get()->SetColor("White");

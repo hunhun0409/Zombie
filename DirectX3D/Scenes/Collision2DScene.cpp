@@ -8,19 +8,8 @@ Collision2DScene::Collision2DScene()
 	rect->UpdateWorld();
 
 	circle = new CircleCollider(20.0f);
-	
-	btn = new Button(L"Textures/Color/White.png");
-	btn->SetTag("button");
-	btn->Load();
-	//btn->Pos() = { CENTER_X,CENTER_Y };
 
-
-	panel = new Panel(L"Textures/karina.jpg");
-	panel->Pos() = { CENTER_X,CENTER_Y };
-	panel->Scale() *= 0.2f;
-	panel->AddButton("button", btn, { 0, 10, 0 });
-	panel->SetTag("panel");
-	
+	panel = new LevelUpPanel();
 }
 
 Collision2DScene::~Collision2DScene()
@@ -28,7 +17,6 @@ Collision2DScene::~Collision2DScene()
 	delete rect;
 	delete circle;
 
-	delete btn;
 	delete panel;
 }
 
@@ -57,12 +45,11 @@ void Collision2DScene::Update()
 	circle->Pos() = mousePos;
 	circle->UpdateWorld();
 
-	btn->Update();
 	panel->Update();
 
 	if (KEY_DOWN(VK_RBUTTON))
 	{
-		panel->Show(mousePos);
+		panel->Show();
 	}
 }
 
@@ -80,11 +67,9 @@ void Collision2DScene::PostRender()
 	circle->Render();
 
 	panel->Render();
-	btn->Render();
 }
 
 void Collision2DScene::GUIRender()
 {
 	panel->GUIRender();
-	btn->GUIRender();
 }
