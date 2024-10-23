@@ -3,6 +3,13 @@
 class UIManager : public Singleton<UIManager>
 {
 private:
+	struct UIData
+	{
+		Panel* panel;
+		Vector3 pos;
+	};
+
+private:
 	friend class Singleton;
 	UIManager() = default;
 	~UIManager();
@@ -10,13 +17,14 @@ private:
 public:
 	void Update();
 	void Render();
+	void GUIRender();
 
-	void Add(string key, Panel* panel);
+	void Add(string key, Panel* panel, Vector3 pos);
 	void Remove(string key);
 
-	void Show(string key, Vector3 pos);
+	void Show(string key);
 	void Hide(string key);
 
 private:
-	unordered_map<string, Panel*> totalPanels;
+	unordered_map<string, UIData> totalPanels;
 };

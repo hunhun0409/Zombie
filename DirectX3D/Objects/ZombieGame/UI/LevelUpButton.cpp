@@ -3,8 +3,12 @@
 LevelUpButton::LevelUpButton()
 	:Button(L"Textures/UI/SkillSelection.png")
 {
-	Font::Get()->AddStyle("ButtonFont", L"Amiri", 28);
+	Font::Get()->AddStyle("ButtonFontTitle", L"Amiri", 20);
+	Font::Get()->AddStyle("ButtonFontDescription", L"Amiri", 16);
+	
 	icon = new Quad(Vector2(50, 50));
+	icon->SetParent(this);
+	icon->SetTag("LevelUpButtonIcon");
 }
 
 LevelUpButton::~LevelUpButton()
@@ -24,8 +28,7 @@ void LevelUpButton::Render()
 	Button::Render();
 	icon->Render();
 
-	Font::Get()->SetStyle("ButtonFont");
-	Font::Get()->SetColor("White");
+	
 
 	Float2 boxSize;
 	boxSize.x = size.x;
@@ -37,14 +40,18 @@ void LevelUpButton::Render()
 	pos.x = GlobalPos().x + descriptionOffset.x;
 	pos.y = GlobalPos().y - descriptionOffset.y;
 
+	Font::Get()->SetStyle("ButtonFontDescription");
+	Font::Get()->SetColor("White");
 	Font::Get()->RenderText(data.description, pos, boxSize); 
 
-	titleOffset.x = size.x * 0.2f;
+	titleOffset.x = size.x * 0.22f;
 	titleOffset.y = size.y * 0.3f;
 
 	pos.x = GlobalPos().x - titleOffset.x;
 	pos.y = GlobalPos().y - titleOffset.y;
 
+	Font::Get()->SetStyle("ButtonFontTitle");
+	Font::Get()->SetColor("White");
 	Font::Get()->RenderText(data.title, pos, boxSize);
 }
 
@@ -56,7 +63,7 @@ void LevelUpButton::GUIRender()
 
 void LevelUpButton::SetData(UpgradeData data)
 {
-	data = data;
+	this->data = data;
 	icon->GetMaterial()->SetDiffuseMap(data.iconTextureFile);
 }
 

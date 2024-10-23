@@ -49,7 +49,6 @@ private:
 
 	void SetAnimation();
 private:
-	//bool isArm = false;
 	bool isDash = false;
 
 	Vector3 velocity;
@@ -58,12 +57,6 @@ private:
 	Transform* leftHand;
 
 	MeleeWeapon* sword;
-
-	Trail* trail;
-
-	POINT clientCenterPos = { WIN_WIDTH >> 1, WIN_HEIGHT >> 1 };
-
-	Quad* crossHair;
 
 	PlayerHUD* playerHud;
 };

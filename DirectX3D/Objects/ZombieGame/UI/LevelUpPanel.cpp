@@ -16,6 +16,7 @@ LevelUpPanel::LevelUpPanel()
 		data.title = "title" + to_string(i);
 
 		button->SetData(data);
+		button->SetEvent(bind(&LevelUpPanel::Hide, this));
 		AddButton("LevelUpButton" + to_string(i), button, Vector3());
 	}
 
@@ -41,6 +42,8 @@ void LevelUpPanel::Render()
 
 void LevelUpPanel::Show(Vector3 pos)
 {
+	Timer::Get()->SetDeltaScale(0.0f);
+
 	Panel::Show(pos);
 
 	for (auto btn : buttons)
@@ -52,4 +55,7 @@ void LevelUpPanel::Show(Vector3 pos)
 void LevelUpPanel::Hide()
 {
 	Panel::Hide();
+	//Observer::Get()->ExcuteEvent("LevelUpEnd");
+	Timer::Get()->SetDeltaScale(1.0f);
+
 }

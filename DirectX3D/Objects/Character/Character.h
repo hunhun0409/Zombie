@@ -49,6 +49,7 @@ public:
 
 	void GetExp(float amount);
 	void LevelUp();
+	void LevelUpEnd();
 
 protected:
 	CharacterController* controller = nullptr;

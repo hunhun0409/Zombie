@@ -10,14 +10,14 @@ Collision2DScene::Collision2DScene()
 	circle = new CircleCollider(20.0f);
 
 	panel = new LevelUpPanel();
+
+	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
 }
 
 Collision2DScene::~Collision2DScene()
 {
 	delete rect;
 	delete circle;
-
-	delete panel;
 }
 
 void Collision2DScene::Update()
@@ -45,12 +45,12 @@ void Collision2DScene::Update()
 	circle->Pos() = mousePos;
 	circle->UpdateWorld();
 
-	panel->Update();
 
 	if (KEY_DOWN(VK_RBUTTON))
 	{
-		panel->Show();
+		UIManager::Get()->Show("LevelUpPanel");
 	}
+	UIManager::Get()->Update();
 }
 
 void Collision2DScene::PreRender()
@@ -66,10 +66,10 @@ void Collision2DScene::PostRender()
 	rect->Render();
 	circle->Render();
 
-	panel->Render();
+	UIManager::Get()->Render();
 }
 
 void Collision2DScene::GUIRender()
 {
-	panel->GUIRender();
+	UIManager::Get()->GUIRender();
 }

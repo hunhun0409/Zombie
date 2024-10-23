@@ -2,6 +2,14 @@
 
 class Skill : public BasicObject
 {
+public:
+	struct SkillInfo
+	{
+		string name;
+		string description[5];
+	};
+
+
 	const int MAX_LEVEL = 5;
 public:
 	Skill(string id, string name);
@@ -16,6 +24,7 @@ public:
 
 protected:
 	class Character* owner = nullptr;
+	SkillInfo info;
 	string id;
 	string name;
 	int level = 1;

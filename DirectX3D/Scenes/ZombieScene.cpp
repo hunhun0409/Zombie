@@ -21,7 +21,7 @@ ZombieScene::~ZombieScene()
 	ParticleManager::Delete();
 	InstanceCharacterManager::Delete();
 	InstanceObjectManager::Delete();
-	
+	UIManager::Delete();
 }
 
 void ZombieScene::Update()
@@ -43,7 +43,7 @@ void ZombieScene::Update()
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
 	ColliderManager::Get()->Update();
-
+	UIManager::Get()->Update();
 }
 
 void ZombieScene::PreRender()
@@ -69,6 +69,7 @@ void ZombieScene::Render()
 void ZombieScene::PostRender()
 {
 	player->PostRender();
+	UIManager::Get()->Render();
 }
 
 void ZombieScene::GUIRender()
@@ -114,6 +115,9 @@ void ZombieScene::Start()
 	InstanceCharacterManager::Get()->SetTerrain(terrain);
 	
 	Observer::Get()->ExcuteParamEvent("ExpSetTarget", player);
+
+	Panel* panel = new LevelUpPanel();
+	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
 }
 
 void ZombieScene::End()
@@ -124,4 +128,6 @@ void ZombieScene::End()
 	InstanceObjectManager::Get()->Remove("exp");
 
 	ColliderManager::Get()->Clear();
+
+	UIManager::Get()->Remove("LevelUpPanel");
 }

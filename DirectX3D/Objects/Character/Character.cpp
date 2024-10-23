@@ -19,6 +19,8 @@ Character::Character(string name)
 	characterMovement->SetOwner(this);
 
 	ColliderManager::Get()->Add(collider);
+
+	Observer::Get()->AddEvent("LevelUpEnd", bind(&Character::LevelUpEnd, this));
 }
 
 Character::~Character()
@@ -114,7 +116,13 @@ void Character::GetExp(float amount)
 
 void Character::LevelUp()
 {
-	Timer::Get()->SetDeltaScale(0.0f);
+
+	UIManager::Get()->Show("LevelUpPanel");
+}
+
+void Character::LevelUpEnd()
+{
+	Timer::Get()->SetDeltaScale(1.0f);
 
 
 }
