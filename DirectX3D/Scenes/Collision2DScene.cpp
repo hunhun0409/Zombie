@@ -47,7 +47,6 @@ void Collision2DScene::Update()
 	{
 		rect->GetMaterial()->GetData().diffuse = { 1, 0, 0, 1 };
 		circle->GetMaterial()->GetData().diffuse = { 1, 0, 0, 1 };
-		
 	}
 	else
 	{

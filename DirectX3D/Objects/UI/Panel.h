@@ -11,8 +11,8 @@ public:
 
     void AddButton(string key, Button* button, Vector3 pos);
 
-    void Show(Vector3 pos);
-private:
+    virtual void Show(Vector3 pos);
+protected:
     Vector2 offset;
     unordered_map<string, Button*> buttons;
 };

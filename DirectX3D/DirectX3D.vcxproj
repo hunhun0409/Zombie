@@ -290,6 +290,8 @@
     <ClInclude Include="Objects\ZombieGame\ExpBall.h" />
     <ClInclude Include="Objects\ZombieGame\PlayerHUD.h" />
     <ClInclude Include="Objects\UI\UI.h" />
+    <ClInclude Include="Objects\ZombieGame\UI\LevelUpButton.h" />
+    <ClInclude Include="Objects\ZombieGame\UI\LevelUpPanel.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scenes\ActionScene.h" />
     <ClInclude Include="Scenes\AStarScene.h" />
@@ -464,6 +466,7 @@
     <ClCompile Include="Objects\Weapon\Weapon.cpp" />
     <ClCompile Include="Objects\ZombieGame\ExpBall.cpp" />
     <ClCompile Include="Objects\ZombieGame\PlayerHUD.cpp" />
+    <ClCompile Include="Objects\ZombieGame\UI\LevelUpPanel.cpp" />
     <ClCompile Include="Scenes\ActionScene.cpp" />
     <ClCompile Include="Scenes\AStarScene.cpp" />
     <ClCompile Include="Scenes\BillboardScene.cpp" />

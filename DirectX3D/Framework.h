@@ -229,6 +229,8 @@ using namespace GameMath;
 #include "Objects/Instance/Projectile.h"
 
 #include "Objects/ZombieGame/ExpBall.h"
+#include "Objects/ZombieGame/UI/LevelUpPanel.h"
+#include "Objects/ZombieGame/UI/LevelUpButton.h"
 
 #include "Objects/Manager/InstanceObjectManager.h"
 #include "Objects/Manager/KunaiManager.h"
