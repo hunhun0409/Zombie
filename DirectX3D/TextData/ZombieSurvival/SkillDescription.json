@@ -1,0 +1,47 @@
+[
+  {
+    "id": "rifle",
+    "name": "rifle",
+    "level1": "Spawn rifle orbit around player.",
+    "level2": "Increase rifle amount by 1.",
+    "level3": "Increase rifle amount by 1.",
+    "level4": "Increase rifle amount by 1.",
+    "level5": "Increase rifle amount by 1."
+  },
+  {
+    "id": "armor",
+    "name": "armor",
+    "level1": "Increase player armor by 10.",
+    "level2": "Increase player armor by 10.",
+    "level3": "Increase player armor by 10.",
+    "level4": "Increase player armor by 10.",
+    "level5": "Increase player armor by 10."
+  },
+  {
+    "id": "hp",
+    "name": "hp",
+    "level1": "Increase player hp by 10.",
+    "level2": "Increase player hp by 10.",
+    "level3": "Increase player hp by 10.",
+    "level4": "Increase player hp by 10.",
+    "level5": "Increase player hp by 10."
+  },
+  {
+    "id": "attack",
+    "name": "attack",
+    "level1": "Increase player attack by 10.",
+    "level2": "Increase player attack by 10.",
+    "level3": "Increase player attack by 10.",
+    "level4": "Increase player attack by 10.",
+    "level5": "Increase player attack by 10."
+  },
+  {
+    "id": "recovery",
+    "name": "recovery",
+    "level1": "Increase player recovery by 1.",
+    "level2": "Increase player recovery by 1.",
+    "level3": "Increase player recovery by 1.",
+    "level4": "Increase player recovery by 1.",
+    "level5": "Increase player recovery by 1."
+  }
+]

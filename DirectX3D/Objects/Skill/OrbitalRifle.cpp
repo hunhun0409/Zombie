@@ -1,6 +1,6 @@
 #include "Framework.h"
 
-ObitalRifle::ObitalRifle()
+OrbitalRifle::OrbitalRifle()
 	:ActiveSkill("OrbitalRifle", "OrbitalRifle", L"Textures/UI/RifleIcon.png", 10, 5)
 {
 	pivot = new Transform();
@@ -18,7 +18,7 @@ ObitalRifle::ObitalRifle()
 	}
 }
 
-ObitalRifle::~ObitalRifle()
+OrbitalRifle::~OrbitalRifle()
 {
 	for (RangeWeapon* rifle : rifles)
 	{
@@ -26,7 +26,7 @@ ObitalRifle::~ObitalRifle()
 	}
 }
 
-void ObitalRifle::Update()
+void OrbitalRifle::Update()
 {
 	if (!owner->Active()) return;
 
@@ -41,7 +41,7 @@ void ObitalRifle::Update()
 	}
 }
 
-void ObitalRifle::Render()
+void OrbitalRifle::Render()
 {
 	if (!owner->Active()) return;
 
@@ -51,7 +51,7 @@ void ObitalRifle::Render()
 	}
 }
 
-void ObitalRifle::Activate()
+void OrbitalRifle::Activate()
 {
 	ActiveSkill::Activate();
 
@@ -61,7 +61,7 @@ void ObitalRifle::Activate()
 	}
 }
 
-void ObitalRifle::Deactivate()
+void OrbitalRifle::Deactivate()
 {
 	ActiveSkill::Deactivate();
 
@@ -71,7 +71,7 @@ void ObitalRifle::Deactivate()
 	}
 }
 
-void ObitalRifle::SetOwner(Character* owner)
+void OrbitalRifle::SetOwner(Character* owner)
 {
 	Skill::SetOwner(owner);
 	//pivot->SetParent(owner);

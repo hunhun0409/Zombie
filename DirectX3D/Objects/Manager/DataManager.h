@@ -3,18 +3,16 @@
 class DataManager : public Singleton<DataManager>
 {
 public:
-	struct SkillDescriptionInfo
+	struct SkillDescriptionData
 	{
 		string id;
 		string name;
-		vector<string> descriptions;
+		string descriptions[5];
 	};
-
-
 
 private:
 	friend class Singleton;
-	DataManager() = default;
+	DataManager();
 	~DataManager() = default;
 
 public:
@@ -23,13 +21,8 @@ public:
 	void LoadSkillDescription(); //스킬 설명 정보 로드
 	//이후 추가할 데이터가 추가되면 함수 추가
 
-	void GetDescription(string id, OUT SkillDescriptionInfo& info);
-
-
-
-
+	bool GetDescription(string id, OUT SkillDescriptionData& info);
 
 private:
-	unordered_map<string, SkillDescriptionInfo> totalSkillInfos;
-
+	unordered_map<string, SkillDescriptionData> totalSkillDatas;
 };

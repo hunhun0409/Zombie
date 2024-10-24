@@ -3,6 +3,9 @@
 
 Collision2DScene::Collision2DScene()
 {
+	DataManager::Get();
+	SkillManager::Get();
+
 	rect = new RectCollider(Vector3(WIN_WIDTH-2, WIN_HEIGHT-2, 0));
 	rect->Pos() = { CENTER_X, CENTER_Y };
 	rect->UpdateWorld();
@@ -48,9 +51,11 @@ void Collision2DScene::Update()
 
 	if (KEY_DOWN(VK_RBUTTON))
 	{
-		UIManager::Get()->Show("LevelUpPanel");
+		LevelUpSystem::Get()->LevelUp();
 	}
-	UIManager::Get()->Update();
+	LevelUpSystem::Get()->Update();
+
+	//UIManager::Get()->Update();
 }
 
 void Collision2DScene::PreRender()
@@ -66,10 +71,11 @@ void Collision2DScene::PostRender()
 	rect->Render();
 	circle->Render();
 
-	UIManager::Get()->Render();
+	//UIManager::Get()->Render();
+	LevelUpSystem::Get()->Render();
 }
 
 void Collision2DScene::GUIRender()
 {
-	UIManager::Get()->GUIRender();
+	//UIManager::Get()->GUIRender();
 }

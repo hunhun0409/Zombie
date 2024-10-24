@@ -266,8 +266,12 @@
     <ClInclude Include="Objects\Particle\Sprite.h" />
     <ClInclude Include="Objects\Particle\Trail.h" />
     <ClInclude Include="Objects\Skill\ActiveSkill.h" />
+    <ClInclude Include="Objects\Skill\ArmorUpgrade.h" />
+    <ClInclude Include="Objects\Skill\AttackUpgrade.h" />
+    <ClInclude Include="Objects\Skill\HpUpgrade.h" />
     <ClInclude Include="Objects\Skill\OrbitalRifle.h" />
     <ClInclude Include="Objects\Skill\PassiveSkill.h" />
+    <ClInclude Include="Objects\Skill\RecoveryUpgrade.h" />
     <ClInclude Include="Objects\Skill\Skill.h" />
     <ClInclude Include="Objects\UI\Button.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -289,6 +293,7 @@
     <ClInclude Include="Objects\ZombieGame\ExpBall.h" />
     <ClInclude Include="Objects\ZombieGame\PlayerHUD.h" />
     <ClInclude Include="Objects\UI\UI.h" />
+    <ClInclude Include="Objects\ZombieGame\System\LevelUpSystem.h" />
     <ClInclude Include="Objects\ZombieGame\UI\LevelUpButton.h" />
     <ClInclude Include="Objects\ZombieGame\UI\LevelUpPanel.h" />
     <ClInclude Include="Resource.h" />
@@ -442,8 +447,12 @@
     <ClCompile Include="Objects\Particle\Sprite.cpp" />
     <ClCompile Include="Objects\Particle\Trail.cpp" />
     <ClCompile Include="Objects\Skill\ActiveSkill.cpp" />
+    <ClCompile Include="Objects\Skill\ArmorUpgrade.cpp" />
+    <ClCompile Include="Objects\Skill\AttackUpgrade.cpp" />
+    <ClCompile Include="Objects\Skill\HpUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\OrbitalRifle.cpp" />
     <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />
+    <ClCompile Include="Objects\Skill\RecoveryUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\Skill.cpp" />
     <ClCompile Include="Objects\UI\Button.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -465,6 +474,7 @@
     <ClCompile Include="Objects\Weapon\Weapon.cpp" />
     <ClCompile Include="Objects\ZombieGame\ExpBall.cpp" />
     <ClCompile Include="Objects\ZombieGame\PlayerHUD.cpp" />
+    <ClCompile Include="Objects\ZombieGame\System\LevelUpSystem.cpp" />
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpButton.cpp" />
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpPanel.cpp" />
     <ClCompile Include="Scenes\ActionScene.cpp" />
@@ -766,6 +776,7 @@
     <None Include="Shaders\PixelHeader.hlsli" />
     <None Include="Shaders\Skybox.hlsli" />
     <None Include="Shaders\VertexHeader.hlsli" />
+    <None Include="TextData\ZombieSurvival\SkillDescription.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

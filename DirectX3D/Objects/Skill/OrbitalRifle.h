@@ -1,10 +1,10 @@
 #pragma once
 
-class ObitalRifle : public ActiveSkill
+class OrbitalRifle : public ActiveSkill
 {
 public:
-	ObitalRifle();
-	~ObitalRifle();
+	OrbitalRifle();
+	~OrbitalRifle();
 
 	virtual void Update() override;
 	void Render();
@@ -19,5 +19,4 @@ private:
 
 	float distance = 10.0f;
 	float damage = 10.0f;
-
 };

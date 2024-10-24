@@ -116,8 +116,8 @@ void Character::GetExp(float amount)
 
 void Character::LevelUp()
 {
-
-	UIManager::Get()->Show("LevelUpPanel");
+	LevelUpSystem::Get()->LevelUp();
+	//UIManager::Get()->Show("LevelUpPanel");
 }
 
 void Character::LevelUpEnd()

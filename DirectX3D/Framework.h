@@ -35,6 +35,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <functional>
 #include <algorithm>
 #include <assert.h>
@@ -211,8 +212,14 @@ using namespace GameMath;
 
 #include "Objects/Skill/Skill.h"
 #include "Objects/Skill/ActiveSkill.h"
-#include "Objects/Skill/PassiveSkill.h"
 #include "Objects/Skill/OrbitalRifle.h"
+
+#include "Objects/Skill/PassiveSkill.h"
+#include "Objects/Skill/HpUpgrade.h"
+#include "Objects/Skill/ArmorUpgrade.h"
+#include "Objects/Skill/AttackUpgrade.h"
+#include "Objects/Skill/RecoveryUpgrade.h"
+
 
 #include "Objects/Character/Character.h"
 #include "Objects/Character/CharacterMovement.h"
@@ -234,6 +241,8 @@ using namespace GameMath;
 #include "Objects/ZombieGame/ExpBall.h"
 #include "Objects/ZombieGame/UI/LevelUpPanel.h"
 #include "Objects/ZombieGame/UI/LevelUpButton.h"
+#include "Objects/ZombieGame/System/LevelUpSystem.h"
+
 
 #include "Objects/Manager/InstanceObjectManager.h"
 //#include "Objects/Manager/KunaiManager.h"
@@ -246,6 +255,7 @@ using namespace GameMath;
 #include "Objects/Manager/SkillManager.h"
 #include "Objects/Manager/UIManager.h"
 #include "Objects/Manager/DataManager.h"
+
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"

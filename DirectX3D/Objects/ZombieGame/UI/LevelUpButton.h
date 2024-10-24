@@ -21,6 +21,7 @@ public:
 
 	void SetData(UpgradeData data);
 
+
 	virtual void Load() override;
 private:
 	Quad* icon;

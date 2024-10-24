@@ -11,12 +11,24 @@ LevelUpPanel::LevelUpPanel()
 		button->SetTag("LevelUpButton_" + to_string(i));
 
 		LevelUpButton::UpgradeData data;
-		data.iconTextureFile = L"Textures/UI/LevelUpArmor.png";
+		data.iconTextureFile = L"Textures/UI/ArmorIcon.png";
 		data.description = "description" + to_string(i);
 		data.title = "title" + to_string(i);
 
 		button->SetData(data);
-		button->SetEvent(bind(&LevelUpPanel::Hide, this));
+		if (i == 0)
+		{
+			button->SetEvent(bind(&LevelUpPanel::Select1, this));
+
+		}
+		else if (i == 1)
+		{
+			button->SetEvent(bind(&LevelUpPanel::Select2, this));
+		}
+		else
+		{
+			button->SetEvent(bind(&LevelUpPanel::Select3, this));
+		}
 		AddButton("LevelUpButton" + to_string(i), button, Vector3());
 	}
 
@@ -44,18 +56,47 @@ void LevelUpPanel::Show(Vector3 pos)
 {
 	Timer::Get()->SetDeltaScale(0.0f);
 
-	Panel::Show(pos);
-
+	int idx = 0;
 	for (auto btn : buttons)
 	{
-		//Todo : 랜덤한 선택지 가져와서 띄운다
+		LevelUpButton::UpgradeData data;
+		Skill* skill = upgradeSkills[idx];
+		data.title = skill->Info().name;
+		data.iconTextureFile = skill->Info().iconPath;
+
+		DataManager::SkillDescriptionData descriptions;
+		DataManager::Get()->GetDescription(skill->Info().id, descriptions);
+		data.description = descriptions.descriptions[skill->GetCurrentLevel() + 1];
+		static_cast<LevelUpButton*>(btn.second)->SetData(data);
+		idx++;
 	}
+
+	Panel::Show(pos);
 }
 
 void LevelUpPanel::Hide()
 {
 	Panel::Hide();
-	//Observer::Get()->ExcuteEvent("LevelUpEnd");
 	Timer::Get()->SetDeltaScale(1.0f);
-
 }
+
+void LevelUpPanel::Select1()
+{
+	SkillManager::Get()->LevelUp(upgradeSkills[0]->Info().id);
+	Hide();
+}
+
+void LevelUpPanel::Select2()
+{
+	SkillManager::Get()->LevelUp(upgradeSkills[1]->Info().id);
+
+	Hide();
+}
+
+void LevelUpPanel::Select3()
+{
+	SkillManager::Get()->LevelUp(upgradeSkills[2]->Info().id);
+
+	Hide();
+}
+

@@ -12,8 +12,6 @@ PassiveSkill::PassiveSkill(string id, string name, wstring iconPath, float baseE
 
 void PassiveSkill::Activate()
 {
-    //owner에게 effectValue전달?
-    //
 }
 
 void PassiveSkill::Deactivate()
@@ -24,4 +22,12 @@ void PassiveSkill::Deactivate()
 void PassiveSkill::LevelUp()
 {
     Skill::LevelUp();
+}
+
+void PassiveSkill::Update()
+{
+}
+
+void PassiveSkill::Render()
+{
 }

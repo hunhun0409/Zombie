@@ -21,6 +21,7 @@ public:
 	virtual void Activate() = 0;
 	virtual void Deactivate() = 0;
 	virtual void Update() = 0;
+	virtual void Render() = 0;
 	virtual void LevelUp();
 
 	//공통 기능 
@@ -28,10 +29,11 @@ public:
 	SkillInfo& Info() { return info; }
 	int GetCurrentLevel() const { return level; }
 	bool IsUnlocked() const { return info.isUnlocked; }
+	bool IsMaxLevel() const { return level == info.maxLevel; }
 	virtual void SetOwner(class Character* owner) { this->owner = owner; }
 
 protected:
 	class Character* owner = nullptr;
 	SkillInfo info;
-	int level = 1;
+	int level = 0;
 };

@@ -12,7 +12,13 @@ public:
 	virtual void Show(Vector3 pos = {CENTER_X, CENTER_Y}) override;
 	virtual void Hide() override;
 
-private:
+	void SetSkills(vector<Skill*> skills) { upgradeSkills = skills; }
 
+	void Select1();
+	void Select2();
+	void Select3();
+
+private:
+	vector<Skill*> upgradeSkills;
 };
 

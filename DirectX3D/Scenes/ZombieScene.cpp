@@ -95,7 +95,7 @@ void ZombieScene::Start()
 	player->Pos() = { 256, 0, 256 };
 	player->GetCollider();
 
-	skill = new ObitalRifle();
+	skill = new OrbitalRifle();
 	skill->SetOwner(player);
 	
 	PlayerController::Get()->Possess(player);

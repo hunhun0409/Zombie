@@ -528,6 +528,21 @@
     <ClInclude Include="Objects\Manager\DataManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Objects\ZombieGame\System\LevelUpSystem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Skill\HpUpgrade.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Skill\ArmorUpgrade.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Skill\AttackUpgrade.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Skill\RecoveryUpgrade.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D.cpp">
@@ -1001,6 +1016,21 @@
     <ClCompile Include="Objects\Manager\DataManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Objects\Skill\HpUpgrade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Skill\ArmorUpgrade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Skill\AttackUpgrade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Skill\RecoveryUpgrade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\ZombieGame\System\LevelUpSystem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectX3D.rc">
@@ -1064,5 +1094,6 @@
     <None Include="Shaders\VertexHeader.hlsli" />
     <None Include="Shaders\PixelHeader.hlsli" />
     <None Include="Shaders\Skybox.hlsli" />
+    <None Include="TextData\ZombieSurvival\SkillDescription.json" />
   </ItemGroup>
 </Project>
