@@ -5,27 +5,33 @@ class Skill : public BasicObject
 public:
 	struct SkillInfo
 	{
+		string id;
 		string name;
-		string description[5];
+		wstring iconPath;
+		bool isUnlocked = false;
+		int maxLevel = 5;
 	};
-
 
 	const int MAX_LEVEL = 5;
 public:
-	Skill(string id, string name);
+	Skill(SkillInfo info);
+	Skill(string id, string name, wstring iconPath);
 	~Skill() = default;
 
 	virtual void Activate() = 0;
 	virtual void Deactivate() = 0;
+	virtual void Update() = 0;
 	virtual void LevelUp();
-	virtual string GetDescription() const = 0;
 
+	//공통 기능 
+	bool CanLevelUp() const { return level < info.maxLevel; }
+	SkillInfo& Info() { return info; }
+	int GetCurrentLevel() const { return level; }
+	bool IsUnlocked() const { return info.isUnlocked; }
 	virtual void SetOwner(class Character* owner) { this->owner = owner; }
 
 protected:
 	class Character* owner = nullptr;
 	SkillInfo info;
-	string id;
-	string name;
 	int level = 1;
 };

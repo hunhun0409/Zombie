@@ -3,13 +3,16 @@
 class PassiveSkill : public Skill
 {
 public:
-	PassiveSkill(string id, string name, int level, float cooldown);
-	~PassiveSkill();
+	PassiveSkill(SkillInfo info, float baseEffectValue, float effectPerLevel);
+	PassiveSkill(string id, string name, wstring iconPath, float baseEffectValue, float effectPerLevel);
+	~PassiveSkill() = default;
 
-	void Activate() override;
-	void Deactivate() override;
-	void LevelUp() override;
-	string GetDescription() const override;
+	virtual void Activate() override;
+	virtual void Deactivate() override;
+	virtual void LevelUp() override;
 private:
-	float effectValue;
+	float baseEffectValue; // 기본 효과 수치
+	float effectPerLevel;//레벨당 효과 증가량
+
+	float effectValue;//최종 수치 : 기본 효과 수치 + 레벨당 효과 증가량 * 레벨-1;
 };

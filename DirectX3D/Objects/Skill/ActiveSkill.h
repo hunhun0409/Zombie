@@ -3,10 +3,11 @@
 class ActiveSkill : public Skill
 {
 public:
-	ActiveSkill(string id, string name, float cooldown, float duration);
+	ActiveSkill(SkillInfo info, float cooldown, float duration);
+	ActiveSkill(string id, string name, wstring iconPath, float cooldown, float duration);
 	~ActiveSkill() = default;
 
-	virtual void Update();
+	virtual void Update() override;
 	virtual void Render() = 0;
 	virtual void GUIRender();
 
@@ -14,15 +15,23 @@ public:
 	virtual void Deactivate() override;
 
 	virtual void LevelUp() override;
-	virtual string GetDescription() const override;
-	
+
+	bool IsOnCooldown() const { return curCooldown > 0.0f; }
+	float GetRemainingCooldown() const { return curCooldown; }
+	bool IsActive() const { return isActive; }
 protected:
 	bool isActive = false;
 
+	//기존 쿨다운& 지속시간
+	float baseCooldown;
+	float baseDuration;
+	
+	//쿨타임 감소효과 처리된 쿨다운 & 지속시간
 	float cooldown;
 	float duration;
 
-	float curCooldown;
-	float curDuration;
+	//현재 쿨타임
+	float curCooldown = 0.0f;
+	float curDuration = 0.0f;
 };
 

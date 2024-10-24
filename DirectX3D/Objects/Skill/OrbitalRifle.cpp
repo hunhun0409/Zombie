@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 ObitalRifle::ObitalRifle()
-	:ActiveSkill("OrbitalRifle", "OrbitalRifle", 10, 5)
+	:ActiveSkill("OrbitalRifle", "OrbitalRifle", L"Textures/UI/RifleIcon.png", 10, 5)
 {
 	pivot = new Transform();
 

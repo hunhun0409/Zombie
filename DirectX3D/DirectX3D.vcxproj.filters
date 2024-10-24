@@ -321,9 +321,6 @@
     <ClInclude Include="Objects\Manager\InstanceCharacterManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Manager\ZombieManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Manager\ProjectileManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -334,12 +331,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Controller\PlayerController.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Manager\KunaiManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Manager\RobotManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Character\Fox.h">
@@ -532,6 +523,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Manager\SkillManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Manager\DataManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -806,9 +800,6 @@
     <ClCompile Include="Objects\Manager\InstanceCharacterManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Manager\ZombieManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Manager\ProjectileManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -816,12 +807,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Controller\PlayerController.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Manager\KunaiManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Manager\RobotManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Landscape\Terrain.cpp">
@@ -1011,6 +996,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Manager\SkillManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Manager\DataManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

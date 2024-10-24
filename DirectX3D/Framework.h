@@ -55,6 +55,9 @@
 #include <Assimp/postprocess.h>
 #include <FMOD/fmod.hpp>
 
+#include "JSON/json.hpp"
+using json = nlohmann::json;
+
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxguid.lib")
@@ -233,15 +236,16 @@ using namespace GameMath;
 #include "Objects/ZombieGame/UI/LevelUpButton.h"
 
 #include "Objects/Manager/InstanceObjectManager.h"
-#include "Objects/Manager/KunaiManager.h"
-#include "Objects/Manager/RobotManager.h"
+//#include "Objects/Manager/KunaiManager.h"
+//#include "Objects/Manager/RobotManager.h"
 #include "Objects/Manager/InstanceCharacterManager.h"
-#include "Objects/Manager/ZombieManager.h"
+//#include "Objects/Manager/ZombieManager.h"
 #include "Objects/Manager/ProjectileManager.h"
 #include "Objects/Manager/ParticleManager.h"
 #include "Objects/Manager/ColliderManager.h"
 #include "Objects/Manager/SkillManager.h"
 #include "Objects/Manager/UIManager.h"
+#include "Objects/Manager/DataManager.h"
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"

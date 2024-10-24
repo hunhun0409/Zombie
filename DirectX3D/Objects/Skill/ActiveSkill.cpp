@@ -1,14 +1,33 @@
 #include "Framework.h"
 
-ActiveSkill::ActiveSkill(string id, string name, float cooldown, float duration)
-    :Skill(id, name), cooldown(cooldown), duration(duration)
+ActiveSkill::ActiveSkill(SkillInfo info, float cooldown, float duration)
+    :Skill(info), baseCooldown(cooldown), cooldown(cooldown), baseDuration(duration), duration(duration)
+{
+}
+
+ActiveSkill::ActiveSkill(string id, string name, wstring iconPath, float cooldown, float duration)
+    :Skill(id, name, iconPath), baseCooldown(cooldown), cooldown(cooldown), baseDuration(duration), duration(duration)
 {
 }
 
 void ActiveSkill::Update()
 {
-    curCooldown -= DELTA;
-    curDuration -= DELTA;
+    if (isActive)
+    {
+        curDuration -= DELTA;
+        if (curDuration <= 0)
+        {
+            Deactivate();
+        }
+    }
+    else
+    {
+        curCooldown -= DELTA;
+        if (curCooldown <= 0)
+        {
+            Activate();
+        }
+    }
 }
 
 
@@ -19,22 +38,16 @@ void ActiveSkill::GUIRender()
 void ActiveSkill::Activate()
 {
     isActive = true;
-
     curCooldown = cooldown;
-    curDuration = duration;
 }
 
 void ActiveSkill::Deactivate()
 {
     isActive = false;
+    curDuration = duration;
 }
 
 void ActiveSkill::LevelUp()
 {
     Skill::LevelUp();
-}
-
-string ActiveSkill::GetDescription() const
-{
-    return string();
 }
