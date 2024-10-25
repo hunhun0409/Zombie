@@ -2,6 +2,8 @@
 
 class ExpBall : public InstanceObject
 {
+private:
+	const float MOVE_TIME = 1.0f;
 public:
 	ExpBall(Transform* transform);
 	~ExpBall() = default;
@@ -13,8 +15,12 @@ public:
 
 	void SetTarget(void* target);
 
+	void MoveTo();
+
 private:
 	Character* target = nullptr;
 
-	float value = 50.0f;
+	float value = 10.0f;
+
+	float moveTime = 0.0f;
 };

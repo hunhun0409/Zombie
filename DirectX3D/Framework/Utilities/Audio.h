@@ -7,7 +7,7 @@ using namespace FMOD;
 class Audio : public Singleton<Audio>
 {
 private:
-    friend class Singleton;
+    /*friend class Singleton;
 
     const int MAX_CHANNEL = 50;
 
@@ -15,6 +15,22 @@ private:
     {
         Sound* sound = nullptr;
         Channel* channel = nullptr;
+
+        ~SoundInfo()
+        {
+            sound->release();
+        }
+    };*/
+
+    friend class Singleton;
+    const int MAX_CHANNEL = 50;
+    const int CHANNELS_PER_SOUND = 50; // 사운드당 채널 수
+
+    struct SoundInfo
+    {
+        Sound* sound = nullptr;
+        vector<Channel*> channels;  // 채널을 벡터로 관리
+        int currentChannel = 0;     // 현재 사용할 채널 인덱스
 
         ~SoundInfo()
         {

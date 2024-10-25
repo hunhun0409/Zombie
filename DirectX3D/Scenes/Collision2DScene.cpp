@@ -13,6 +13,7 @@ Collision2DScene::Collision2DScene()
 	circle = new CircleCollider(20.0f);
 
 	panel = new LevelUpPanel();
+	panel2 = new GameOverPanel();
 
 	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
 
@@ -50,10 +51,16 @@ void Collision2DScene::Update()
 	circle->Pos() = mousePos;
 	circle->UpdateWorld();
 
+	if (KEY_DOWN('G'))
+	{
+		panel2->Show();
+	}
+	panel2->Update();
 
 	if (KEY_DOWN(VK_RBUTTON))
 	{
-		LevelUpSystem::Get()->LevelUp();
+		
+		//LevelUpSystem::Get()->LevelUp();
 	}
 	LevelUpSystem::Get()->Update();
 
@@ -75,12 +82,17 @@ void Collision2DScene::PostRender()
 	circle->Render();
 
 	StageManager::Get()->Render();
+	panel2->Render();
 
 	//UIManager::Get()->Render();
 	LevelUpSystem::Get()->Render();
+
+	
 }
 
 void Collision2DScene::GUIRender()
 {
+	panel2->GUIRender();
+
 	//UIManager::Get()->GUIRender();
 }

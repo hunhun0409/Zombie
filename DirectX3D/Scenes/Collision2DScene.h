@@ -17,5 +17,7 @@ private:
 	Collider2D* circle;
 
 	LevelUpPanel* panel;
+
+	GameOverPanel* panel2;
 };
 

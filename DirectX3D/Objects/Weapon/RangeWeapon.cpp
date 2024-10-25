@@ -13,6 +13,7 @@ RangeWeapon::RangeWeapon(string name, float interval)
 	end->UpdateWorld();
 	end->SetParent(mesh);
 
+	Audio::Get()->Add("RifleShot", "Sounds/Weapon/rifleShot.wav");
 
 	cooldown = interval;
 	Load();
@@ -56,6 +57,8 @@ void RangeWeapon::Shoot(float speed, float lifeTime)
 {
 	if (cooldown < interval) return;
 	cooldown = 0.0f;
+
+	Audio::Get()->Play("RifleShot", 0.1f);
 	ProjectileManager::Get()->Shoot(projectileName, start->GlobalPos(), (end->GlobalPos() - start->GlobalPos()).GetNormalized(), speed, lifeTime);
 }
 

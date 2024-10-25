@@ -22,7 +22,5 @@ private:
 	Terrain* terrain;
 	AStar* aStar;
 
-	LightBuffer::Light* light;
-
 	QuadTree* qt;
 };

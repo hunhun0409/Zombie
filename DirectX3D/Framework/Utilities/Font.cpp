@@ -58,7 +58,7 @@ void Font::AddColor(string key, float r, float g, float b)
 	brushes[key] = brush;
 }
 
-void Font::AddStyle(string key, wstring font, float size, DWRITE_FONT_WEIGHT weight, DWRITE_FONT_STYLE style, DWRITE_FONT_STRETCH stretch)
+void Font::AddStyle(string key, wstring font, float size, DWRITE_TEXT_ALIGNMENT textAlign, DWRITE_FONT_WEIGHT weight, DWRITE_FONT_STYLE style, DWRITE_FONT_STRETCH stretch)
 {
 	if (formats.count(key) > 0) return;
 
@@ -69,13 +69,13 @@ void Font::AddStyle(string key, wstring font, float size, DWRITE_FONT_WEIGHT wei
 	writeFactory->CreateTextFormat(font.c_str(), nullptr,
 		weight, style, stretch, size, L"ko", &format);
 
-	DWRITE_TEXT_ALIGNMENT textAlign = DWRITE_TEXT_ALIGNMENT_CENTER;
 	format->SetTextAlignment(textAlign);
 
 	format->SetLineSpacing(DWRITE_LINE_SPACING_METHOD_UNIFORM, size * 1.12f, 0.0f);
 
 	formats[key] = format;
 }
+
 
 void Font::SetColor(string key)
 {

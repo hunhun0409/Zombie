@@ -4,17 +4,13 @@
 ZombieScene::ZombieScene()
 {
 	Audio::Get()->Add("BG", "Sounds/BG/wind_forest.wav", true, true);
-	Audio::Get()->Add("move", "Sounds/Zombie/move.wav", false, false, true);
-
-	Audio::Get()->Play("BG", 0.1f);
-
+	
 	ParticleManager::Get()->Add("BloodExplode", "TextData/Particle/BloodExplode.fx", 20);
 	
 	DataManager::Get();
 	LevelUpSystem::Get();
 	
-	Environment::Get()->GetLight(0)->color = { 0.3f, 0.1f, 0.1f, 1.0f };
-
+	Environment::Get()->GetLight(0)->color = { 0.4f, 0.2f, 0.2f, 1.0f };
 
 }
 
@@ -30,10 +26,9 @@ ZombieScene::~ZombieScene()
 	ParticleManager::Delete();
 	InstanceCharacterManager::Delete();
 	InstanceObjectManager::Delete();
-	UIManager::Delete();
 	LevelUpSystem::Delete();
 	StageManager::Delete();
-
+	DataManager::Delete();
 }
 
 void ZombieScene::Update()
@@ -146,14 +141,16 @@ void ZombieScene::Start()
 
 	Panel* panel = new LevelUpPanel();
 	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
+
+	Audio::Get()->Play("BG", 0.5f);
 }
 
 void ZombieScene::End()
 {
-	InstanceCharacterManager::Get()->Remove("ZombieWoman");
-	InstanceCharacterManager::Get()->Remove("ZombieMutant");
-
-	InstanceObjectManager::Get()->Remove("exp");
+	//InstanceCharacterManager::Get()->Remove("ZombieWoman");
+	//InstanceCharacterManager::Get()->Remove("ZombieMutant");
+	//
+	//InstanceObjectManager::Get()->Remove("exp");
 
 	ColliderManager::Get()->Clear();
 	SkillManager::Get()->Clear();

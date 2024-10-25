@@ -67,7 +67,7 @@ GameManager::GameManager()
     
     //SceneManager::Get()->Create("Start", new TrailEffectScene());
     //SceneManager::Get()->Create("Start", new GameScene());
-    SceneManager::Get()->Create("Start", new ZombieScene());
+    SceneManager::Get()->Create("ZombieSurvival", new ZombieScene());
     //SceneManager::Get()->Create("Start", new WeaponScene());
     //SceneManager::Get()->Create("Start", new WaterScene());
     //SceneManager::Get()->Create("Start", new QuadTreeScene());
@@ -76,8 +76,8 @@ GameManager::GameManager()
     //SceneManager::Get()->Create("Start", new ScatteringScene());
 
     SceneManager::Get()->Add("Grid");
-    SceneManager::Get()->Add("Export");
     SceneManager::Get()->Add("Start");
+    SceneManager::Get()->Add("ZombieSurvival");
 }
 
 GameManager::~GameManager()

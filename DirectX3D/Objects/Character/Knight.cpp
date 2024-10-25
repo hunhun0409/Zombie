@@ -24,7 +24,7 @@ Knight::Knight()
 	Environment::Get()->AddLight();
 	light = Environment::Get()->GetLight(1);
 	light->type = 1;
-	light->range = 50.0f;
+	light->range = 150.0f;
 	
 
 	Observer::Get()->AddFloatParamEvent("HealPlayer", bind(&Knight::Heal, this, placeholders::_1));
@@ -42,9 +42,8 @@ void Knight::Update()
 {
 	if (!Active()) return;
 
-	
 	light->pos = GlobalPos();
-	light->pos.y = 10.0f;
+	light->pos.y = 20.0f;
 	Character::Update();
 	playerHud->Update();
 	sword->Update();
@@ -199,20 +198,6 @@ void Knight::ReadClips()
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::EnableAttack, this), 0.2f);
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::DisableAttack, this), 0.7f);
 	model->GetClip(SLASH)->SetEvent(bind(&Knight::Idle, this), 0.8f);
-	/*model->ReadClip("StrongAttack", false, 0, "mixamorig:Hips");
-	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::EnableAttack, this), 0.2f);
-	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::DisableAttack, this), 0.5f);
-	model->GetClip(STRONG_ATTACK)->SetEvent(bind(&Knight::Idle, this), 0.8f);*/
-
-	/*model->ReadClip("Sheath Sword 1", false, 0, "mixamorig:Hips");
-	model->GetClip(SHEATH1)->SetEvent(bind(&Knight::Sheath, this), 0.6f);
-	model->ReadClip("Sheath Sword 2", false, 0, "mixamorig:Hips");
-	model->GetClip(SHEATH2)->SetEvent(bind(&Knight::SheathEnd, this), 0.6f);
-	model->ReadClip("Draw Sword 1", false, 0, "mixamorig:Hips");
-	model->GetClip(DRAW1)->SetEvent(bind(&Knight::Draw, this), 0.6f);
-	model->ReadClip("Draw Sword 2", false, 0, "mixamorig:Hips");
-	model->GetClip(DRAW2)->SetEvent(bind(&Knight::DrawEnd, this), 0.6f);*/
-
 	model->ReadClip("Die");
 	model->GetClip(DIE)->SetEvent(bind(&Knight::Dead, this), 0.8f);
 }

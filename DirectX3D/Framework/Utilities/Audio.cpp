@@ -27,9 +27,9 @@ void Audio::Update()
 void Audio::Add(string key, string file, bool bgm, bool loop, bool is3D)
 {
     if (sounds.count(key) > 0) return;
-
     SoundInfo* info = new SoundInfo();
 
+    // 기존 사운드 생성 코드는 동일
     if (bgm)
     {
         soundSystem->createStream(file.c_str(),
@@ -64,7 +64,7 @@ void Audio::Add(string key, string file, bool bgm, bool loop, bool is3D)
             }
         }
     }
-
+    info->channels.resize(CHANNELS_PER_SOUND, nullptr);
     sounds[key] = info;
 }
 
@@ -72,9 +72,53 @@ void Audio::Play(string key, float volume)
 {
     if (sounds.count(key) == 0) return;
 
-    soundSystem->playSound(sounds[key]->sound,
-        nullptr, false, &sounds[key]->channel);
-    sounds[key]->channel->setVolume(volume);
+    SoundInfo* info = sounds[key];
+
+    // 다음 사용 가능한 채널 찾기
+    bool isPlaying = false;
+    int channelIndex = info->currentChannel;
+
+    // 현재 채널이 재생 중인지 확인
+    if (info->channels[channelIndex] != nullptr)
+    {
+        info->channels[channelIndex]->isPlaying(&isPlaying);
+    }
+
+    // 재생 중이 아닌 채널 찾기
+    if (isPlaying)
+    {
+        for (int i = 0; i < CHANNELS_PER_SOUND; i++)
+        {
+            if (info->channels[i] == nullptr)
+            {
+                channelIndex = i;
+                isPlaying = false;
+                break;
+            }
+            else
+            {
+                info->channels[i]->isPlaying(&isPlaying);
+                if (!isPlaying)
+                {
+                    channelIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    // 모든 채널이 사용 중이면 다음 채널을 강제로 사용
+    if (isPlaying)
+    {
+        channelIndex = (info->currentChannel + 1) % CHANNELS_PER_SOUND;
+    }
+
+    // 새 채널에서 사운드 재생
+    soundSystem->playSound(info->sound, nullptr, false, &info->channels[channelIndex]);
+    info->channels[channelIndex]->setVolume(volume);
+
+    // 다음에 사용할 채널 인덱스 업데이트
+    info->currentChannel = (channelIndex + 1) % CHANNELS_PER_SOUND;
 
 }
 
@@ -82,15 +126,54 @@ void Audio::Play(string key, Vector3 position, float volume)
 {
     if (sounds.count(key) == 0) return;
 
-    soundSystem->playSound(sounds[key]->sound,
-        nullptr, false, &sounds[key]->channel);
+    SoundInfo* info = sounds[key];
 
-    sounds[key]->channel->setVolume(volume);
+    // 다음 사용 가능한 채널 찾기 (위와 동일한 로직)
+    bool isPlaying = false;
+    int channelIndex = info->currentChannel;
+
+    if (info->channels[channelIndex] != nullptr)
+    {
+        info->channels[channelIndex]->isPlaying(&isPlaying);
+    }
+
+    if (isPlaying)
+    {
+        for (int i = 0; i < CHANNELS_PER_SOUND; i++)
+        {
+            if (info->channels[i] == nullptr)
+            {
+                channelIndex = i;
+                isPlaying = false;
+                break;
+            }
+            else
+            {
+                info->channels[i]->isPlaying(&isPlaying);
+                if (!isPlaying)
+                {
+                    channelIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (isPlaying)
+    {
+        channelIndex = (info->currentChannel + 1) % CHANNELS_PER_SOUND;
+    }
+
+    // 새 채널에서 사운드 재생
+    soundSystem->playSound(info->sound, nullptr, false, &info->channels[channelIndex]);
+    info->channels[channelIndex]->setVolume(volume);
+
     FMOD_VECTOR pos = { position.x, position.y, position.z };
     FMOD_VECTOR vel = {};
-    sounds[key]->channel->set3DAttributes(&pos, &vel);
-    sounds[key]->channel->set3DMinMaxDistance(1.0f, 10000.0f);
-    
+    info->channels[channelIndex]->set3DAttributes(&pos, &vel);
+    info->channels[channelIndex]->set3DMinMaxDistance(1.0f, 10000.0f);
+
+    info->currentChannel = (channelIndex + 1) % CHANNELS_PER_SOUND;
 }
 
 void Audio::PlayRandom(string key, int min, int max, float volume)
@@ -107,36 +190,63 @@ void Audio::Stop(string key)
 {
     if (sounds.count(key) == 0) return;
 
-    sounds[key]->channel->stop();
+    // 모든 채널 정지
+    for (Channel* channel : sounds[key]->channels)
+    {
+        if (channel != nullptr)
+            channel->stop();
+    }
 }
 
 void Audio::Pause(string key)
 {
     if (sounds.count(key) == 0) return;
 
-    sounds[key]->channel->setPaused(true);
+    // 모든 채널 일시정지
+    for (Channel* channel : sounds[key]->channels)
+    {
+        if (channel != nullptr)
+            channel->setPaused(true);
+    }
 }
 
 void Audio::Resume(string key)
 {
     if (sounds.count(key) == 0) return;
 
-    sounds[key]->channel->setPaused(false);
+    // 모든 채널 재개
+    for (Channel* channel : sounds[key]->channels)
+    {
+        if (channel != nullptr)
+            channel->setPaused(false);
+    }
 }
 
 void Audio::SetVolume(string key, float volume)
 {
     if (sounds.count(key) == 0) return;
 
-    sounds[key]->channel->setVolume(volume);
+    // 모든 채널의 볼륨 설정
+    for (Channel* channel : sounds[key]->channels)
+    {
+        if (channel != nullptr)
+            channel->setVolume(volume);
+    }
 }
 
 bool Audio::IsPlaySound(string key)
 {
     if (sounds.count(key) == 0) return false;
 
+    // 하나라도 재생 중이면 true 반환
     bool isPlay = false;
-    sounds[key]->channel->isPlaying(&isPlay);
-
-    return isPlay;
+    for (Channel* channel : sounds[key]->channels)
+    {
+        if (channel != nullptr)
+        {
+            channel->isPlaying(&isPlay);
+            if (isPlay) return true;
+        }
+    }
+    return false;
 }

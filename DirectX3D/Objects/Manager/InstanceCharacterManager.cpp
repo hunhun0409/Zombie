@@ -215,18 +215,21 @@ void InstanceCharacterManager::Spawn(string key, UINT spawnAmount)
     if (totalInstancies.count(key) == 0) return;
 
     Vector3 dir;
-    dir.x = Random(-1.0f, 1.0f);
-    dir.z = Random(-1.0f, 1.0f);
-
-    float distance = Random(10.0f, SPAWN_RANGE);
-
-    Vector3 randomPos = target->Pos() + dir.GetNormalized() * SPAWN_RANGE;
-    randomPos.y = 0.0f;
+   
 
     for (InstanceCharacter* instanceCharacter : totalCharacters[key])
     {
         if (instanceCharacter->GetTransform()->Active() == false)
         {
+            float distance;
+            dir.x = Random(-1.0f, 1.0f);
+            dir.z = Random(-1.0f, 1.0f);
+
+            distance = Random(10.0f, SPAWN_RANGE);
+
+            Vector3 randomPos = target->Pos() + dir.GetNormalized() * SPAWN_RANGE;
+            randomPos.y = 0.0f;
+
             instanceCharacter->Spawn(randomPos);
             spawnAmount--;
             if (spawnAmount <= 0)

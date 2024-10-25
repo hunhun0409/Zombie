@@ -4,8 +4,8 @@ class StageManager : public Singleton<StageManager> // 좀비 스폰수, 스탯, 시간 �
 {
 private:
 	friend class Singleton;
-	StageManager() = default;
-	~StageManager() = default;
+	StageManager();
+	~StageManager();
 
 public:
 	void Update();
@@ -13,10 +13,9 @@ public:
 
 	void Spawn();
 
-	
+	void GameOver();
 
 private:
-	float gameTime = 0.0f;
 
 	int level;
 	int min;
@@ -26,6 +25,10 @@ private:
 	float spawnRate;
 	float spawnTime = 0.0f;
 
+	GameOverPanel* gameOverPanel;
+
+
 public:
+	float gameTime = 0.0f;
 	int killCount = 0;
 };

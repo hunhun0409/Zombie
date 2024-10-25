@@ -180,6 +180,7 @@ using namespace GameMath;
 #include "Objects/UI/Panel.h"
 #include "Objects/UI/ProgressBar.h"
 
+
 #include "Objects/Particle/Particle.h"
 #include "Objects/Particle/Sprite.h"
 #include "Objects/Particle/Spark.h"
@@ -244,7 +245,10 @@ using namespace GameMath;
 #include "Objects/ZombieGame/ExpBall.h"
 #include "Objects/ZombieGame/UI/LevelUpPanel.h"
 #include "Objects/ZombieGame/UI/LevelUpButton.h"
+#include "Objects/ZombieGame/UI/GameOverPanel.h"
+
 #include "Objects/ZombieGame/System/LevelUpSystem.h"
+
 
 
 #include "Objects/Manager/InstanceObjectManager.h"

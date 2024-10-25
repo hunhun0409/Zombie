@@ -23,6 +23,9 @@ Character::Character(string name)
 	Observer::Get()->AddEvent("LevelUpEnd", bind(&Character::LevelUpEnd, this));
 
 	pivot = new Transform();
+
+	magnetCollider = new SphereCollider(5.0f);
+	magnetCollider->SetParent(this);
 	//pivot->SetParent(this);
 }
 
@@ -31,6 +34,7 @@ Character::~Character()
 	delete model;
 	delete characterMovement;
 	delete pivot;
+	delete magnetCollider;
 }
 
 void Character::Update()
@@ -54,6 +58,7 @@ void Character::Update()
 			SetActive(false);
 			Observer::Get()->ExcuteEvent("ZombieBiteEnd");
 			InstanceCharacterManager::Get()->SetTarget(nullptr);
+			StageManager::Get()->GameOver();
 		}
 	}
 	pivot->Pos() = Pos();
@@ -65,6 +70,7 @@ void Character::Update()
 		controller->Update();
 	}
 
+	magnetCollider->Update();
 	UpdateWorld();
 	collider->Update();
 	model->Update();
@@ -74,6 +80,7 @@ void Character::Render()
 {
 	if (!Active()) return;
 
+	magnetCollider->Render();
 	collider->Render();
 	model->Render();
 }

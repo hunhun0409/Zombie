@@ -1,11 +1,22 @@
 #include "Framework.h"
 
 
+StageManager::StageManager()
+{
+	gameOverPanel = new GameOverPanel();
+	Audio::Get()->Add("ZombieSound", "Sounds/Zombie/zombieSound.wav");
+}
+
+StageManager::~StageManager()
+{
+	delete gameOverPanel;
+}
+
 void StageManager::Update()
 {
 	gameTime += DELTA;
 
-	level = max(1, gameTime / 30);
+	level = max(1, gameTime / 10);
 
 	min = gameTime / 60;
 	sec = (int)gameTime % 60;
@@ -18,6 +29,8 @@ void StageManager::Update()
 		spawnTime += spawnRate;
 		Spawn();
 	}
+
+	gameOverPanel->Update();
 }
 
 void StageManager::Render()
@@ -65,10 +78,19 @@ void StageManager::Render()
 
 	string sKill = "Kill Count : " + to_string(killCount);
 	Font::Get()->RenderText(sKill, Float2(pos.x - 200, pos.y), boxSize);
+
+	gameOverPanel->Render();
 }
 
 void StageManager::Spawn()
 {
 	InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1 + level);
 	InstanceCharacterManager::Get()->Spawn("ZombieMutant", 1 + level);
+
+	Audio::Get()->Play("ZombieSound", 1.0f);
+}
+
+void StageManager::GameOver()
+{
+	gameOverPanel->Show();
 }

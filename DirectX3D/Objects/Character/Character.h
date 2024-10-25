@@ -28,7 +28,7 @@ public:
 		float finalArmor = 0;
 	};
 private:
-	const float DEAD_TIME = 5.0f;
+	const float DEAD_TIME = 3.0f;
 public:
 	Character(string name);
 	~Character();
@@ -80,6 +80,7 @@ public:
 	void LevelUpEnd();
 
 	Transform* GetPivot() { return pivot; }
+	SphereCollider* GetMagnetCollider() { return magnetCollider; }
 
 
 protected:
@@ -88,6 +89,8 @@ protected:
 
 	ModelAnimator* model;
 	CharacterMovement* characterMovement;
+
+	SphereCollider* magnetCollider;
 
 	int curState = 0;
 	unordered_map<int, string> states;
@@ -116,4 +119,6 @@ protected:
 
 	bool isDead = false;
 	float deadTime = DEAD_TIME;
+
+
 };
