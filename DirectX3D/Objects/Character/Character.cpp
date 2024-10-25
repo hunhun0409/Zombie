@@ -21,17 +21,29 @@ Character::Character(string name)
 	ColliderManager::Get()->Add(collider);
 
 	Observer::Get()->AddEvent("LevelUpEnd", bind(&Character::LevelUpEnd, this));
+
+	pivot = new Transform();
+	//pivot->SetParent(this);
 }
 
 Character::~Character()
 {
 	delete model;
 	delete characterMovement;
+	delete pivot;
 }
 
 void Character::Update()
 {
 	if (!Active()) return;
+
+	recoverTime -= DELTA;
+	if (recoverTime <= 0)
+	{
+		Heal(finalStatus.finalRecovery);
+		recoverTime++;
+		playerHud->UpdateHp(curHP/finalStatus.finalHp);
+	}
 
 	if (isDead)
 	{
@@ -44,6 +56,9 @@ void Character::Update()
 			InstanceCharacterManager::Get()->SetTarget(nullptr);
 		}
 	}
+	pivot->Pos() = Pos();
+	pivot->Rot().y += DELTA;
+	pivot->UpdateWorld();
 
 	if (controller)
 	{
@@ -77,19 +92,41 @@ void Character::Move()
 	{
 		characterMovement->Move();
 	}
+	else
+	{
+		characterMovement->Stop();
+	}
 }
 
 void Character::Rotate()
 {
 }
 
+void Character::Heal(float amount)
+{
+	curHP = min(finalStatus.finalHp, curHP + amount);
+}
+
 void Character::TakeDamage(float damage)
 {
-	curHP -= damage;
+	float ratio = 1 - (finalStatus.finalArmor / 100.0f);
+
+	curHP -= damage * ratio;
 	if (curHP > 0)
 	{
 		ParticleManager::Get()->Play("BloodExplode", Pos() + Vector3(0, 6, 0));
 	}
+}
+
+void Character::UpdateStatus()
+{
+	finalStatus.finalHp = initialStatus.initialHp + upgradeStatus.upgradeHp;
+	finalStatus.finalAttack = initialStatus.initialAttack + upgradeStatus.upgradeAttack;
+	finalStatus.finalArmor = initialStatus.initialArmor + upgradeStatus.upgradeArmor;
+	finalStatus.finalRecovery = initialStatus.initialRecovery + upgradeStatus.upgradeRecovery;
+
+	float ratio = curHP / finalStatus.finalHp;
+	Observer::Get()->ExcuteFloatParamEvent("UpdateHp", ratio);
 }
 
 void Character::SetState(int state, float playRate, float takeTime)

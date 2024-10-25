@@ -103,4 +103,7 @@ struct InstanceData
 {
     Matrix world = XMMatrixIdentity();
     int index = 0;
+    float dissolveAmount;
+    float dissolveWidth; 
+    float padding;
 };

@@ -58,6 +58,8 @@ private:
 
 	void SetBehavior(Behavior behavior);
 
+	void SetDamage(float dmg) { damage = dmg; }
+	void SetHp(float hp);
 private:
 
 	Transform* rightHandTransform;
@@ -67,8 +69,8 @@ private:
 	Behavior curBehavior = NORMAL;
 
 	// Player Detection
-	float detectionRange = 100.0f;
-	float alertRange = 60.0f;
+	float detectionRange = 500.0f;
+	float alertRange = 100.0f;
 	float attackRange = 6.0f;
 
 	// Patrol Behavior

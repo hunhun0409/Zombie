@@ -28,8 +28,6 @@ void LevelUpButton::Render()
 	Button::Render();
 	icon->Render();
 
-	
-
 	Float2 boxSize;
 	boxSize.x = size.x;
 	boxSize.y = size.y;

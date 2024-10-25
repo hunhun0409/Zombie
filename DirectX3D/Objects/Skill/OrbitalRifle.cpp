@@ -1,7 +1,7 @@
 #include "Framework.h"
 
 OrbitalRifle::OrbitalRifle()
-	:ActiveSkill("OrbitalRifle", "OrbitalRifle", L"Textures/UI/RifleIcon.png", 10, 5)
+	:ActiveSkill("rifle", "rifle", L"Textures/UI/RifleIcon.png", 10, 5)
 {
 	pivot = new Transform();
 
@@ -9,11 +9,10 @@ OrbitalRifle::OrbitalRifle()
 	for (int i = 0; i < 5; i++)
 	{
 		RangeWeapon* rifle = new RangeWeapon("Rifle", 0.2f);
-		rifle->SetParent(pivot);
 		rifle->GetMesh()->Pos().x = distance * cos(i * XM_2PI / 5);
 		rifle->GetMesh()->Pos().z = distance * sin(i * XM_2PI / 5);
 		rifle->GetMesh()->Pos().y = distance * 0.5f;
-		rifle->SetProjectile("bullet", to_string(i), damage);
+		rifle->SetProjectile("bullet", to_string(i), 0);
 		rifles.push_back(rifle);
 	}
 }
@@ -30,12 +29,10 @@ void OrbitalRifle::Update()
 {
 	if (!owner->Active()) return;
 
-	pivot->Pos() = owner->GlobalPos();
-	pivot->Rot().y += DELTA;
-	pivot->UpdateWorld();
 
 	for (int i = 0; i < level; i++)
 	{
+		
 		rifles[i]->Update();
 		rifles[i]->Shoot();
 	}
@@ -79,5 +76,30 @@ void OrbitalRifle::SetOwner(Character* owner)
 	for (RangeWeapon* rifle : rifles)
 	{
 		rifle->SetOwner(owner);
+
+		ProjectileManager::Get()->UpdateDamage(rifle->GetProjectileName(), owner->GetFinalStatus().finalAttack * damageRatio);
 	}
 }
+
+void OrbitalRifle::LevelUp()
+{
+	ActiveSkill::LevelUp();
+	for (int i = 0; i < level; i++)
+	{
+		rifles[i]->SetActive(true);
+	}
+}
+
+void OrbitalRifle::UpdateChange()
+{
+	for (RangeWeapon* rifle : rifles)
+	{
+		rifle->SetOwner(owner);
+		pivot = owner->GetPivot();
+		rifle->SetParent(pivot);
+
+
+		ProjectileManager::Get()->UpdateDamage(rifle->GetProjectileName(), owner->GetFinalStatus().finalAttack * damageRatio);
+	}
+}
+

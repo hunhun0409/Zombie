@@ -41,6 +41,7 @@ public:
 
 	void Dead();
 
+	
 public:
 	MeleeWeapon* GetWeapon() { return sword; }
 
@@ -58,5 +59,5 @@ private:
 
 	MeleeWeapon* sword;
 
-	PlayerHUD* playerHud;
+	LightBuffer::Light* light;
 };

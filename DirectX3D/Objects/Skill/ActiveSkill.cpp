@@ -51,3 +51,4 @@ void ActiveSkill::LevelUp()
 {
     Skill::LevelUp();
 }
+

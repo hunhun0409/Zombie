@@ -5,6 +5,28 @@ class CharacterMovement;
 
 class Character : public Transform
 {
+public:
+	struct StatusInitialInfo
+	{
+		float initialHp = 50.0f;
+		float initialAttack = 90.0f;
+		float initialRecovery = 0.0f;
+		float initialArmor = 0.0f;
+	};
+	struct StatusUpgradeInfo
+	{
+		float upgradeHp = 0;
+		float upgradeAttack = 0;
+		float upgradeRecovery = 0;
+		float upgradeArmor = 0;
+	};
+	struct FinalStatus
+	{
+		float finalHp = 0;
+		float finalAttack = 0;
+		float finalRecovery = 0;
+		float finalArmor = 0;
+	};
 private:
 	const float DEAD_TIME = 5.0f;
 public:
@@ -29,7 +51,13 @@ public:
 
 	void SetShader(wstring file) { model->SetShader(file); }
 
+	void Heal(float amount);
+
 	virtual void TakeDamage(float damage);
+
+	StatusUpgradeInfo& GetUpgradeStatus() { return upgradeStatus; }
+	FinalStatus& GetFinalStatus() { return finalStatus; }
+	void UpdateStatus();
 
 protected:
 
@@ -51,6 +79,9 @@ public:
 	void LevelUp();
 	void LevelUpEnd();
 
+	Transform* GetPivot() { return pivot; }
+
+
 protected:
 	CharacterController* controller = nullptr;
 	CapsuleCollider* collider;
@@ -63,15 +94,26 @@ protected:
 
 	Camera* camera;
 
-	float maxHP = 100.0f;
-	float curHP = 100.0f;
+	PlayerHUD* playerHud;
+
+
+	StatusInitialInfo initialStatus;
+	StatusUpgradeInfo upgradeStatus;
+	FinalStatus finalStatus;
+
+	float curHP = 50.0f;
 
 	float maxExp = 100.0f;
 	float curExp = 0.0f;
 
+	float recoverTime = 1.0f;
+
+
 public:
 	bool isPlayingRootMotion = false;
 protected:
+	Transform* pivot;
+
 	bool isDead = false;
 	float deadTime = DEAD_TIME;
 };

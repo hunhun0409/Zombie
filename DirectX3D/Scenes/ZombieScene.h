@@ -19,11 +19,8 @@ public:
 private:
 	Knight* player;
 
-	Model* house;
 	Terrain* terrain;
 	AStar* aStar;
-
-	ActiveSkill* skill;
 
 	LightBuffer::Light* light;
 

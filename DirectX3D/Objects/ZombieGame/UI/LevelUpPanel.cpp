@@ -66,7 +66,7 @@ void LevelUpPanel::Show(Vector3 pos)
 
 		DataManager::SkillDescriptionData descriptions;
 		DataManager::Get()->GetDescription(skill->Info().id, descriptions);
-		data.description = descriptions.descriptions[skill->GetCurrentLevel() + 1];
+		data.description = descriptions.descriptions[skill->GetCurrentLevel()];
 		static_cast<LevelUpButton*>(btn.second)->SetData(data);
 		idx++;
 	}
@@ -78,6 +78,7 @@ void LevelUpPanel::Hide()
 {
 	Panel::Hide();
 	Timer::Get()->SetDeltaScale(1.0f);
+	SkillManager::Get()->UpdateChange();
 }
 
 void LevelUpPanel::Select1()

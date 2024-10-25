@@ -24,6 +24,12 @@ void SkillManager::Init()
 	ActiveSkill* orbitalRifle = new OrbitalRifle();
 	totalActiveSkills[orbitalRifle->Info().id] = orbitalRifle;
 
+	ActiveSkill* orbitalSniper = new OrbitalSniper();
+	totalActiveSkills[orbitalSniper->Info().id] = orbitalSniper;
+
+	ActiveSkill* heal = new Heal();
+	totalActiveSkills[heal->Info().id] = heal;
+
 	//Armor : passive 등등
 	PassiveSkill* hp = new HpUpgrade();
 	totalPassiveSkills[hp->Info().id] = hp;
@@ -61,6 +67,13 @@ void SkillManager::Render()
 		skill.second->Render();
 	}
 }
+void SkillManager::GUIRender()
+{
+	for (auto skill : currentActiveSkills)
+	{
+		skill.second->GUIRender();
+	}
+}
 bool SkillManager::Add(string key)
 {
 	// Active 스킬 체크 및 추가
@@ -86,14 +99,22 @@ bool SkillManager::LevelUp(string key)
 {
 
 	//to do : 없는 스킬 레벨업 경우 추가해줘야함
-	if (currentActiveSkills.count(key) != 0)
+	if (totalActiveSkills.count(key) != 0)
 	{
-		currentActiveSkills[key]->LevelUp();
+		if (totalActiveSkills[key]->GetCurrentLevel() == 0)
+		{
+			Add(key);
+		}
+		totalActiveSkills[key]->LevelUp();
 		return true;
 	}
-	if (currentPassiveSkills.count(key) != 0)
+	if (totalPassiveSkills.count(key) != 0)
 	{
-		currentPassiveSkills[key]->LevelUp();
+		if (totalPassiveSkills[key]->GetCurrentLevel() == 0)
+		{
+			Add(key);
+		}
+		totalPassiveSkills[key]->LevelUp();
 		return true;
 	}
 	return false;
@@ -113,6 +134,9 @@ vector<Skill*> SkillManager::GetThreeRandomSkills()
 	for (auto& pair : totalActiveSkills)
 	{
 		Skill* skill = pair.second;
+		if (skill->Info().id == "heal")
+			continue;
+
 		if (currentActiveSkills.size() < 5)
 		{
 			if (!skill->IsMaxLevel())
@@ -132,9 +156,19 @@ vector<Skill*> SkillManager::GetThreeRandomSkills()
 	for (auto& pair : totalPassiveSkills)
 	{
 		Skill* skill = pair.second;
-		if (!skill->IsMaxLevel())
+		if (currentPassiveSkills.size() < 5)
 		{
-			availableSkills.push_back(skill);
+			if (!skill->IsMaxLevel())
+			{
+				availableSkills.push_back(skill);
+			}
+		}
+		else
+		{
+			if (skill->Info().isUnlocked && !skill->IsMaxLevel())
+			{
+				availableSkills.push_back(skill);
+			}
 		}
 	}
 
@@ -145,6 +179,12 @@ vector<Skill*> SkillManager::GetThreeRandomSkills()
 		selectedSkills.push_back(availableSkills[randIndex]);
 		availableSkills.erase(availableSkills.begin() + randIndex);
 	}
+
+	while (selectedSkills.size() < 3)
+	{
+		selectedSkills.push_back(totalActiveSkills["heal"]);
+	}
+
 	return selectedSkills;
 }
 
@@ -191,4 +231,25 @@ int SkillManager::GetSkillLevel(string key)
 		return totalPassiveSkills[key]->GetCurrentLevel();
 
 	return -1;
+}
+
+void SkillManager::UpdateChange()
+{
+	for (auto skill : totalActiveSkills)
+	{
+		skill.second->UpdateChange();
+	}
+}
+
+void SkillManager::SetOwner(Character* owner)
+{
+	this->owner = owner;
+	for (auto skill : totalActiveSkills)
+	{
+		skill.second->SetOwner(owner);
+	}
+	for (auto skill : totalPassiveSkills)
+	{
+		skill.second->SetOwner(owner);
+	}
 }

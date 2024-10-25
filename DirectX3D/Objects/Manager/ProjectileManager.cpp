@@ -78,6 +78,15 @@ void ProjectileManager::GUIRender()
     }
 }
 
+void ProjectileManager::UpdateDamage(string key, float damage)
+{
+    if (totalProjectiles.count(key) == 0) return;
+    for (auto projectile : totalProjectiles[key])
+    {
+        projectile->GetDamage() = damage;
+    }
+}
+
 bool ProjectileManager::Shoot(string key, Vector3 startPos, Vector3 dir, float speed, float maxLifeTime)
 {
     for (Projectile* projectile : totalProjectiles[key])

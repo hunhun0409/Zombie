@@ -252,6 +252,7 @@
     <ClInclude Include="Objects\Manager\ParticleManager.h" />
     <ClInclude Include="Objects\Manager\ProjectileManager.h" />
     <ClInclude Include="Objects\Manager\SkillManager.h" />
+    <ClInclude Include="Objects\Manager\StageManager.h" />
     <ClInclude Include="Objects\Manager\UIManager.h" />
     <ClInclude Include="Objects\MineCraft\BlockManager.h" />
     <ClInclude Include="Objects\MineCraft\MineUI.h" />
@@ -268,8 +269,10 @@
     <ClInclude Include="Objects\Skill\ActiveSkill.h" />
     <ClInclude Include="Objects\Skill\ArmorUpgrade.h" />
     <ClInclude Include="Objects\Skill\AttackUpgrade.h" />
+    <ClInclude Include="Objects\Skill\Heal.h" />
     <ClInclude Include="Objects\Skill\HpUpgrade.h" />
     <ClInclude Include="Objects\Skill\OrbitalRifle.h" />
+    <ClInclude Include="Objects\Skill\OrbitalSniper.h" />
     <ClInclude Include="Objects\Skill\PassiveSkill.h" />
     <ClInclude Include="Objects\Skill\RecoveryUpgrade.h" />
     <ClInclude Include="Objects\Skill\Skill.h" />
@@ -433,6 +436,7 @@
     <ClCompile Include="Objects\Manager\ParticleManager.cpp" />
     <ClCompile Include="Objects\Manager\ProjectileManager.cpp" />
     <ClCompile Include="Objects\Manager\SkillManager.cpp" />
+    <ClCompile Include="Objects\Manager\StageManager.cpp" />
     <ClCompile Include="Objects\Manager\UIManager.cpp" />
     <ClCompile Include="Objects\MineCraft\BlockManager.cpp" />
     <ClCompile Include="Objects\MineCraft\MineUI.cpp" />
@@ -449,8 +453,10 @@
     <ClCompile Include="Objects\Skill\ActiveSkill.cpp" />
     <ClCompile Include="Objects\Skill\ArmorUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\AttackUpgrade.cpp" />
+    <ClCompile Include="Objects\Skill\Heal.cpp" />
     <ClCompile Include="Objects\Skill\HpUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\OrbitalRifle.cpp" />
+    <ClCompile Include="Objects\Skill\OrbitalSniper.cpp" />
     <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />
     <ClCompile Include="Objects\Skill\RecoveryUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\Skill.cpp" />

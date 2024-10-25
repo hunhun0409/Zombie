@@ -14,6 +14,8 @@ public:
 	void Render();
 	void GUIRender();
 
+	void UpdateDamage(string key, float damage);
+
 	bool Shoot(string name, Vector3 startPos, Vector3 dir, float speed, float maxLifeTime = 10.0f);
 	
 	void Add(string key, string name, float damage);

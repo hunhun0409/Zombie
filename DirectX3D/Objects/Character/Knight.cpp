@@ -12,12 +12,22 @@ Knight::Knight()
 	sword = new MeleeWeapon("sword");
 	sword->SetParent(rightHand);
 	sword->Damage() = 50;
+	sword->SetOwner(this);
 	Idle();
 
-	maxHP = 100.0f;
-	curHP = maxHP;
+
+	UpdateStatus();
+	curHP = finalStatus.finalHp;
 
 	playerHud = new PlayerHUD(this);
+
+	Environment::Get()->AddLight();
+	light = Environment::Get()->GetLight(1);
+	light->type = 1;
+	light->range = 50.0f;
+	
+
+	Observer::Get()->AddFloatParamEvent("HealPlayer", bind(&Knight::Heal, this, placeholders::_1));
 }
 
 Knight::~Knight()
@@ -32,6 +42,9 @@ void Knight::Update()
 {
 	if (!Active()) return;
 
+	
+	light->pos = GlobalPos();
+	light->pos.y = 10.0f;
 	Character::Update();
 	playerHud->Update();
 	sword->Update();
@@ -140,11 +153,13 @@ void Knight::Ctrl()
 
 void Knight::EnableAttack()
 {
+	isPlayingRootMotion = true;
 	sword->EnableAttack();
 }
 
 void Knight::DisableAttack()
 {
+	isPlayingRootMotion = false;
 	sword->DisableAttack();
 }
 
@@ -152,7 +167,7 @@ void Knight::TakeDamage(float damage)
 {
 	Character::TakeDamage(damage);
 
-	float ratio = curHP / maxHP;
+	float ratio = curHP / finalStatus.finalHp;
 	Observer::Get()->ExcuteFloatParamEvent("UpdateHp", ratio);
 	if (curHP <= 0)
 	{

@@ -17,8 +17,10 @@ public:
 	void Hide();
 
 
+public:
+	int level = 1;
 private:
 	//bool isActive = false;
 	LevelUpPanel* levelUpPanel;
-	int level = 1;
+	
 };

@@ -28,7 +28,7 @@ public:
 
 	void SetAstar(AStar* aStar);
 	void SetTerrain(Terrain* terrain);
-
+	void SetShader(wstring file);
 	
 private:
 	void ApplySeperation();

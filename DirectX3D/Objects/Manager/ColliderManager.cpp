@@ -54,6 +54,8 @@ void ColliderManager::UpdateColliderState(Collider* collider)
 	if (totalColliders.count(collider) == 0) return;
 	totalColliders[collider] = collider->Active();
 
+	if (quadTree == nullptr) return;
+
 	if (collider->Active())
 	{
 		quadTree->Insert(collider);

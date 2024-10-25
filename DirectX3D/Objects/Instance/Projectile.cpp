@@ -115,7 +115,7 @@ void Projectile::OnCollision(Collider* other)
         InstanceZombie* zombie = dynamic_cast<InstanceZombie*>(own);
         if (zombie == nullptr) return;
 
-        zombie->TakeDamage(5);
+        zombie->TakeDamage(damage);
 
         transform->SetActive(false);
         collider->SetActive(false);

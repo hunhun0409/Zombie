@@ -93,3 +93,9 @@ void CharacterMovement::Move()
 	direction = XMVector3TransformCoord(velocity, rotY);
 	owner->Pos() += direction *  DELTA;
 }
+
+void CharacterMovement::Stop()
+{
+	velocity = Vector3();
+	acceleration = Vector3();
+}

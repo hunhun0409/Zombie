@@ -103,7 +103,8 @@ void MeleeWeapon::OnCollision(Collider* other)
 
 		if (overlappedColliders.count(other) == 0)
 		{
-			zombie->TakeDamage(50);
+			float damage = owner->GetFinalStatus().finalAttack;
+			zombie->TakeDamage(damage);
 			overlappedColliders.insert(other);
 		}
 	}

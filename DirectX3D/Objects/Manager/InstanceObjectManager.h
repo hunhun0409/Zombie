@@ -22,6 +22,8 @@ public:
 
 	void Spawn(string key, Vector3 pos, Vector3 rot = Vector3(), Vector3 scale = Vector3(1, 1, 1));
 
+	void SetShader(wstring file);
+
 private:
 	unordered_map<string, ModelInstancing*>::iterator iter;
 	unordered_map<string, ModelInstancing*> totalInstancies;

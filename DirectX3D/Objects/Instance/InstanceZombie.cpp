@@ -71,8 +71,6 @@ void InstanceZombie::Spawn(Vector3 pos)
 	Vector3 velocity = (target->GlobalPos() - transform->GlobalPos()).GetNormalized();
 
 	curHp = maxHp;
-
-	//Audio::Get()->Play("move", transform->GlobalPos(), velocity);
 }
 
 void InstanceZombie::TakeDamage(float damage)
@@ -311,6 +309,7 @@ void InstanceZombie::Dead()
 	Vector3 pos = transform->GlobalPos();
 	pos.y = 2.0f;
 	InstanceObjectManager::Get()->Spawn("exp", pos);
+	StageManager::Get()->killCount++;
 }
 
 void InstanceZombie::ScreamEnd()
@@ -351,5 +350,11 @@ void InstanceZombie::SetBehavior(Behavior behavior)
 	pathUpdateInterval = 0.0f;
 
 	curBehavior = behavior;
+}
+
+void InstanceZombie::SetHp(float hp)
+{
+	maxHp = hp;
+	curHp = hp;
 }
 

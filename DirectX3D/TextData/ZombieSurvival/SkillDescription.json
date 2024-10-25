@@ -9,6 +9,15 @@
     "level5": "Increase rifle amount by 1."
   },
   {
+    "id": "sniper",
+    "name": "sniper",
+    "level1": "Spawn sniper orbit around player.",
+    "level2": "Increase rifle amount by 1.",
+    "level3": "Increase rifle amount by 1.",
+    "level4": "Increase rifle amount by 1.",
+    "level5": "Increase rifle amount by 1."
+  },
+  {
     "id": "armor",
     "name": "armor",
     "level1": "Increase player armor by 10.",
@@ -43,5 +52,14 @@
     "level3": "Increase player recovery by 1.",
     "level4": "Increase player recovery by 1.",
     "level5": "Increase player recovery by 1."
+  },
+  {
+    "id": "heal",
+    "name": "heal",
+    "level1": "Heal player by 50.",
+    "level2": "Heal player by 50.",
+    "level3": "Heal player by 50.",
+    "level4": "Heal player by 50.",
+    "level5": "Heal player by 50."
   }
 ]

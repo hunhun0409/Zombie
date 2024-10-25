@@ -5,7 +5,7 @@ WeaponScene::WeaponScene()
 {
 	//sword = new MeleeWeapon("sword");
 
-	gun = new RangeWeapon("Rifle", 0.1f);
+	gun = new RangeWeapon("sniper", 0.1f);
 	gun->SetProjectile("bullet", "0", 10);
 }
 

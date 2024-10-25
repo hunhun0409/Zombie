@@ -52,6 +52,10 @@ void PlayerController::Update()
 			controlledCharacter->GetCharacterMovement()->ApplyAcceleration(inputDirection.GetNormalized());
 		}
 	}
+	else
+	{
+		controlledCharacter->GetCharacterMovement()->Stop();
+	}
 	
 	if (KEY_DOWN('R'))
 	{

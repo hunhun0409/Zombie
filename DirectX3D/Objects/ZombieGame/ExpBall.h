@@ -16,5 +16,5 @@ public:
 private:
 	Character* target = nullptr;
 
-	float value = 10.0f;
+	float value = 50.0f;
 };

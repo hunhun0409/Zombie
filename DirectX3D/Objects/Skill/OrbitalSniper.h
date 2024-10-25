@@ -1,13 +1,14 @@
 #pragma once
 
-class OrbitalRifle : public ActiveSkill
+class OrbitalSniper : public ActiveSkill
 {
 public:
-	OrbitalRifle();
-	~OrbitalRifle();
+	OrbitalSniper();
+	~OrbitalSniper();
 
 	virtual void Update() override;
 	void Render();
+	virtual void GUIRender() override;
 
 	virtual void Activate() override;
 	virtual void Deactivate() override;
@@ -19,10 +20,10 @@ public:
 	virtual void UpdateChange() override;
 private:
 	Transform* pivot;
-	vector<RangeWeapon*> rifles;
+	vector<RangeWeapon*> snipers;
 
-	float distance = 10.0f;
+	float distance = 20.0f;
 	float damage = 10.0f;
 
-	float damageRatio = 0.3f;
+	float damageRatio = 1.5f;
 };

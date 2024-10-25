@@ -15,6 +15,7 @@ public:
 	void SetProjectile(string name, string id, float damage);
 
 	void Load();
+	string GetProjectileName() { return projectileName; }
 private:
 	float interval;
 	float cooldown;

@@ -21,4 +21,5 @@ private:
 	vector<Quad*> skillIcon;
 	ProgressBar* expBar;
 	ProgressBar* hpBar;
+
 };

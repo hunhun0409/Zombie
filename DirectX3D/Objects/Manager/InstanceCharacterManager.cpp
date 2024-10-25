@@ -280,6 +280,14 @@ void InstanceCharacterManager::SetTerrain(Terrain* terrain)
     }
 }
 
+void InstanceCharacterManager::SetShader(wstring file)
+{
+    for (pair<string, ModelAnimatorInstancing*> modelInstance : totalInstancies)
+    {
+        modelInstance.second->SetShader(file);
+    }
+}
+
 void InstanceCharacterManager::ApplySeperation()
 {
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)

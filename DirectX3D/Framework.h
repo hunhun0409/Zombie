@@ -213,12 +213,15 @@ using namespace GameMath;
 #include "Objects/Skill/Skill.h"
 #include "Objects/Skill/ActiveSkill.h"
 #include "Objects/Skill/OrbitalRifle.h"
+#include "Objects/Skill/OrbitalSniper.h"
+#include "Objects/Skill/Heal.h"
 
 #include "Objects/Skill/PassiveSkill.h"
 #include "Objects/Skill/HpUpgrade.h"
 #include "Objects/Skill/ArmorUpgrade.h"
 #include "Objects/Skill/AttackUpgrade.h"
 #include "Objects/Skill/RecoveryUpgrade.h"
+
 
 
 #include "Objects/Character/Character.h"
@@ -255,6 +258,7 @@ using namespace GameMath;
 #include "Objects/Manager/SkillManager.h"
 #include "Objects/Manager/UIManager.h"
 #include "Objects/Manager/DataManager.h"
+#include "Objects/Manager/StageManager.h"
 
 
 #include "Controller/CharacterController.h"

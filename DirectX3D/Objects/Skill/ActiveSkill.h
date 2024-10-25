@@ -19,6 +19,8 @@ public:
 	bool IsOnCooldown() const { return curCooldown > 0.0f; }
 	float GetRemainingCooldown() const { return curCooldown; }
 	bool IsActive() const { return isActive; }
+
+	virtual void UpdateChange() {};
 protected:
 	bool isActive = false;
 

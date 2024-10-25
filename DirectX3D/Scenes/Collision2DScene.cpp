@@ -15,6 +15,8 @@ Collision2DScene::Collision2DScene()
 	panel = new LevelUpPanel();
 
 	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
+
+	StageManager::Get();
 }
 
 Collision2DScene::~Collision2DScene()
@@ -55,6 +57,7 @@ void Collision2DScene::Update()
 	}
 	LevelUpSystem::Get()->Update();
 
+	StageManager::Get()->Update();
 	//UIManager::Get()->Update();
 }
 
@@ -70,6 +73,8 @@ void Collision2DScene::PostRender()
 {
 	rect->Render();
 	circle->Render();
+
+	StageManager::Get()->Render();
 
 	//UIManager::Get()->Render();
 	LevelUpSystem::Get()->Render();

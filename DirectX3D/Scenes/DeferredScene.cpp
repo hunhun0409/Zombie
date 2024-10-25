@@ -4,13 +4,12 @@
 DeferredScene::DeferredScene()
 {
 	gBuffer = new GBuffer();
-
-	player = new Mannequin();
-	player->Pos() = { 00, 0, 00 };
-
 	material = new Material(L"Light/Deferred.hlsl");
 	UINT vertices[4] = { 0, 1, 2, 3 };
 	vertexBuffer = new VertexBuffer(vertices, sizeof(UINT), 4);
+
+	player = new Mannequin();
+	player->Pos() = { 00, 0, 00 };
 
 	skybox = new Skybox(L"Textures/skybox/Night.png");
 

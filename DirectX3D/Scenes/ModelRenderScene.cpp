@@ -3,7 +3,7 @@
 
 ModelRenderScene::ModelRenderScene()
 {
-    model = new Model("sphere");
+    model = new Model("sniper");
     //model->GetMesh(0)->SetMaterial(model->AddMaterial("exp"));
     //model->GetMesh(1)->SetMaterial(model->AddMaterial("2"));
     //model->GetMesh(2)->SetMaterial(model->AddMaterial("3"));

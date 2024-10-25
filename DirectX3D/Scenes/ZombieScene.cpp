@@ -10,22 +10,39 @@ ZombieScene::ZombieScene()
 
 	ParticleManager::Get()->Add("BloodExplode", "TextData/Particle/BloodExplode.fx", 20);
 	
+	DataManager::Get();
+	LevelUpSystem::Get();
+	
+	Environment::Get()->GetLight(0)->color = { 0.3f, 0.1f, 0.1f, 1.0f };
+
+
 }
 
 ZombieScene::~ZombieScene()
 {
 	delete terrain;
 	delete player;
-	delete skill;
+
+
+	delete aStar;
+	delete qt;
 
 	ParticleManager::Delete();
 	InstanceCharacterManager::Delete();
 	InstanceObjectManager::Delete();
 	UIManager::Delete();
+	LevelUpSystem::Delete();
+	StageManager::Delete();
+
 }
 
 void ZombieScene::Update()
 {
+	if (KEY_DOWN('L'))
+	{
+		player->LevelUp();
+
+	}
 	if (KEY_DOWN('P'))
 	{
 		for (int i = 0; i < 1; i++)
@@ -36,7 +53,7 @@ void ZombieScene::Update()
 	}
 	aStar->Update();
 	player->Update();
-	skill->Update();
+
 
 	InstanceObjectManager::Get()->Update();
 	InstanceCharacterManager::Get()->Update();
@@ -44,6 +61,11 @@ void ZombieScene::Update()
 	ProjectileManager::Get()->Update();
 	ColliderManager::Get()->Update();
 	UIManager::Get()->Update();
+
+	SkillManager::Get()->Update();
+	LevelUpSystem::Get()->Update();
+	StageManager::Get()->Update();
+
 }
 
 void ZombieScene::PreRender()
@@ -54,15 +76,15 @@ void ZombieScene::Render()
 {
 	terrain->Render();
 	//aStar->Render();
-	skill->Render();
 
 	InstanceObjectManager::Get()->Render();
 	InstanceCharacterManager::Get()->Render();
-	ParticleManager::Get()->Render();
 	ProjectileManager::Get()->Render();
 
-	//ColliderManager::Get()->Render();
+	ParticleManager::Get()->Render();
 
+	//ColliderManager::Get()->Render();
+	SkillManager::Get()->Render();
 	player->Render();
 }
 
@@ -70,6 +92,8 @@ void ZombieScene::PostRender()
 {
 	player->PostRender();
 	UIManager::Get()->Render();
+	LevelUpSystem::Get()->Render();
+	StageManager::Get()->Render();
 }
 
 void ZombieScene::GUIRender()
@@ -77,6 +101,7 @@ void ZombieScene::GUIRender()
 	//ColliderManager::Get()->GUIRender();
 	//player->GUIRender();
 	InstanceObjectManager::Get()->GUIRender();
+	SkillManager::Get()->GUIRender();
 	//InstanceCharacterManager::Get()->GUIRender();
 	//ProjectileManager::Get()->GUIRender();
 }
@@ -85,6 +110,7 @@ void ZombieScene::Start()
 {
 	terrain = new Terrain();
 	
+	//Ãæµ¹
 	qt = new QuadTree(Vector3(0, 0, 0), Vector3(512, 50, 512));
 	ColliderManager::Get()->SetQuadTree(qt);
 
@@ -95,10 +121,10 @@ void ZombieScene::Start()
 	player->Pos() = { 256, 0, 256 };
 	player->GetCollider();
 
-	skill = new OrbitalRifle();
-	skill->SetOwner(player);
-	
 	PlayerController::Get()->Possess(player);
+
+	SkillManager::Get();
+	SkillManager::Get()->SetOwner(player);
 
 	CAM->SetTarget(player);
 	CAM->TargetOptionLoad("PlayerCamera");
@@ -106,13 +132,15 @@ void ZombieScene::Start()
 
 	player->SetCamera(CAM);
 
-	InstanceObjectManager::Get()->Add("exp", "sphere");
+	StageManager::Get();
 
 	InstanceCharacterManager::Get()->Add("ZombieWoman", "ZombieWoman");
 	InstanceCharacterManager::Get()->Add("ZombieMutant", "ZombieMutant");
 	InstanceCharacterManager::Get()->SetTarget(player);
 	InstanceCharacterManager::Get()->SetAstar(aStar);
 	InstanceCharacterManager::Get()->SetTerrain(terrain);
+
+	InstanceObjectManager::Get()->Add("exp", "sphere");
 	
 	Observer::Get()->ExcuteParamEvent("ExpSetTarget", player);
 
@@ -128,6 +156,9 @@ void ZombieScene::End()
 	InstanceObjectManager::Get()->Remove("exp");
 
 	ColliderManager::Get()->Clear();
+	SkillManager::Get()->Clear();
+
+	qt->Clear();
 
 	UIManager::Get()->Remove("LevelUpPanel");
 }

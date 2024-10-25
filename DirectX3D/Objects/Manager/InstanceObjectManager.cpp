@@ -160,3 +160,11 @@ void InstanceObjectManager::Spawn(string key, Vector3 pos, Vector3 rot, Vector3 
         }
     }
 }
+
+void InstanceObjectManager::SetShader(wstring file)
+{
+    for (pair<string, ModelInstancing*> instance : totalInstancies)
+    {
+        instance.second->SetShader(file);
+    }
+}

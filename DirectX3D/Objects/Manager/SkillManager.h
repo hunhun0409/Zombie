@@ -10,6 +10,7 @@ public:
 
 	void Update();
 	void Render();
+	void GUIRender();
 
 	bool Add(string key);
 	bool LevelUp(string key);
@@ -25,7 +26,13 @@ public:
 	ActiveSkill* GetActiveSkill(string key);
 	int GetSkillLevel(string key);
 
+	void UpdateChange();
+
+	void SetOwner(Character* owner);
+
 private:
+	Character* owner;
+
 	unordered_map<string, ActiveSkill*> totalActiveSkills;//전체 액티브 스킬 목록
 	unordered_map<string, PassiveSkill*> totalPassiveSkills;//전체 패시브 스킬 목록
 	unordered_map<string, ActiveSkill*> currentActiveSkills;//현재 플레이어한테 적용된 액티브 스킬

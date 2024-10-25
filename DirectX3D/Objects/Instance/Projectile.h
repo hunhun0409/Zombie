@@ -15,7 +15,7 @@ public:
 	CapsuleCollider* GetCollider() { return collider; }
 	Transform* GetTransform() { return transform; }
 
-	float GetDamage() { return damage; }
+	float& GetDamage() { return damage; }
 
 	void OnCollision(Collider* other);
 

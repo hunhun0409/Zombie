@@ -15,6 +15,8 @@ public:
 	void ApplyGravity();
 	void Move();
 
+	void Stop();
+
 	void SetOwner(Transform* owner) { this->owner = owner; }
 
 	float& MaxSpeed() { return maxSpeed; }

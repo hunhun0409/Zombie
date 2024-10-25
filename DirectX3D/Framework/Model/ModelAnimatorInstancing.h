@@ -55,6 +55,7 @@ public:
 
     UINT GetClipSize() { return clips.size(); }
 
+
 private:
     void UpdateFrame(UINT instanceID, Motion& motion);
     void UpdateTransforms();
