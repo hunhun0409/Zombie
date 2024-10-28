@@ -23,6 +23,7 @@ InstanceObjectManager::~InstanceObjectManager()
 
 void InstanceObjectManager::Update()
 {
+    
     for (pair<string, InstanceObjects> instanceObjects : totalObjects)
     {
         for (InstanceObject* instanceObject : instanceObjects.second)
@@ -66,9 +67,10 @@ void InstanceObjectManager::PostRender()
 
 void InstanceObjectManager::GUIRender()
 {
-    ImGui::Text("InstanceObjectManager");
+    
+    //ImGui::Text("InstanceObjectManager");
 
-    for (pair<string, InstanceObjects> instanceObjects : totalObjects)
+    /*for (pair<string, InstanceObjects> instanceObjects : totalObjects)
     {
         for (InstanceObject* instanceObject : instanceObjects.second)
         {
@@ -77,7 +79,7 @@ void InstanceObjectManager::GUIRender()
                 instanceObject->GUIRender();
             }
         }
-    }
+    }*/
 }
 
 void InstanceObjectManager::Add(string key, string name)

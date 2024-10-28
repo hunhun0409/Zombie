@@ -13,11 +13,12 @@ private:
 public:
 	void Update();	
 
+	float GetDeltaScale() { return deltaScale; }
 	void SetDeltaScale(float value) { deltaScale = value; }
+
 	void SetLockFPS(int value) { lockFPS = value; }
 
-	float GetElapsedTime() 
-	{ return elapsedTime > EPSILON ? EPSILON : elapsedTime * deltaScale; }
+	float GetElapsedTime();
 	int GetFPS() { return frameRate; }
 
 private:

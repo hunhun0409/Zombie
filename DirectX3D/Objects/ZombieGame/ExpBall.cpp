@@ -12,7 +12,10 @@ void ExpBall::Update()
 	InstanceObject::Update();
 	if (target)
 	{
-		if (collider->IsCollision(target->GetMagnetCollider()))
+		if (target->IsDead()) return;
+
+		float distance = Distance(target->GlobalPos(), transform->GlobalPos());
+		if (distance <= target->GetFinalStatus().finalMagnet)
 		{
 			MoveTo();
 		}
@@ -40,10 +43,11 @@ void ExpBall::SetTarget(void* target)
 
 void ExpBall::MoveTo()
 {
-	//to do : 굳이 콜라이더로? 그냥 거리 계산 하면 안됨?
 	moveTime += DELTA;
 
+	
+	Vector3 startPos = transform->GlobalPos();
 	Vector3 destPos = target->GlobalPos();
 
-	transform->Pos() = Lerp(destPos, transform->Pos(), moveTime);
+	transform->Pos() = Lerp(startPos, destPos, (moveTime * moveTime) / MOVE_TIME);
 }

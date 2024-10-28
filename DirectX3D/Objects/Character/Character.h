@@ -12,6 +12,7 @@ public:
 		float initialAttack = 90.0f;
 		float initialRecovery = 0.0f;
 		float initialArmor = 0.0f;
+		float initialMagnet = 0.0f;
 	};
 	struct StatusUpgradeInfo
 	{
@@ -19,6 +20,7 @@ public:
 		float upgradeAttack = 0;
 		float upgradeRecovery = 0;
 		float upgradeArmor = 0;
+		float upgradeMagnet = 0;
 	};
 	struct FinalStatus
 	{
@@ -26,6 +28,7 @@ public:
 		float finalAttack = 0;
 		float finalRecovery = 0;
 		float finalArmor = 0;
+		float finalMagnet = 0;
 	};
 private:
 	const float DEAD_TIME = 3.0f;
@@ -80,8 +83,6 @@ public:
 	void LevelUpEnd();
 
 	Transform* GetPivot() { return pivot; }
-	SphereCollider* GetMagnetCollider() { return magnetCollider; }
-
 
 protected:
 	CharacterController* controller = nullptr;
@@ -89,8 +90,6 @@ protected:
 
 	ModelAnimator* model;
 	CharacterMovement* characterMovement;
-
-	SphereCollider* magnetCollider;
 
 	int curState = 0;
 	unordered_map<int, string> states;
@@ -119,6 +118,5 @@ protected:
 
 	bool isDead = false;
 	float deadTime = DEAD_TIME;
-
 
 };

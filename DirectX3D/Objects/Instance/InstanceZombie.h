@@ -37,6 +37,9 @@ public:
 
 	void SetRightHandIndex(UINT index) { rightHandIndex = index; }
 	virtual void TakeDamage(float damage) override;
+
+	void SetDamage(float dmg) { damage = dmg; }
+	void SetHp(float hp);
 private:
 	void ProcessBehavior();
 
@@ -58,8 +61,7 @@ private:
 
 	void SetBehavior(Behavior behavior);
 
-	void SetDamage(float dmg) { damage = dmg; }
-	void SetHp(float hp);
+	
 private:
 
 	Transform* rightHandTransform;

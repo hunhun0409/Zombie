@@ -18,12 +18,14 @@ InstanceCharacterManager::~InstanceCharacterManager()
 
 void InstanceCharacterManager::Update()
 {
+    activeZombieCount = 0;
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
     {
         for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
         {
             if (instanceCharacter->GetTransform()->Active())
             {
+                ++activeZombieCount;
                 instanceCharacter->Update();
             }
         }
@@ -40,12 +42,14 @@ void InstanceCharacterManager::Update()
 
 void InstanceCharacterManager::Render()
 {
+    renderingZombieCount = 0;
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
     {
         for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
         {
             if (instanceCharacter->GetTransform()->Active())
             {
+                ++renderingZombieCount;
                 instanceCharacter->Render();
             }
         }
@@ -63,7 +67,9 @@ void InstanceCharacterManager::PostRender()
 
 void InstanceCharacterManager::GUIRender()
 {
-    ImGui::Text("InstanceCharacterManager");
+    ImGui::Text("Zombie COunt : %d", activeZombieCount);
+    ImGui::Text("Rendering Zombie COunt : %d", renderingZombieCount);
+    /*ImGui::Text("InstanceCharacterManager");
 
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
     {
@@ -74,7 +80,7 @@ void InstanceCharacterManager::GUIRender()
                 instanceCharacter->GUIRender();
             }
         }
-    }
+    }*/
 }
 
 
@@ -288,6 +294,28 @@ void InstanceCharacterManager::SetShader(wstring file)
     for (pair<string, ModelAnimatorInstancing*> modelInstance : totalInstancies)
     {
         modelInstance.second->SetShader(file);
+    }
+}
+
+void InstanceCharacterManager::SetHP(float amount)
+{
+    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
+    {
+        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
+        {
+            static_cast<InstanceZombie*>(instanceCharacter)->SetHp(amount);
+        }
+    }
+}
+
+void InstanceCharacterManager::SetDamage(float amount)
+{
+    for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
+    {
+        for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
+        {
+            static_cast<InstanceZombie*>(instanceCharacter)->SetDamage(amount);
+        }
     }
 }
 

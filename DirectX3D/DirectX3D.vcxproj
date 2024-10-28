@@ -271,6 +271,7 @@
     <ClInclude Include="Objects\Skill\AttackUpgrade.h" />
     <ClInclude Include="Objects\Skill\Heal.h" />
     <ClInclude Include="Objects\Skill\HpUpgrade.h" />
+    <ClInclude Include="Objects\Skill\MagnetUpgrade.h" />
     <ClInclude Include="Objects\Skill\OrbitalRifle.h" />
     <ClInclude Include="Objects\Skill\OrbitalSniper.h" />
     <ClInclude Include="Objects\Skill\PassiveSkill.h" />
@@ -456,6 +457,7 @@
     <ClCompile Include="Objects\Skill\AttackUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\Heal.cpp" />
     <ClCompile Include="Objects\Skill\HpUpgrade.cpp" />
+    <ClCompile Include="Objects\Skill\MagnetUpgrade.cpp" />
     <ClCompile Include="Objects\Skill\OrbitalRifle.cpp" />
     <ClCompile Include="Objects\Skill\OrbitalSniper.cpp" />
     <ClCompile Include="Objects\Skill\PassiveSkill.cpp" />

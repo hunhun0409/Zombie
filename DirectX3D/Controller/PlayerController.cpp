@@ -27,6 +27,7 @@ void PlayerController::Update()
 {
 	if (controlledCharacter == nullptr) return;
 	if (controlledCharacter->IsDead()) return;
+	if (Timer::Get()->GetDeltaScale() == 0) return;
 
 	if (!controlledCharacter->isPlayingRootMotion)
 	{

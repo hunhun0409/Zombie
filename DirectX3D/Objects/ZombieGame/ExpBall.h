@@ -3,7 +3,7 @@
 class ExpBall : public InstanceObject
 {
 private:
-	const float MOVE_TIME = 1.0f;
+	const float MOVE_TIME = 2.0f;
 public:
 	ExpBall(Transform* transform);
 	~ExpBall() = default;

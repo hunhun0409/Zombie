@@ -30,6 +30,9 @@ public:
 	void SetTerrain(Terrain* terrain);
 	void SetShader(wstring file);
 	
+	void SetHP(float amount);
+	void SetDamage(float amount);
+
 private:
 	void ApplySeperation();
 
@@ -47,4 +50,8 @@ private:
 
 	AStar* aStar;
 	Terrain* terrain;
+
+
+	int activeZombieCount = 0;
+	int renderingZombieCount = 0;
 };

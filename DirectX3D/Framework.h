@@ -222,6 +222,7 @@ using namespace GameMath;
 #include "Objects/Skill/ArmorUpgrade.h"
 #include "Objects/Skill/AttackUpgrade.h"
 #include "Objects/Skill/RecoveryUpgrade.h"
+#include "Objects/Skill/MagnetUpgrade.h"
 
 
 
@@ -249,8 +250,6 @@ using namespace GameMath;
 
 #include "Objects/ZombieGame/System/LevelUpSystem.h"
 
-
-
 #include "Objects/Manager/InstanceObjectManager.h"
 //#include "Objects/Manager/KunaiManager.h"
 //#include "Objects/Manager/RobotManager.h"
@@ -263,7 +262,6 @@ using namespace GameMath;
 #include "Objects/Manager/UIManager.h"
 #include "Objects/Manager/DataManager.h"
 #include "Objects/Manager/StageManager.h"
-
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"

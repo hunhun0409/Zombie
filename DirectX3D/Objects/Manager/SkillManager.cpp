@@ -42,6 +42,9 @@ void SkillManager::Init()
 
 	PassiveSkill* recovery = new RecoveryUpgrade();
 	totalPassiveSkills[recovery->Info().id] = recovery;
+
+	PassiveSkill* magnet = new MagnetUpgrade();
+	totalPassiveSkills[magnet->Info().id] = magnet;
 }
 
 void SkillManager::Update()

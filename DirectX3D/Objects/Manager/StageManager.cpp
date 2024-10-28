@@ -15,8 +15,14 @@ StageManager::~StageManager()
 void StageManager::Update()
 {
 	gameTime += DELTA;
+	levelUpTime += DELTA;
 
-	level = max(1, gameTime / 10);
+	if (levelUpTime >= LEVEL_UP_TIME)
+	{
+		LevelUp();
+		levelUpTime -= LEVEL_UP_TIME;
+	}
+	
 
 	min = gameTime / 60;
 	sec = (int)gameTime % 60;
@@ -82,6 +88,13 @@ void StageManager::Render()
 	gameOverPanel->Render();
 }
 
+void StageManager::GUIRender()
+{
+	ImGui::Text("Zombie Hp : %.1f", zombieHp);
+	ImGui::Text("Zombie Damage : %.1f", zombieDamage);
+
+}
+
 void StageManager::Spawn()
 {
 	InstanceCharacterManager::Get()->Spawn("ZombieWoman", 1 + level);
@@ -93,4 +106,15 @@ void StageManager::Spawn()
 void StageManager::GameOver()
 {
 	gameOverPanel->Show();
+}
+
+void StageManager::LevelUp()
+{
+	level++;
+
+	zombieDamage = INITIAL_DAMAGE * (1.0f + level * 0.1f);
+	InstanceCharacterManager::Get()->SetDamage(zombieDamage);
+
+	zombieHp = INITIAL_HP * (1.0f + level * 0.1f);
+	InstanceCharacterManager::Get()->SetHP(zombieHp);
 }

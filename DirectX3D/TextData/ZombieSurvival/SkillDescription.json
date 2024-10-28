@@ -61,5 +61,14 @@
     "level3": "Heal player by 50.",
     "level4": "Heal player by 50.",
     "level5": "Heal player by 50."
+  },
+  {
+    "id": "magnet",
+    "name": "magnet",
+    "level1": "Increase Exp pickup range.",
+    "level2": "Increase Exp pickup range.",
+    "level3": "Increase Exp pickup range.",
+    "level4": "Increase Exp pickup range.",
+    "level5": "Increase Exp pickup range."
   }
 ]

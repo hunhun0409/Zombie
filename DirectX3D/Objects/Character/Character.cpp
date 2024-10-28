@@ -23,10 +23,6 @@ Character::Character(string name)
 	Observer::Get()->AddEvent("LevelUpEnd", bind(&Character::LevelUpEnd, this));
 
 	pivot = new Transform();
-
-	magnetCollider = new SphereCollider(5.0f);
-	magnetCollider->SetParent(this);
-	//pivot->SetParent(this);
 }
 
 Character::~Character()
@@ -34,7 +30,6 @@ Character::~Character()
 	delete model;
 	delete characterMovement;
 	delete pivot;
-	delete magnetCollider;
 }
 
 void Character::Update()
@@ -70,7 +65,6 @@ void Character::Update()
 		controller->Update();
 	}
 
-	magnetCollider->Update();
 	UpdateWorld();
 	collider->Update();
 	model->Update();
@@ -80,7 +74,6 @@ void Character::Render()
 {
 	if (!Active()) return;
 
-	magnetCollider->Render();
 	collider->Render();
 	model->Render();
 }
@@ -131,6 +124,7 @@ void Character::UpdateStatus()
 	finalStatus.finalAttack = initialStatus.initialAttack + upgradeStatus.upgradeAttack;
 	finalStatus.finalArmor = initialStatus.initialArmor + upgradeStatus.upgradeArmor;
 	finalStatus.finalRecovery = initialStatus.initialRecovery + upgradeStatus.upgradeRecovery;
+	finalStatus.finalMagnet = initialStatus.initialMagnet + upgradeStatus.upgradeMagnet;
 
 	float ratio = curHP / finalStatus.finalHp;
 	Observer::Get()->ExcuteFloatParamEvent("UpdateHp", ratio);
@@ -161,12 +155,9 @@ void Character::GetExp(float amount)
 void Character::LevelUp()
 {
 	LevelUpSystem::Get()->LevelUp();
-	//UIManager::Get()->Show("LevelUpPanel");
 }
 
 void Character::LevelUpEnd()
 {
 	Timer::Get()->SetDeltaScale(1.0f);
-
-
 }

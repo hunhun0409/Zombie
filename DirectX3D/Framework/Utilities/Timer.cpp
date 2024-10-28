@@ -22,11 +22,15 @@ void Timer::Update()
 
     if (lockFPS != 0)
     {
-        while (elapsedTime < (1.0f / lockFPS))
+        float targetFrameTime = 1.0f / (float)lockFPS;
+
+        while (elapsedTime < targetFrameTime)
         {
             QueryPerformanceCounter((LARGE_INTEGER*)&curTime);
             elapsedTime = (float)(curTime - lastTime) * timeScale;
         }
+
+        elapsedTime = targetFrameTime;
     }
 
     lastTime = curTime;
@@ -40,4 +44,12 @@ void Timer::Update()
         frameCount = 0;
         oneSecCount = 0.0f;
     }    
+}
+
+float Timer::GetElapsedTime()
+{
+    if (lockFPS > 0)
+        return (1.0f / lockFPS) * deltaScale;
+
+    return min(elapsedTime, EPSILON) * deltaScale;
 }

@@ -3,6 +3,8 @@
 
 ZombieScene::ZombieScene()
 {
+	Timer::Get()->SetLockFPS(60);
+
 	Audio::Get()->Add("BG", "Sounds/BG/wind_forest.wav", true, true);
 	
 	ParticleManager::Get()->Add("BloodExplode", "TextData/Particle/BloodExplode.fx", 20);
@@ -78,7 +80,7 @@ void ZombieScene::Render()
 
 	ParticleManager::Get()->Render();
 
-	//ColliderManager::Get()->Render();
+	ColliderManager::Get()->Render();
 	SkillManager::Get()->Render();
 	player->Render();
 }
@@ -93,11 +95,12 @@ void ZombieScene::PostRender()
 
 void ZombieScene::GUIRender()
 {
-	//ColliderManager::Get()->GUIRender();
+	StageManager::Get()->GUIRender();
+	//InstanceObjectManager::Get()->GUIRender();
+	ColliderManager::Get()->GUIRender();
 	//player->GUIRender();
-	InstanceObjectManager::Get()->GUIRender();
-	SkillManager::Get()->GUIRender();
-	//InstanceCharacterManager::Get()->GUIRender();
+	//SkillManager::Get()->GUIRender();
+	InstanceCharacterManager::Get()->GUIRender();
 	//ProjectileManager::Get()->GUIRender();
 }
 

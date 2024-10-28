@@ -32,4 +32,5 @@ private:
 	unordered_map<string, InstanceObjects> totalObjects;
 
 	bool isChanged = false;
+
 };
