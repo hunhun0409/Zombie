@@ -9,7 +9,7 @@ PlayerController::PlayerController(Character* character)
 void PlayerController::Possess(Character* character)
 {
 	CharacterController::Possess(character);
-	showCursor = false;
+	showCursor = true;
 	ShowCursor(showCursor);
 }
 

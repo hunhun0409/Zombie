@@ -54,7 +54,6 @@ void LevelUpPanel::Render()
 
 void LevelUpPanel::Show(Vector3 pos)
 {
-	Timer::Get()->SetDeltaScale(0.0f);
 
 	int idx = 0;
 	for (auto btn : buttons)
@@ -77,8 +76,8 @@ void LevelUpPanel::Show(Vector3 pos)
 void LevelUpPanel::Hide()
 {
 	Panel::Hide();
-	Timer::Get()->SetDeltaScale(1.0f);
 	SkillManager::Get()->UpdateChange();
+	LevelUpSystem::Get()->Hide();
 }
 
 void LevelUpPanel::Select1()

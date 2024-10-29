@@ -23,4 +23,6 @@ private:
 	//bool isActive = false;
 	LevelUpPanel* levelUpPanel;
 	
+	bool isSelecting = false;
+	int stack = 0;
 };

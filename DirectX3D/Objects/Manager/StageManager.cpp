@@ -112,7 +112,7 @@ void StageManager::LevelUp()
 {
 	level++;
 
-	zombieDamage = INITIAL_DAMAGE * (1.0f + level * 0.1f);
+	zombieDamage = INITIAL_DAMAGE * (1.0f + level * 0.2f);
 	InstanceCharacterManager::Get()->SetDamage(zombieDamage);
 
 	zombieHp = INITIAL_HP * (1.0f + level * 0.1f);

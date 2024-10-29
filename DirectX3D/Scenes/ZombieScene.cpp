@@ -3,7 +3,7 @@
 
 ZombieScene::ZombieScene()
 {
-	Timer::Get()->SetLockFPS(60);
+	Timer::Get()->SetLockFPS(80);
 
 	Audio::Get()->Add("BG", "Sounds/BG/wind_forest.wav", true, true);
 	
@@ -13,6 +13,10 @@ ZombieScene::ZombieScene()
 	LevelUpSystem::Get();
 	
 	Environment::Get()->GetLight(0)->color = { 0.4f, 0.2f, 0.2f, 1.0f };
+
+	tutorialPanel = new Panel(L"Textures/UI/tutorial.png");
+	tutorialPanel->Show({ CENTER_X, CENTER_Y, 0 });
+	tutorialPanel->UpdateWorld();
 
 }
 
@@ -25,6 +29,9 @@ ZombieScene::~ZombieScene()
 	delete aStar;
 	delete qt;
 
+	delete tutorialPanel;
+
+
 	ParticleManager::Delete();
 	InstanceCharacterManager::Delete();
 	InstanceObjectManager::Delete();
@@ -35,6 +42,21 @@ ZombieScene::~ZombieScene()
 
 void ZombieScene::Update()
 {
+	if (isTutorial)
+	{
+		stopTime -= DELTA;
+		if (stopTime <= 0)
+		{
+			Timer::Get()->SetDeltaScale(0.0f);
+		}
+		if (KEY_DOWN(VK_RBUTTON))
+		{
+			isTutorial = false;
+			Timer::Get()->SetDeltaScale(1.0f);
+			tutorialPanel->Hide();
+		}
+	}
+
 	if (KEY_DOWN('L'))
 	{
 		player->LevelUp();
@@ -57,7 +79,6 @@ void ZombieScene::Update()
 	ParticleManager::Get()->Update();
 	ProjectileManager::Get()->Update();
 	ColliderManager::Get()->Update();
-	UIManager::Get()->Update();
 
 	SkillManager::Get()->Update();
 	LevelUpSystem::Get()->Update();
@@ -72,7 +93,6 @@ void ZombieScene::PreRender()
 void ZombieScene::Render()
 {
 	terrain->Render();
-	//aStar->Render();
 
 	InstanceObjectManager::Get()->Render();
 	InstanceCharacterManager::Get()->Render();
@@ -80,7 +100,7 @@ void ZombieScene::Render()
 
 	ParticleManager::Get()->Render();
 
-	ColliderManager::Get()->Render();
+	//ColliderManager::Get()->Render();
 	SkillManager::Get()->Render();
 	player->Render();
 }
@@ -88,19 +108,24 @@ void ZombieScene::Render()
 void ZombieScene::PostRender()
 {
 	player->PostRender();
-	UIManager::Get()->Render();
 	LevelUpSystem::Get()->Render();
 	StageManager::Get()->Render();
+	tutorialPanel->Render();
 }
 
 void ZombieScene::GUIRender()
 {
-	StageManager::Get()->GUIRender();
-	//InstanceObjectManager::Get()->GUIRender();
+	/*StageManager::Get()->GUIRender();
 	ColliderManager::Get()->GUIRender();
+	InstanceCharacterManager::Get()->GUIRender();*/
+
+
+	//InstanceObjectManager::Get()->GUIRender();
+
 	//player->GUIRender();
+
 	//SkillManager::Get()->GUIRender();
-	InstanceCharacterManager::Get()->GUIRender();
+
 	//ProjectileManager::Get()->GUIRender();
 }
 
@@ -142,10 +167,8 @@ void ZombieScene::Start()
 	
 	Observer::Get()->ExcuteParamEvent("ExpSetTarget", player);
 
-	Panel* panel = new LevelUpPanel();
-	UIManager::Get()->Add("LevelUpPanel", panel, Vector3(CENTER_X, CENTER_Y, 0));
-
 	Audio::Get()->Play("BG", 0.5f);
+
 }
 
 void ZombieScene::End()
@@ -157,6 +180,7 @@ void ZombieScene::End()
 
 	ColliderManager::Get()->Clear();
 	SkillManager::Get()->Clear();
+
 
 	qt->Clear();
 

@@ -20,7 +20,7 @@ public:
 private:
 	Character* target = nullptr;
 
-	float value = 10.0f;
+	float value = 40.0f;
 
 	float moveTime = 0.0f;
 };

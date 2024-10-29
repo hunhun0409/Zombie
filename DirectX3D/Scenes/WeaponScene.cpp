@@ -20,7 +20,7 @@ void WeaponScene::Update()
 {
 	if (KEY_DOWN(VK_RBUTTON))
 	{
-		gun->Shoot(1000, 2);
+		gun->Shoot(100, 2);
 	}
 
 	gun->Update();

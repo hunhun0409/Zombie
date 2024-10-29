@@ -27,9 +27,8 @@ void ColliderManager::GUIRender()
 {
 	int count = totalColliders.size();
 
-	//ImGui::Text("ColliderManager ColliderCount : %d", count);
-	ImGui::Text("Collision Check Count : %d", collisionCheckCount);
 	quadTree->GUIRender();
+	ImGui::Text("Collision Check Count : %d", collisionCheckCount);
 }
 
 void ColliderManager::Add(Collider* collider)

@@ -47,11 +47,8 @@ private:
 
 	float time = 0.0f;
 
-
 	AStar* aStar;
 	Terrain* terrain;
 
-
 	int activeZombieCount = 0;
-	int renderingZombieCount = 0;
 };

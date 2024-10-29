@@ -125,8 +125,8 @@ void GameManager::Render()
     {
         ImGui::Begin("Inspector", &IsActive);
 
-        Environment::Get()->GUIRender();
-        SceneManager::Get()->GUIRender();
+        //Environment::Get()->GUIRender();
+        //SceneManager::Get()->GUIRender();
         ImGui::End();
     }
 

@@ -63,22 +63,25 @@ void GameOverPanel::Render()
 	}
 
 	Float2 pos = Float2(GlobalPos().x, GlobalPos().y);
-	pos.x += 80.0f;
-	pos.y -= 8.0f;
 	Float2 boxSize;
-	boxSize.x = 100;
+	boxSize.x = 66;
 	boxSize.y = 50;
+	pos.x += 80.0f;
+	pos.y -= 12.0f;
+	Font::Get()->SetStyle("GameOverKillFont");
+	
+	string sKillCount = to_string(killCount);
+	Font::Get()->RenderText(sKillCount, pos, boxSize);
+
+
+	
+	pos.y -= 30.0f;
+	boxSize.x = 100;
 	Font::Get()->SetStyle("GameOverTimeFont");
 	Font::Get()->SetColor("White");
 	Font::Get()->RenderText(sMin, Float2(pos.x - 20, pos.y), boxSize);
 	Font::Get()->RenderText(sColon, pos, boxSize);
 	Font::Get()->RenderText(sSec, Float2(pos.x + 20, pos.y), boxSize);
-	
-	pos.y -= 30.0f;
-	Font::Get()->SetStyle("GameOverKillFont");
-	boxSize.x = 66;
-	string sKillCount = to_string(killCount);
-	Font::Get()->RenderText(sKillCount, pos, boxSize);
 }
 
 void GameOverPanel::Show(Vector3 pos)

@@ -159,5 +159,4 @@ void Character::LevelUp()
 
 void Character::LevelUpEnd()
 {
-	Timer::Get()->SetDeltaScale(1.0f);
 }

@@ -20,6 +20,10 @@ QuadTree::QuadTree(Terrain* terrain)
     root->bounds.minPos = Vector3(0, 0, 0);
     root->bounds.maxPos = Vector3(terrain->GetSize().x, MAX_HEIGHT, terrain->GetSize().y);
     root->level = 0;
+
+    material = new Material(L"Basic/Grid.hlsl");
+    mesh = new Mesh<VertexColor>();
+    worldBuffer = new MatrixBuffer();
 }
 
 QuadTree::~QuadTree()
@@ -182,9 +186,6 @@ void QuadTree::Clear()
     colliderNodeMap.clear();
 }
 
-void QuadTree::MakeMesh()
-{
-}
 
 void QuadTree::Split(QNode* node)
 {
@@ -212,7 +213,7 @@ void QuadTree::Split(QNode* node)
     vector<Collider*> tempColliders = std::move(node->colliders);
     for (Collider* collider : tempColliders)
     {
-        int index = GetQuadrant(node, collider);
+        int index = FindChildQuadrantIndex(node, collider);
         if (index >= 0 && index < 4)
         {
             node->children[index]->colliders.push_back(collider);
@@ -337,12 +338,12 @@ QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
         return node;
     }
 
-    int quadrant = GetQuadrant(node, collider);
+    int quadrant = FindChildQuadrantIndex(node, collider);
     QNode* childNode = FindInsertNode(node->children[quadrant], collider);
     return childNode ? childNode : node;
 }
 
-int QuadTree::GetQuadrant(QNode* node, Collider* collider)
+int QuadTree::FindChildQuadrantIndex(QNode* node, Collider* collider)
 {
     AABB colliderAABB = collider->GetAABB();
 
@@ -355,21 +356,6 @@ int QuadTree::GetQuadrant(QNode* node, Collider* collider)
     }
 
     return -1;
-    // If no overlap is found, return the quadrant of the collider's center
-    // This is a fallback for edge cases
-    //Vector3 center = collider->GlobalPos();
-    //Vector3 nodeCenter = (node->bounds.minPos + node->bounds.maxPos) * 0.5f;
-
-    //if (center.x < nodeCenter.x)
-    //{
-    //    if (center.z > nodeCenter.z) return 0; // 좌상단
-    //    else return 2; // 좌하단
-    //}
-    //else
-    //{
-    //    if (center.z > nodeCenter.z) return 1; // 우상단
-    //    else return 3; // 우하단
-    //}
 }
 
 bool QuadTree::IsColliderInNode(QNode* node, Collider* collider)

@@ -42,14 +42,12 @@ void InstanceCharacterManager::Update()
 
 void InstanceCharacterManager::Render()
 {
-    renderingZombieCount = 0;
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)
     {
         for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
         {
             if (instanceCharacter->GetTransform()->Active())
             {
-                ++renderingZombieCount;
                 instanceCharacter->Render();
             }
         }
@@ -68,7 +66,6 @@ void InstanceCharacterManager::PostRender()
 void InstanceCharacterManager::GUIRender()
 {
     ImGui::Text("Zombie COunt : %d", activeZombieCount);
-    ImGui::Text("Rendering Zombie COunt : %d", renderingZombieCount);
     /*ImGui::Text("InstanceCharacterManager");
 
     for (pair<string, InstanceCharacters> instanceCharacters : totalCharacters)

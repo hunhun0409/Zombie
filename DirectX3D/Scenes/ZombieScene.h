@@ -17,6 +17,10 @@ public:
 	void End() override;
 
 private:
+	bool isTutorial = true;
+	float stopTime = 0.5f;
+	Panel* tutorialPanel;
+
 	Knight* player;
 
 	Terrain* terrain;

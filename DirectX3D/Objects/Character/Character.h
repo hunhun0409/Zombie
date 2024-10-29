@@ -9,8 +9,8 @@ public:
 	struct StatusInitialInfo
 	{
 		float initialHp = 50.0f;
-		float initialAttack = 90.0f;
-		float initialRecovery = 0.0f;
+		float initialAttack = 150.0f;
+		float initialRecovery = 1.0f;
 		float initialArmor = 0.0f;
 		float initialMagnet = 0.0f;
 	};

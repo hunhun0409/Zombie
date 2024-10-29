@@ -39,10 +39,6 @@ public:
 
 
 private:
-    //·»´õ
-    void MakeMesh();
-
-
     //quadTree ±â´É
     void Split(QNode* node);
     void Merge(QNode* node);
@@ -56,7 +52,7 @@ private:
     void DeleteNode(QNode* node);
 
     QNode* FindInsertNode(QNode* node, Collider* collider);
-    int GetQuadrant(QNode* node, Collider* collider);
+    int FindChildQuadrantIndex(QNode* node, Collider* collider);
 
     bool IsColliderInNode(QNode* node, Collider* collider);
     bool IsColliderInTree(Collider* collider);
@@ -73,5 +69,4 @@ private:
 
     QNode* root;
     unordered_map<Collider*, QNode*> colliderNodeMap;
-    queue<Collider*> deleteColliders;
 };

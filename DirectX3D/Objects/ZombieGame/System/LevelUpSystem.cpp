@@ -12,6 +12,12 @@ LevelUpSystem::~LevelUpSystem()
 
 void LevelUpSystem::Update()
 {
+	if (stack > 0 && isSelecting == false)
+	{
+		LevelUp();
+		stack--;
+	}
+
 	levelUpPanel->Update();
 }
 
@@ -23,6 +29,12 @@ void LevelUpSystem::Render()
 void LevelUpSystem::LevelUp()
 {
 	level++;
+	if (isSelecting)
+	{
+		stack++;
+		return;
+	}
+	
 	Show();
 }
 
@@ -31,10 +43,14 @@ void LevelUpSystem::Show()
 	vector<Skill*> skills = SkillManager::Get()->GetThreeRandomSkills();
 	levelUpPanel->SetSkills(skills);
 	levelUpPanel->Show();
+
+	Timer::Get()->SetDeltaScale(0.0f);
+	isSelecting = true;
 }
 
 void LevelUpSystem::Hide()
 {
-	levelUpPanel->Hide();
+	Timer::Get()->SetDeltaScale(1.0f);
+	isSelecting = false;
 }
 
