@@ -142,7 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Controller\AiContoller.h" />
     <ClInclude Include="Controller\CharacterController.h" />
     <ClInclude Include="Controller\PlayerController.h" />
     <ClInclude Include="DirectX3D.h" />
@@ -225,15 +224,8 @@
     <ClInclude Include="Objects\Basic\Sphere.h" />
     <ClInclude Include="Objects\Character\Character.h" />
     <ClInclude Include="Objects\Character\CharacterMovement.h" />
-    <ClInclude Include="Objects\Character\Fox.h" />
-    <ClInclude Include="Objects\Character\Human.h" />
     <ClInclude Include="Objects\Character\ICombat.h" />
     <ClInclude Include="Objects\Character\Knight.h" />
-    <ClInclude Include="Objects\Character\Mannequin.h" />
-    <ClInclude Include="Objects\Character\Naruto.h" />
-    <ClInclude Include="Objects\Character\Robot.h" />
-    <ClInclude Include="Objects\Character\Zombie.h" />
-    <ClInclude Include="Objects\Instance\InstanceBuilding.h" />
     <ClInclude Include="Objects\Instance\InstanceCharacter.h" />
     <ClInclude Include="Objects\Instance\InstanceObject.h" />
     <ClInclude Include="Objects\Instance\InstanceZombie.h" />
@@ -254,9 +246,6 @@
     <ClInclude Include="Objects\Manager\SkillManager.h" />
     <ClInclude Include="Objects\Manager\StageManager.h" />
     <ClInclude Include="Objects\Manager\UIManager.h" />
-    <ClInclude Include="Objects\MineCraft\BlockManager.h" />
-    <ClInclude Include="Objects\MineCraft\MineUI.h" />
-    <ClInclude Include="Objects\MineCraft\Steve.h" />
     <ClInclude Include="Objects\Particle\Particle.h" />
     <ClInclude Include="Objects\Particle\ParticleSystem.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -302,36 +291,14 @@
     <ClInclude Include="Objects\ZombieGame\UI\LevelUpButton.h" />
     <ClInclude Include="Objects\ZombieGame\UI\LevelUpPanel.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Scenes\ActionScene.h" />
-    <ClInclude Include="Scenes\AStarScene.h" />
-    <ClInclude Include="Scenes\BillboardScene.h" />
-    <ClInclude Include="Scenes\BuildingEditorScene.h" />
-    <ClInclude Include="Scenes\Collision2DScene.h" />
-    <ClInclude Include="Scenes\CollisionScene.h" />
-    <ClInclude Include="Scenes\DeferredScene.h" />
-    <ClInclude Include="Scenes\GameScene.h" />
-    <ClInclude Include="Scenes\GridScene.h" />
-    <ClInclude Include="Scenes\InstancingScene.h" />
-    <ClInclude Include="Scenes\LightScene.h" />
-    <ClInclude Include="Scenes\MapEditScene.h" />
-    <ClInclude Include="Scenes\MineCraftScene.h" />
     <ClInclude Include="Scenes\ModelAnimationScene.h" />
     <ClInclude Include="Scenes\ModelExportScene.h" />
     <ClInclude Include="Scenes\ModelRenderScene.h" />
     <ClInclude Include="Scenes\ParticleScene.h" />
     <ClInclude Include="Scenes\ParticleToolScene.h" />
     <ClInclude Include="Scenes\QuadTreeScene.h" />
-    <ClInclude Include="Scenes\RenderTargetScene.h" />
-    <ClInclude Include="Scenes\ScatteringScene.h" />
     <ClInclude Include="Scenes\Scene.h" />
-    <ClInclude Include="Scenes\ShadowScene.h" />
-    <ClInclude Include="Scenes\SkyScene.h" />
     <ClInclude Include="Scenes\TerrainEditorScene.h" />
-    <ClInclude Include="Scenes\TerrainLODScene.h" />
-    <ClInclude Include="Scenes\TerrainScene.h" />
-    <ClInclude Include="Scenes\TessellationScene.h" />
-    <ClInclude Include="Scenes\TrailEffectScene.h" />
-    <ClInclude Include="Scenes\WaterScene.h" />
     <ClInclude Include="Scenes\WeaponScene.h" />
     <ClInclude Include="Scenes\ZombieScene.h" />
     <ClInclude Include="targetver.h" />
@@ -412,14 +379,7 @@
     <ClCompile Include="Objects\Basic\Sphere.cpp" />
     <ClCompile Include="Objects\Character\Character.cpp" />
     <ClCompile Include="Objects\Character\CharacterMovement.cpp" />
-    <ClCompile Include="Objects\Character\Fox.cpp" />
-    <ClCompile Include="Objects\Character\Human.cpp" />
     <ClCompile Include="Objects\Character\Knight.cpp" />
-    <ClCompile Include="Objects\Character\Mannequin.cpp" />
-    <ClCompile Include="Objects\Character\Naruto.cpp" />
-    <ClCompile Include="Objects\Character\Robot.cpp" />
-    <ClCompile Include="Objects\Character\Zombie.cpp" />
-    <ClCompile Include="Objects\Instance\InstanceBuilding.cpp" />
     <ClCompile Include="Objects\Instance\InstanceCharacter.cpp" />
     <ClCompile Include="Objects\Instance\InstanceObject.cpp" />
     <ClCompile Include="Objects\Instance\InstanceZombie.cpp" />
@@ -440,9 +400,6 @@
     <ClCompile Include="Objects\Manager\SkillManager.cpp" />
     <ClCompile Include="Objects\Manager\StageManager.cpp" />
     <ClCompile Include="Objects\Manager\UIManager.cpp" />
-    <ClCompile Include="Objects\MineCraft\BlockManager.cpp" />
-    <ClCompile Include="Objects\MineCraft\MineUI.cpp" />
-    <ClCompile Include="Objects\MineCraft\Steve.cpp" />
     <ClCompile Include="Objects\Particle\Particle.cpp" />
     <ClCompile Include="Objects\Particle\ParticleSystem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -487,35 +444,13 @@
     <ClCompile Include="Objects\ZombieGame\UI\GameOverPanel.cpp" />
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpButton.cpp" />
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpPanel.cpp" />
-    <ClCompile Include="Scenes\ActionScene.cpp" />
-    <ClCompile Include="Scenes\AStarScene.cpp" />
-    <ClCompile Include="Scenes\BillboardScene.cpp" />
-    <ClCompile Include="Scenes\BuildingEditorScene.cpp" />
-    <ClCompile Include="Scenes\Collision2DScene.cpp" />
-    <ClCompile Include="Scenes\CollisionScene.cpp" />
-    <ClCompile Include="Scenes\DeferredScene.cpp" />
-    <ClCompile Include="Scenes\GameScene.cpp" />
-    <ClCompile Include="Scenes\GridScene.cpp" />
-    <ClCompile Include="Scenes\InstancingScene.cpp" />
-    <ClCompile Include="Scenes\LightScene.cpp" />
-    <ClCompile Include="Scenes\MapEditScene.cpp" />
-    <ClCompile Include="Scenes\MineCraftScene.cpp" />
     <ClCompile Include="Scenes\ModelAnimationScene.cpp" />
     <ClCompile Include="Scenes\ModelExportScene.cpp" />
     <ClCompile Include="Scenes\ModelRenderScene.cpp" />
     <ClCompile Include="Scenes\ParticleScene.cpp" />
     <ClCompile Include="Scenes\ParticleToolScene.cpp" />
     <ClCompile Include="Scenes\QuadTreeScene.cpp" />
-    <ClCompile Include="Scenes\RenderTargetScene.cpp" />
-    <ClCompile Include="Scenes\ScatteringScene.cpp" />
-    <ClCompile Include="Scenes\ShadowScene.cpp" />
-    <ClCompile Include="Scenes\SkyScene.cpp" />
     <ClCompile Include="Scenes\TerrainEditorScene.cpp" />
-    <ClCompile Include="Scenes\TerrainLODScene.cpp" />
-    <ClCompile Include="Scenes\TerrainScene.cpp" />
-    <ClCompile Include="Scenes\TessellationScene.cpp" />
-    <ClCompile Include="Scenes\TrailEffectScene.cpp" />
-    <ClCompile Include="Scenes\WaterScene.cpp" />
     <ClCompile Include="Scenes\WeaponScene.cpp" />
     <ClCompile Include="Scenes\ZombieScene.cpp" />
   </ItemGroup>

@@ -1,82 +1,34 @@
 #include "Framework.h"
 
-#include "Scenes/GridScene.h"
-#include "Scenes/TerrainScene.h"
 #include "Scenes/TerrainEditorScene.h"
-#include "Scenes/LightScene.h"
-#include "Scenes/CollisionScene.h"
-#include "Scenes/MineCraftScene.h"
 #include "Scenes/ModelExportScene.h"
 #include "Scenes/ModelRenderScene.h"
 #include "Scenes/ModelAnimationScene.h"
 #include "Scenes/ParticleScene.h"
-#include "Scenes/InstancingScene.h"
-#include "Scenes/GameScene.h"
-#include "Scenes/RenderTargetScene.h"
-#include "Scenes/DeferredScene.h"
-#include "Scenes/ShadowScene.h"
-#include "Scenes/AStarScene.h"
-#include "Scenes/SkyScene.h"
-#include "Scenes/BillboardScene.h"
-#include "Scenes/ZombieScene.h"
-#include "Scenes/BuildingEditorScene.h"
 #include "Scenes/ParticleToolScene.h"
-#include "Scenes/TrailEffectScene.h"
-#include "Scenes/ActionScene.h"
 #include "Scenes/WeaponScene.h"
-#include "Scenes/WaterScene.h"
 #include "Scenes/QuadTreeScene.h"
-#include "Scenes/TessellationScene.h"
-#include "Scenes/TerrainLODScene.h"
-#include "Scenes/ScatteringScene.h"
-#include "Scenes/Collision2DScene.h"
+#include "Scenes/ZombieScene.h"
+
 
 GameManager::GameManager()
 {
     Create();
 
-    //Change
-    //Laptop, DESKTOP
-    //FINAL
-
-    //SceneManager::Get()->Create("Grid", new SkyScene());
-    //SceneManager::Get()->Create("Grid", new GridScene());
     //SceneManager::Get()->Create("Export", new ModelExportScene());
-
     //SceneManager::Get()->Create("Start", new ModelRenderScene());
     //SceneManager::Get()->Create("Start", new ModelAnimationScene());
-    //SceneManager::Get()->Create("Start", new BillboardScene());
+    
     //SceneManager::Get()->Create("Start", new ParticleScene());
     //SceneManager::Get()->Create("Start", new ParticleToolScene());
 
     //SceneManager::Get()->Create("Start", new TerrainEditorScene());
-    //SceneManager::Get()->Create("Start", new BuildingEditorScene());
     
-    //SceneManager::Get()->Create("Start", new TerrainScene());
-    //SceneManager::Get()->Create("Start", new LightScene());
-    //SceneManager::Get()->Create("Start", new CollisionScene());
-    //SceneManager::Get()->Create("Start", new Collision2DScene());
-    //SceneManager::Get()->Create("Start", new MineCraftScene());
-
-    //SceneManager::Get()->Create("Start", new ActionScene());
-    //SceneManager::Get()->Create("Start", new InstancingScene());
-    //SceneManager::Get()->Create("Start", new RenderTargetScene());
-    //SceneManager::Get()->Create("Start", new DeferredScene());
-    //SceneManager::Get()->Create("Start", new ShadowScene());
-    //SceneManager::Get()->Create("Start", new AStarScene());
-    
-    //SceneManager::Get()->Create("Start", new TrailEffectScene());
-    //SceneManager::Get()->Create("Start", new GameScene());
-    SceneManager::Get()->Create("ZombieSurvival", new ZombieScene());
     //SceneManager::Get()->Create("Start", new WeaponScene());
-    //SceneManager::Get()->Create("Start", new WaterScene());
     //SceneManager::Get()->Create("Start", new QuadTreeScene());
-    //SceneManager::Get()->Create("Start", new TessellationScene());
-    //SceneManager::Get()->Create("Start", new TerrainLODScene());
-    //SceneManager::Get()->Create("Start", new ScatteringScene());
+  
+    SceneManager::Get()->Create("ZombieSurvival", new ZombieScene());
 
-    SceneManager::Get()->Add("Grid");
-    SceneManager::Get()->Add("Start");
     SceneManager::Get()->Add("ZombieSurvival");
 }
 

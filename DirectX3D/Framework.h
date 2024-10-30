@@ -180,7 +180,6 @@ using namespace GameMath;
 #include "Objects/UI/Panel.h"
 #include "Objects/UI/ProgressBar.h"
 
-
 #include "Objects/Particle/Particle.h"
 #include "Objects/Particle/Sprite.h"
 #include "Objects/Particle/Spark.h"
@@ -197,10 +196,6 @@ using namespace GameMath;
 #include "Objects/Landscape/Skybox.h"
 #include "Objects/Landscape/Water.h"
 #include "Objects/Landscape/Scattering.h"
-
-#include "Objects/MineCraft/BlockManager.h"
-#include "Objects/MineCraft/MineUI.h"
-#include "Objects/MineCraft/Steve.h"
 
 #include "Objects/ZombieGame/PlayerHUD.h"
 
@@ -229,16 +224,9 @@ using namespace GameMath;
 #include "Objects/Character/Character.h"
 #include "Objects/Character/CharacterMovement.h"
 #include "Objects/Character/ICombat.h"
-#include "Objects/Character/Mannequin.h"
-#include "Objects/Character/Zombie.h"
-#include "Objects/Character/Human.h"
-#include "Objects/Character/Naruto.h"
-#include "Objects/Character/Robot.h"
-#include "Objects/Character/Fox.h"
 #include "Objects/Character/Knight.h"
 
 #include "Objects/Instance/InstanceObject.h"
-#include "Objects/Instance/InstanceBuilding.h"
 #include "Objects/Instance/InstanceCharacter.h"
 #include "Objects/Instance/InstanceZombie.h"
 #include "Objects/Instance/Projectile.h"
@@ -265,7 +253,6 @@ using namespace GameMath;
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"
-#include "Controller/AiContoller.h"
 
 //Scene Header
 #include "Scenes/Scene.h"

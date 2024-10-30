@@ -123,12 +123,6 @@
     <ClInclude Include="Framework\Render\Mesh.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\GridScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\TerrainScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Landscape\Terrain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -159,12 +153,6 @@
     <ClInclude Include="Framework\Buffer\StructuredBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\LightScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\CollisionScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Collision\Collider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -177,22 +165,10 @@
     <ClInclude Include="Framework\Collision\CapsuleCollider.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\MineCraftScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\MineCraft\BlockManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\MineCraft\Steve.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Basic\Quad.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\State\BlendState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\MineCraft\MineUI.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\State\DepthStencilState.h">
@@ -228,25 +204,13 @@
     <ClInclude Include="Objects\Weapon\Crowbar.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\InstancingScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Model\ModelInstancing.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Model\ModelAnimatorInstancing.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\GameScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Character\Naruto.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Weapon\Kunai.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Character\Robot.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\UI\ProgressBar.h">
@@ -261,22 +225,10 @@
     <ClInclude Include="Framework\Render\DepthStencil.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\RenderTargetScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Render\GBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\DeferredScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\ShadowScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Environment\Shadow.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\AStarScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Algorithm\AStar.h">
@@ -294,16 +246,7 @@
     <ClInclude Include="Objects\Character\CharacterMovement.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Character\Human.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Character\ICombat.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Character\Mannequin.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Character\Zombie.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Instance\InstanceCharacter.h">
@@ -324,25 +267,13 @@
     <ClInclude Include="Objects\Manager\ProjectileManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Controller\AiContoller.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Controller\CharacterController.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Controller\PlayerController.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\Character\Fox.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\SkyScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Scenes\ZombieScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BillboardScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Shader\GeometryShader.h">
@@ -355,15 +286,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Manager\InstanceObjectManager.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects\Instance\InstanceBuilding.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\BuildingEditorScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\MapEditScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\ParticleScene.h">
@@ -393,13 +315,7 @@
     <ClInclude Include="Objects\Manager\ParticleManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\TrailEffectScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Particle\Trail.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\ActionScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Weapon\Weapon.h">
@@ -409,9 +325,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\WeaponScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\WaterScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Environment\Reflection.h">
@@ -432,9 +345,6 @@
     <ClInclude Include="Objects\Landscape\QuadTreeTerrain.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\TessellationScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Shader\HullShader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -442,12 +352,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Landscape\TerrainLOD.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\TerrainLODScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\ScatteringScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\Landscape\Scattering.h">
@@ -511,9 +415,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Collision\CircleCollider.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Collision2DScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Objects\ZombieGame\UI\LevelUpPanel.h">
@@ -641,12 +542,6 @@
     <ClCompile Include="Framework\Render\Material.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\GridScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\TerrainScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\State\RasterizerState.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -674,12 +569,6 @@
     <ClCompile Include="Framework\Buffer\StructuredBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\LightScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\CollisionScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Collision\Collider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -692,22 +581,10 @@
     <ClCompile Include="Framework\Collision\SphereCollider.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\MineCraftScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\MineCraft\BlockManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\MineCraft\Steve.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Basic\Quad.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\State\BlendState.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\MineCraft\MineUI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\State\DepthStencilState.cpp">
@@ -740,25 +617,13 @@
     <ClCompile Include="Objects\Weapon\Crowbar.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\InstancingScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Model\ModelInstancing.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Model\ModelAnimatorInstancing.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\GameScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Character\Naruto.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Weapon\Kunai.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Character\Robot.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\UI\ProgressBar.cpp">
@@ -773,22 +638,10 @@
     <ClCompile Include="Framework\Render\DepthStencil.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\RenderTargetScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Render\GBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\DeferredScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\ShadowScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Environment\Shadow.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\AStarScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Algorithm\AStar.cpp">
@@ -804,15 +657,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Character\CharacterMovement.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Character\Human.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Character\Mannequin.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Character\Zombie.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Instance\InstanceCharacter.cpp">
@@ -842,16 +686,7 @@
     <ClCompile Include="Objects\Landscape\Terrain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\Character\Fox.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\SkyScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Scenes\ZombieScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\BillboardScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Shader\GeometryShader.cpp">
@@ -864,15 +699,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Manager\InstanceObjectManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Objects\Instance\InstanceBuilding.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\BuildingEditorScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\MapEditScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\ParticleScene.cpp">
@@ -902,13 +728,7 @@
     <ClCompile Include="Objects\Manager\ParticleManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\TrailEffectScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Objects\Particle\Trail.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\ActionScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Weapon\Weapon.cpp">
@@ -918,9 +738,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scenes\WeaponScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\WaterScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Environment\Reflection.cpp">
@@ -941,9 +758,6 @@
     <ClCompile Include="Objects\Landscape\QuadTreeTerrain.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\TessellationScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Shader\DomainShader.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -951,12 +765,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Landscape\TerrainLOD.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\TerrainLODScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\ScatteringScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Landscape\Scattering.cpp">
@@ -1011,9 +819,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Collision\CircleCollider.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Scenes\Collision2DScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\ZombieGame\UI\LevelUpPanel.cpp">
