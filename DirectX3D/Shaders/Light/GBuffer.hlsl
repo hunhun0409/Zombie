@@ -31,11 +31,15 @@ LightPixelInput VS(VertexUVNormalTangentBlend input)
 
 GBufferOutput PS(LightPixelInput input) : SV_TARGET
 {
-	float3 albedo = diffuseMap.Sample(samp, input.uv).rgb;
+	float3 albedo = 
+		diffuseMap.Sample(samp, input.uv).rgb;
     albedo *= mDiffuse;
-	float specularIntencity = specularMap.Sample(samp, input.uv).r;
-	float3 normal = NormalMapping(input.tangent, input.binormal, input.normal, input.uv);
-    Material material = GetMaterial(input);
+	float specularIntencity = 
+		specularMap.Sample(samp, input.uv).r;
+	float3 normal = 
+		NormalMapping(input.tangent, input.binormal, input.normal, input.uv);
+    Material material = 
+		GetMaterial(input);
     float3 ambient = mAmbient;
     float3 emissive = mEmissive;
 	

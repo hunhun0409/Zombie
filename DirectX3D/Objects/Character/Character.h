@@ -85,7 +85,6 @@ public:
 protected:
 	CapsuleCollider* collider;
 
-	//CharacterController* controller = nullptr;
 	CharacterMovement* characterMovement;
 
 	ModelAnimator* model;

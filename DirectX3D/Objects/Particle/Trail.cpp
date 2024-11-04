@@ -35,8 +35,6 @@ void Trail::Update()
 
     vector<VertexUV>& vertices = mesh->Vertices();
 
-
-    // 각 선들이 앞선 선을 따라가는 방식
     for (UINT i = 0; i <= width; i++)
     {
         Vector3 startPos = vertices[i * 2].pos;
@@ -47,7 +45,6 @@ void Trail::Update()
 
         if (i == 0)
         {
-            // 첫 번째 선은 실제 오브젝트의 현재 위치로
             startDestPos = start->GlobalPos();
             endDestPos = end->GlobalPos();
 
@@ -56,7 +53,6 @@ void Trail::Update()
         }
         else
         {
-            // 나머지 선들은 바로 앞의 선을 따라감
             startDestPos = vertices[(i - 1) * 2].pos;
             endDestPos = vertices[(i - 1) * 2 + 1].pos;
 
@@ -110,17 +106,13 @@ void Trail::CreateMesh()
 
     vector<VertexUV>& vertices = mesh->Vertices();
 
-    // width 갯수만큼 start와 end를 잇는 선들을 생성
-    // 각 선은 2개의 정점으로 구성 (start점, end점)
     vertices.reserve((width + 1) * 2);
     for (UINT i = 0; i <= width; i++)
     {
         VertexUV vertex;
-        // start 점 추가 (윗부분)
         vertex.uv = { (float)i / width, 0.0f };
         vertices.push_back(vertex);
 
-        // end 점 추가 (아랫부분)
         vertex.uv = { (float)i / width, 1.0f };
         vertices.push_back(vertex);
     }

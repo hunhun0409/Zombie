@@ -153,7 +153,8 @@ void QuadTree::Insert(Collider* collider)
         node->colliders.push_back(collider);
         colliderNodeMap[collider] = node;
 
-        if (node->colliders.size() > MAX_OBJECT && node->level < MAX_LEVEL - 1)
+        if (node->colliders.size() > MAX_OBJECT 
+            && node->level < MAX_LEVEL - 1)
         {
             Split(node);
         }

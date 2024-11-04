@@ -81,7 +81,8 @@ void ColliderManager::CheckCollisions()
 			if (pair.second = false) continue;
 			
 			Collider* collider = pair.first;
-			vector<Collider*> potentialColliders = quadTree->GetPotentialColliders(collider);
+			vector<Collider*> potentialColliders = 
+				quadTree->GetPotentialColliders(collider);
 			
 			for (Collider* other : potentialColliders)
 			{
