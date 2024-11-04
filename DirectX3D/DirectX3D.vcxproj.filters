@@ -459,6 +459,9 @@
     <ClInclude Include="Objects\Skill\MagnetUpgrade.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Controller\AIController.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectX3D.cpp">
@@ -864,6 +867,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Objects\Skill\MagnetUpgrade.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\AIController.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

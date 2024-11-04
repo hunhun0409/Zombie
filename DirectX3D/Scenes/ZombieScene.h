@@ -22,6 +22,7 @@ private:
 	Panel* tutorialPanel;
 
 	Knight* player;
+	Knight* player2;
 
 	Terrain* terrain;
 	AStar* aStar;

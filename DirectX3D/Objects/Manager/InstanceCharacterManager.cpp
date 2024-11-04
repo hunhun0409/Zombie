@@ -87,7 +87,7 @@ void InstanceCharacterManager::SetTarget(Character* target)
     {
         for (InstanceCharacter* instanceCharacter : instanceCharacters.second)
         {
-            instanceCharacter->target = target;
+            instanceCharacter->SetTarget(target);
         }
     }
     this->target = target;
@@ -125,7 +125,7 @@ void InstanceCharacterManager::Add(string key, string name)
             InstanceCharacter* instanceCharacter = new InstanceZombie(name, transform, instancing, i);
             if (target)
             {
-                instanceCharacter->target = target;
+                instanceCharacter->SetTarget(target);
             }
             if (terrain)
             {
@@ -161,7 +161,7 @@ void InstanceCharacterManager::Add(string key, string name)
             InstanceCharacter* instanceCharacter = new InstanceZombie(name, transform, instancing, i);
             if (target)
             {
-                instanceCharacter->target = target;
+                instanceCharacter->SetTarget(target);
             }
             if (terrain)
             {

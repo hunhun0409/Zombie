@@ -10,10 +10,9 @@ public:
 
 	void ApplyAcceleration(const Vector3& inputDirection);
 
-	void ApplyDeceleration();
 	void ApplyFriction();
 	void ApplyGravity();
-	void Move();
+	void Update();
 
 	void Stop();
 

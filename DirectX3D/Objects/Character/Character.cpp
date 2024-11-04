@@ -88,9 +88,9 @@ void Character::GUIRender()
 
 void Character::Move()
 {
-	if (!isPlayingRootMotion)
+	if (!isStop)
 	{
-		characterMovement->Move();
+		characterMovement->Update();
 	}
 	else
 	{

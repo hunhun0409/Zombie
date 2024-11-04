@@ -4,15 +4,18 @@ class PlayerController : public CharacterController, public Singleton<PlayerCont
 {
 private:
 	friend class Singleton;
-	PlayerController(Character* character = nullptr);
+	PlayerController(BasicObject* character = nullptr);
 	~PlayerController() = default;
 
 public:
-	virtual void Possess(Character* character) override;
+	virtual void Possess(BasicObject* character) override;
 	virtual void UnPossess() override;
 
 	void Update() override;
 	
 private:
-	bool showCursor = false;
+	bool showCursor = true;
+
+	LightBuffer::Light* light;
+
 };

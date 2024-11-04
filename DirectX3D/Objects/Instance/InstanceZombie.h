@@ -2,10 +2,16 @@
 
 class InstanceZombie : public InstanceCharacter
 {
+public:
+	enum Behavior
+	{
+		NORMAL, CHASE, ALERT
+	};
+
 private:
 	const float IDLE_TIME = 5.0f;
 	const float ATTACK_COOLDOWN = 1.0f;
-	const float STATE_CHANGE_COOLDOWN = 3.0f;
+	//const float STATE_CHANGE_COOLDOWN = 3.0f;
 
 	const float PATROL_TIME = 5.0f;
 	const float PATROL_MIN_RADIUS = 20.0f;
@@ -14,11 +20,6 @@ private:
 	
 	const float CHASE_SPEED = 4.0f;
 	const float ALERT_SPEED = 20.0f;
-
-	enum Behavior
-	{
-		NORMAL, CHASE, ALERT
-	};
 
 	enum State
 	{
@@ -45,10 +46,6 @@ private:
 
 	void Rotate();
 
-	void Patrol();
-	void Chase();
-	void Alert();
-
 	void Idle();
 	void Dead();
 	void ScreamEnd();
@@ -59,8 +56,12 @@ private:
 	void BiteLoop();
 	void BiteEnd();
 
+public:
 	void SetBehavior(Behavior behavior);
 
+	void Patrol();
+	void Chase();
+	void Alert();
 	
 private:
 
@@ -83,7 +84,7 @@ private:
 	float rotSpeed = 5.0f;
 	
 	// Timers
-	float stateTimer = 0.0f;
+	//float stateTimer = 0.0f;
 	float attackCooldown = 0.0f;
 
 	bool hasScreamed = false;

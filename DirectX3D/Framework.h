@@ -253,6 +253,7 @@ using namespace GameMath;
 
 #include "Controller/CharacterController.h"
 #include "Controller/PlayerController.h"
+#include "Controller/AIController.h"
 
 //Scene Header
 #include "Scenes/Scene.h"

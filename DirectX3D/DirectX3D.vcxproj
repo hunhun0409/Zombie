@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Controller\AIController.h" />
     <ClInclude Include="Controller\CharacterController.h" />
     <ClInclude Include="Controller\PlayerController.h" />
     <ClInclude Include="DirectX3D.h" />
@@ -304,6 +305,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Controller\AIController.cpp" />
     <ClCompile Include="Controller\CharacterController.cpp" />
     <ClCompile Include="Controller\PlayerController.cpp" />
     <ClCompile Include="DirectX3D.cpp" />

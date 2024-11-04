@@ -6,7 +6,6 @@ ModelAnimatorInstancing::ModelAnimatorInstancing(string name)
     SetShader(L"Model/ModelAnimationInstancing.hlsl");
     instanceBuffer = new VertexBuffer(instanceDatas, sizeof(InstanceData), MAX_INSTANCE);
     frameInstancingBuffer = new FrameInstancingBuffer();
-
 }
 
 ModelAnimatorInstancing::~ModelAnimatorInstancing()
@@ -21,6 +20,10 @@ ModelAnimatorInstancing::~ModelAnimatorInstancing()
 void ModelAnimatorInstancing::Update()
 {
     UpdateTransforms();
+    if (KEY_DOWN(VK_F8))
+    {
+        isInstance = !isInstance;
+    }
 }
 
 void ModelAnimatorInstancing::Render()

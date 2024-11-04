@@ -21,10 +21,7 @@ Knight::Knight()
 
 	playerHud = new PlayerHUD(this);
 
-	Environment::Get()->AddLight();
-	light = Environment::Get()->GetLight(1);
-	light->type = 1;
-	light->range = 150.0f;
+	
 	
 
 	Observer::Get()->AddFloatParamEvent("HealPlayer", bind(&Knight::Heal, this, placeholders::_1));
@@ -41,9 +38,6 @@ Knight::~Knight()
 void Knight::Update()
 {
 	if (!Active()) return;
-
-	light->pos = GlobalPos();
-	light->pos.y = 20.0f;
 	Character::Update();
 	playerHud->Update();
 	sword->Update();
@@ -53,7 +47,6 @@ void Knight::Update()
 
 	if (curState == DIE) return;
 	Move();
-	SetAnimation();
 }
 
 void Knight::Render()
@@ -133,12 +126,6 @@ void Knight::Action()
 	SetState(SLASH, 1.0f, 0.1f);
 }
 
-void Knight::RButton()
-{
-	//isBlock = !isBlock;
-	//isBlock ? SetState(BLOCK_START) : Idle();
-}
-
 void Knight::Shift()
 {
 	isDash = !isDash;
@@ -146,19 +133,16 @@ void Knight::Shift()
 	isDash ? characterMovement->maxSpeed = 400 : characterMovement->maxSpeed = 100;
 }
 
-void Knight::Ctrl()
-{
-}
-
 void Knight::EnableAttack()
 {
-	isPlayingRootMotion = true;
+	isStop = true;
+	characterMovement->Stop();
 	sword->EnableAttack();
 }
 
 void Knight::DisableAttack()
 {
-	isPlayingRootMotion = false;
+	isStop = false;
 	sword->DisableAttack();
 }
 
@@ -177,8 +161,6 @@ void Knight::TakeDamage(float damage)
 void Knight::Dead()
 {
 	isDead = true;
-	
-	//SetActive(false);
 }
 
 void Knight::ReadClips()
@@ -202,7 +184,3 @@ void Knight::ReadClips()
 	model->GetClip(DIE)->SetEvent(bind(&Knight::Dead, this), 0.8f);
 }
 
-void Knight::SetAnimation()
-{
-	
-}

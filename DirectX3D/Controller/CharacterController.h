@@ -3,14 +3,14 @@
 class CharacterController
 {
 protected:
-	Character* controlledCharacter;
+	BasicObject* controlledObject;
 
 public:
-	CharacterController(Character* character = nullptr)
-		: controlledCharacter(character) {}
+	CharacterController(BasicObject* object = nullptr)
+		: controlledObject(object) {}
 	virtual ~CharacterController() = default;
 
-	virtual void Possess(Character* character);
+	virtual void Possess(BasicObject* character);
 	virtual void UnPossess();
 
 	virtual void Update() = 0;

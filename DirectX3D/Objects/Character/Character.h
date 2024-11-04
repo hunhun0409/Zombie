@@ -67,10 +67,8 @@ protected:
 	void SetState(int state, float playRate = 1.0f, float takeTime = 0.2f);
 
 public:
-	void SetController(CharacterController* controller) { this->controller = controller; }
+	//void SetController(CharacterController* controller) { this->controller = controller; }
 	CharacterController* GetController() { return controller; }
-
-	void SetCamera(Camera* camera) { this->camera = camera; }
 
 	float GetHeight() { return collider->Height() + collider->Radius() * 2; }
 	CharacterMovement* GetCharacterMovement() { return characterMovement; }
@@ -85,19 +83,17 @@ public:
 	Transform* GetPivot() { return pivot; }
 
 protected:
-	CharacterController* controller = nullptr;
 	CapsuleCollider* collider;
 
-	ModelAnimator* model;
+	//CharacterController* controller = nullptr;
 	CharacterMovement* characterMovement;
+
+	ModelAnimator* model;
 
 	int curState = 0;
 	unordered_map<int, string> states;
 
-	Camera* camera;
-
 	PlayerHUD* playerHud;
-
 
 	StatusInitialInfo initialStatus;
 	StatusUpgradeInfo upgradeStatus;
@@ -112,7 +108,7 @@ protected:
 
 
 public:
-	bool isPlayingRootMotion = false;
+	bool isStop = false;
 protected:
 	Transform* pivot;
 

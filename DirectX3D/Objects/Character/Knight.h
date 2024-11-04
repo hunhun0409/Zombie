@@ -29,9 +29,9 @@ public:
 
 	virtual void Idle() override;
 	virtual void Action() override;
-	virtual void RButton() override;
+	//virtual void RButton() override;
 	virtual void Shift() override;
-	virtual void Ctrl() override;
+	//virtual void Ctrl() override;
 
 
 	void EnableAttack();
@@ -47,8 +47,6 @@ public:
 
 private:
 	void ReadClips();
-
-	void SetAnimation();
 private:
 	bool isDash = false;
 
@@ -58,6 +56,4 @@ private:
 	Transform* leftHand;
 
 	MeleeWeapon* sword;
-
-	LightBuffer::Light* light;
 };

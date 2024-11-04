@@ -22,7 +22,7 @@ public:
 	void ApplySeperation(vector<InstanceCharacter*>& others);
 	void SetAStar(AStar* aStar) { this->aStar = aStar; }
 	void SetTerrain(Terrain* terrain) { this->terrain = terrain; }
-
+	void SetTarget(Transform* target);
 protected:
 	virtual void SetState(UINT state, float playRate = 1.0f, float takeTime = 0.2f, bool canOverride = false);
 
@@ -34,10 +34,12 @@ protected:
 public:
 	virtual void TakeDamage(float damage);
 
-public:
-	Character* target = nullptr;
+	
 protected:
-	Transform* transform;
+	Transform* target = nullptr;
+
+	class AIController* controller;
+
 	CapsuleCollider* collider;
 
 	ModelAnimatorInstancing* instancing;
@@ -46,14 +48,13 @@ protected:
 	string name;
 	UINT index;
 
-	int curState = 0;
 	unordered_map<int, string> states;
 
 	vector<map<float, Event>> totalEvents;
 	vector<map<float, Event>::iterator> eventIters;
 
 	//status
-	Vector3 velocity = Vector3();
+
 	float speed = 1.0f;
 
 	float maxHp = 100.0f;
@@ -70,6 +71,11 @@ protected:
 	AStar* aStar;
 
 	float pathUpdateInterval = 0;
+
+public:
+	Transform* transform;
+	int curState = 0;
+	Vector3 velocity = Vector3();
 
 };
 

@@ -61,6 +61,8 @@ private:
     void UpdateTransforms();
 
 private:
+    bool isInstance = true;
+private:
     vector<Transform*> transforms;
     InstanceData instanceDatas[MAX_INSTANCE];
 

@@ -106,8 +106,7 @@ struct VertexUVNormalTangentBlend
 	float4 weights : BLENDWEIGHTS;
 };
 
-struct VertexInstancing
-{
+struct VertexInstancing {
 	float4 pos : POSITION;
 	float2 uv : UV;
 	float3 normal : NORMAL;

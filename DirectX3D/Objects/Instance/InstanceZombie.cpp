@@ -46,6 +46,7 @@ void InstanceZombie::Update()
 {
 	InstanceCharacter::Update();
 
+	controller->Update();
 	ProcessBehavior();
 
 	rightHandTransform->SetWorld(instancing->GetTransformByNode(index, rightHandIndex));
@@ -85,38 +86,6 @@ void InstanceZombie::TakeDamage(float damage)
 
 void InstanceZombie::ProcessBehavior()
 {
-	if (target)
-	{
-		stateTimer -= DELTA;
-
-		velocity = target->GlobalPos() - transform->GlobalPos();
-		float targetLength = velocity.Length();
-
-		if (stateTimer <= 0)
-		{
-			if (targetLength > detectionRange)
-			{
-				SetBehavior(NORMAL);
-			}
-			else if (targetLength <= detectionRange && targetLength > alertRange)
-			{
-				if (curState != ALERT)
-				{
-					SetBehavior(CHASE);
-				}
-			}
-			else if (targetLength <= alertRange)
-			{
-				SetBehavior(ALERT);
-			}
-		}
-	}
-	else
-	{
-		SetBehavior(NORMAL);
-	}
-
-
 	if (curState >= HIT) return;
 	switch (curBehavior)
 	{
@@ -233,10 +202,7 @@ void InstanceZombie::Alert()
 {
 	if (velocity.Length() < attackRange)
 	{
-		if (curState < ATTACK)
-		{
-			target->IsDead() ? SetState(BITE_START) : SetState(ATTACK);
-		}
+		SetState(ATTACK);
 	}
 	else
 	{
@@ -289,9 +255,9 @@ void InstanceZombie::Alert()
 
 	if (rightHand->Active())
 	{
-		if (rightHand->IsCapsuleCollision(target->GetCollider()))
+		if (rightHand->IsCapsuleCollision(static_cast<Character*>(target)->GetCollider()))
 		{
-			target->TakeDamage(damage);
+			static_cast<Character*>(target)->TakeDamage(damage);
 			rightHand->SetActive(false);
 		}
 	}
@@ -344,7 +310,6 @@ void InstanceZombie::SetBehavior(Behavior behavior)
 {
 	if (curBehavior == behavior) return;
 
-	stateTimer = STATE_CHANGE_COOLDOWN;
 	idleTime = IDLE_TIME;
 	patrolTime = PATROL_TIME;
 	pathUpdateInterval = 0.0f;

@@ -147,6 +147,7 @@ void QuadTree::DrawAABB(const AABB& aabb, const Float4& color)
 void QuadTree::Insert(Collider* collider)
 {
     QNode* node = FindInsertNode(root, collider);
+
     if (node)
     {
         node->colliders.push_back(collider);
@@ -330,9 +331,6 @@ void QuadTree::DeleteNode(QNode* node)
 QNode* QuadTree::FindInsertNode(QNode* node, Collider* collider)
 {
     if (!node || !IsColliderInNode(node, collider)) return nullptr;
-
-    
-
     if (node->children[0] == nullptr || node->level >= MAX_LEVEL - 1)
     {
         return node;

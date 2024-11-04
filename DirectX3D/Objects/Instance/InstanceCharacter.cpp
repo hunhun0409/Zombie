@@ -22,11 +22,14 @@ InstanceCharacter::InstanceCharacter(string name, Transform* transform, ModelAni
 	Observer::Get()->AddFloatParamEvent("ZombieTakeDamage", bind(&InstanceCharacter::TakeDamage, this, placeholders::_1));
 
 	ColliderManager::Get()->Add(collider);
+	
+	controller = new AIController(this);
 }
 
 InstanceCharacter::~InstanceCharacter()
 {
 	delete collider;
+	delete controller;
 }
 
 void InstanceCharacter::Update()
@@ -90,6 +93,12 @@ void InstanceCharacter::ApplySeperation(vector<InstanceCharacter*>& others)
 
 		transform->Pos() += separationForce * DELTA;
 	}
+}
+
+void InstanceCharacter::SetTarget(Transform* target)
+{
+	this->target = target;
+	controller->SetTarget(target);
 }
 
 void InstanceCharacter::SetState(UINT state, float playRate, float takeTime, bool canOverride)

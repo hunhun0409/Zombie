@@ -1,16 +1,20 @@
 #include "Framework.h"
 
-void CharacterController::Possess(Character* character)
+void CharacterController::Possess(BasicObject* character)
 {
-	controlledCharacter = character;
-	controlledCharacter->SetController(this);
+	if (controlledObject != nullptr)
+	{
+		UnPossess();
+	}
+	controlledObject = character;
+	controlledObject->SetController(this);
 }
 
 void CharacterController::UnPossess()
 {
-	if (controlledCharacter == nullptr)
+	if (controlledObject == nullptr)
 		return;
 
-	controlledCharacter->SetController(nullptr);
-	controlledCharacter = nullptr;
+	controlledObject->SetController(nullptr);
+	controlledObject = nullptr;
 }

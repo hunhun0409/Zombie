@@ -23,12 +23,7 @@ ZombieScene::ZombieScene()
 ZombieScene::~ZombieScene()
 {
 	delete terrain;
-	delete player;
-
-
-	delete aStar;
-	delete qt;
-
+	
 	delete tutorialPanel;
 
 
@@ -57,9 +52,13 @@ void ZombieScene::Update()
 		}
 	}
 
-	if (KEY_DOWN('L'))
+	if (KEY_DOWN('X'))
 	{
-		player->LevelUp();
+		PlayerController::Get()->Possess(player);
+	}
+	if (KEY_DOWN('C'))
+	{
+		PlayerController::Get()->Possess(player2);
 
 	}
 	if (KEY_DOWN('P'))
@@ -72,6 +71,7 @@ void ZombieScene::Update()
 	}
 	aStar->Update();
 	player->Update();
+	//player2->Update();
 
 
 	InstanceObjectManager::Get()->Update();
@@ -103,6 +103,7 @@ void ZombieScene::Render()
 	//ColliderManager::Get()->Render();
 	SkillManager::Get()->Render();
 	player->Render();
+	//player2->Render();
 }
 
 void ZombieScene::PostRender()
@@ -144,16 +145,14 @@ void ZombieScene::Start()
 	player->Pos() = { 256, 0, 256 };
 	player->GetCollider();
 
+	player2 = new Knight();
+	player2->Pos() = { 256, 0, 276 };
+	player2->GetCollider();
+
 	PlayerController::Get()->Possess(player);
 
 	SkillManager::Get();
 	SkillManager::Get()->SetOwner(player);
-
-	CAM->SetTarget(player);
-	CAM->TargetOptionLoad("PlayerCamera");
-	CAM->LookAtTarget();
-
-	player->SetCamera(CAM);
 
 	StageManager::Get();
 
@@ -173,16 +172,16 @@ void ZombieScene::Start()
 
 void ZombieScene::End()
 {
-	//InstanceCharacterManager::Get()->Remove("ZombieWoman");
-	//InstanceCharacterManager::Get()->Remove("ZombieMutant");
-	//
-	//InstanceObjectManager::Get()->Remove("exp");
-
 	ColliderManager::Get()->Clear();
 	SkillManager::Get()->Clear();
 
+	InstanceCharacterManager::Get()->Remove("ZombieWoman");
+	InstanceCharacterManager::Get()->Remove("ZombieMutant");
 
 	qt->Clear();
+	delete qt;
 
-	UIManager::Get()->Remove("LevelUpPanel");
+	delete aStar;
+	delete player;
+	//delete player2;
 }

@@ -23,7 +23,5 @@ protected:
 	string name;
 
 	Collider* collider;
-
 	Transform* transform;
-
 };
